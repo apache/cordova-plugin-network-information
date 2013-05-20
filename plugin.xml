@@ -8,7 +8,7 @@ id="org.apache.cordova.core.NetworkManager"
     <name>Network Information</name>
     
     <js-module src="www/network.js" name="network">
-        <clobbers target="navigator.network" />
+        <clobbers target="navigator.connection" />
     </js-module>
             
     <!-- android -->
