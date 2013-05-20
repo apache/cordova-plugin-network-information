@@ -13,18 +13,26 @@ id="org.apache.cordova.core.NetworkManager"
             
     <!-- android -->
     <platform name="android">
-        <config-file target="res/xml/config.xml" parent="plugins">
-            <plugin name="Network Information" value="org.apache.cordova.core.NetworkManager"/>
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="NetworkStatus">
+                <param name="android-package" value="org.apache.cordova.core.NetworkManager"/>
+            </feature>   
         </config-file>
+
+        <source-file src="src/android/NetworkManager.java" target-dr="src/org/apache/cordova/core" />
         
     </platform>
 
     <!-- ios -->
     <platform name="ios">    
-        <config-file target="config.xml" parent="plugins">
-	        <plugin name="Network Information" value="CDVConnection" /> 
+        <config-file target="config.xml" parent="/*">
+            <feature name="NetworkStatus">
+                <param name="ios-package" value="CDVConnection" /> 
+            </feature>
         </config-file>
         <header-file src="src/ios/CDVConnection.h" />
-	    <source-file src="src/ios/CDVConnection.m" />
+        <source-file src="src/ios/CDVConnection.m" />
+        <header-file src="src/ios/CDVReachability.h" />
+	    <source-file src="src/ios/CDVReachability.m" />
     </platform>
 </plugin>
