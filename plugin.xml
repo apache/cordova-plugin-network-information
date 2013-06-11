@@ -18,6 +18,10 @@ id="org.apache.cordova.core.NetworkManager"
                 <param name="android-package" value="org.apache.cordova.core.NetworkManager"/>
             </feature>   
         </config-file>
+        
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+        </config-file>
 
         <source-file src="src/android/NetworkManager.java" target-dr="src/org/apache/cordova/core" />
         
@@ -30,6 +34,7 @@ id="org.apache.cordova.core.NetworkManager"
                 <param name="ios-package" value="CDVConnection" /> 
             </feature>
         </config-file>
+        
         <header-file src="src/ios/CDVConnection.h" />
         <source-file src="src/ios/CDVConnection.m" />
         <header-file src="src/ios/CDVReachability.h" />
