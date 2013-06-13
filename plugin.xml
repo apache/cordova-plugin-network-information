@@ -40,4 +40,16 @@ id="org.apache.cordova.core.NetworkManager"
         <header-file src="src/ios/CDVReachability.h" />
 	    <source-file src="src/ios/CDVReachability.m" />
     </platform>
+
+    <!-- wp7 -->
+    <platform name="wp7">
+        <config-file target="config.xml" parent="/*">
+            <feature name="NetworkStatus">
+                <param name="wp-package" value="Network"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/wp7/NetworkStatus.cs" />
+    </platform>
+
 </plugin>
