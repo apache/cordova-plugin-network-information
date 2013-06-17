@@ -9,6 +9,11 @@ id="org.apache.cordova.core.NetworkManager"
     
     <js-module src="www/network.js" name="network">
         <clobbers target="navigator.connection" />
+        <clobbers target="navigator.network.connection" />
+    </js-module>
+
+    <js-module src="www/Connection.js" name="Connection">
+        <clobbers target="Connection" />
     </js-module>
             
     <!-- android -->
@@ -23,7 +28,7 @@ id="org.apache.cordova.core.NetworkManager"
             <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
         </config-file>
 
-        <source-file src="src/android/NetworkManager.java" target-dr="src/org/apache/cordova/core" />
+        <source-file src="src/android/NetworkManager.java" target-dir="src/org/apache/cordova/core" />
         
     </platform>
 

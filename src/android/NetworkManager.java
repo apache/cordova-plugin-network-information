@@ -22,6 +22,7 @@ import org.apache.cordova.api.CallbackContext;
 import org.apache.cordova.api.CordovaInterface;
 import org.apache.cordova.api.CordovaPlugin;
 import org.apache.cordova.api.PluginResult;
+import org.apache.cordova.CordovaWebView;
 import org.json.JSONArray;
 
 import android.content.BroadcastReceiver;

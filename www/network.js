@@ -1,5 +1,4 @@
 /*
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -50,6 +49,9 @@ NetworkConnection.prototype.getInfo = function(successCallback, errorCallback) {
 var me = new NetworkConnection();
 var timerId = null;
 var timeout = 500;
+
+channel.createSticky('onCordovaConnectionReady');
+channel.waitForInitialization('onCordovaConnectionReady');
 
 channel.onCordovaReady.subscribe(function() {
     me.getInfo(function(info) {
