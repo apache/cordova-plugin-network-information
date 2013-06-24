@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+<plugin xmlns="http://cordova.apache.org/ns/plugins/1.0"
 xmlns:android="http://schemas.android.com/apk/res/android"
 id="org.apache.cordova.core.NetworkManager" version="0.1.0">
 
@@ -58,6 +58,21 @@ id="org.apache.cordova.core.NetworkManager" version="0.1.0">
         </config-file>
 
         <source-file src="src/wp7/NetworkStatus.cs" />
+    </platform>
+
+    <!-- wp8 -->
+    <platform name="wp8">
+        <config-file target="config.xml" parent="/*">
+            <feature name="NetworkStatus">
+                <param name="wp-package" value="NetworkStatus"/>
+            </feature>
+        </config-file>
+
+        <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
+            <Capability Name="ID_CAP_NETWORKING" />
+        </config-file>
+
+        <source-file src="src/wp8/NetworkStatus.cs" />
     </platform>
 
 </plugin>
