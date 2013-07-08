@@ -57,7 +57,7 @@
             <Capability Name="ID_CAP_NETWORKING" />
         </config-file>
 
-        <source-file src="src/wp7/NetworkStatus.cs" />
+        <source-file src="src/wp/NetworkStatus.cs" />
     </platform>
 
     <!-- wp8 -->
@@ -72,7 +72,7 @@
             <Capability Name="ID_CAP_NETWORKING" />
         </config-file>
 
-        <source-file src="src/wp8/NetworkStatus.cs" />
+        <source-file src="src/wp/NetworkStatus.cs" />
     </platform>
 
 </plugin>
