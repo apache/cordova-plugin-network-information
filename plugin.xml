@@ -45,6 +45,14 @@
 	    <source-file src="src/ios/CDVReachability.m" />
     </platform>
 
+    <!-- blackberry10 -->
+    <platform name="blackberry10">
+        <source-file src="src/blackberry10/index.js" target-dir="NetworkStatus" />
+        <config-file target="www/config.xml" parent="/widget">
+            <feature name="NetworkStatus" value="NetworkStatus"/>
+        </config-file>
+    </platform>
+
     <!-- wp7 -->
     <platform name="wp7">
         <config-file target="config.xml" parent="/*">
