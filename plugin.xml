@@ -84,4 +84,11 @@
         <source-file src="src/wp/NetworkStatus.cs" />
     </platform>
 
+    <!-- windows8 -->
+    <platform name="windows8">
+        <js-module src="src/windows8/NetworkInfoProxy.js" name="NetworkInfoProxy">
+            <merges target="" />
+        </js-module>
+    </platform>
+
 </plugin>
