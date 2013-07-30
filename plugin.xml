@@ -17,6 +17,15 @@
     <js-module src="www/Connection.js" name="Connection">
         <clobbers target="Connection" />
     </js-module>
+                
+    <!-- firefoxos --> 
+    <platform name="firefoxos">
+        <config-file target="config.xml" parent="/*">
+            <param name="firefox-package" value="Network" />
+        </config-file>                                      
+        
+        <source-file src="src/firefoxos/network.js" target dir="src/firefoxos" />
+    </platform>
             
     <!-- android -->
     <platform name="android">
