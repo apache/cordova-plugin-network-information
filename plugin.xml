@@ -5,6 +5,9 @@
       version="0.1.0">
 
     <name>Network Information</name>
+    <description>Cordova Network Information Plugin</description>
+    <license>Apache</license>
+    <keywords>cordova,network,information</keywords>
     
     <js-module src="www/network.js" name="network">
         <clobbers target="navigator.connection" />
