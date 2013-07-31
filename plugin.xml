@@ -24,9 +24,9 @@
             <param name="firefox-package" value="Network" />
         </config-file>                                      
         
-        <source-file src="src/firefoxos/network.js" target dir="src/firefoxos" />
+        <source-file src="src/firefoxos/network.js" target-dir="src/firefoxos" />
     </platform>
-            
+
     <!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
@@ -34,7 +34,7 @@
                 <param name="android-package" value="org.apache.cordova.core.NetworkManager"/>
             </feature>   
         </config-file>
-        
+
         <config-file target="AndroidManifest.xml" parent="/*">
             <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
         </config-file>
