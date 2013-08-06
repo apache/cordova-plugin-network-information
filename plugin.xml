@@ -7,7 +7,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 
     <name>Network Information</name>
     <description>Cordova Network Information Plugin</description>
-    <license>Apache</license>
+    <license>Apache 2.0</license>
     <keywords>cordova,network,information</keywords>
     
     <js-module src="www/network.js" name="network">
