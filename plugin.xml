@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <plugin xmlns="http://cordova.apache.org/ns/plugins/1.0"
+xmlns:android="http://schemas.android.com/apk/res/android"
            id="org.apache.cordova.core.network-information"
       version="0.1.0">
 
     <name>Network Information</name>
     <description>Cordova Network Information Plugin</description>
-    <license>Apache</license>
+    <license>Apache 2.0</license>
     <keywords>cordova,network,information</keywords>
     
     <js-module src="www/network.js" name="network">
