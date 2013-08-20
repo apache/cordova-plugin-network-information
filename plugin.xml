@@ -27,7 +27,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
         
         <source-file src="src/firefoxos/network.js" target-dir="src/firefoxos" />
     </platform>
-            
+
     <!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
@@ -35,7 +35,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
                 <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager"/>
             </feature>   
         </config-file>
-        
+
         <config-file target="AndroidManifest.xml" parent="/*">
             <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
         </config-file>
