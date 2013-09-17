@@ -20,7 +20,6 @@ xmlns:android="http://schemas.android.com/apk/res/android"
     </js-module>
                 
     <!-- firefoxos --> 
-    <!-- firefoxos -->
     <platform name="firefoxos">
         <config-file target="config.xml" parent="/*">
             <feature name="Network">
