@@ -20,12 +20,16 @@ xmlns:android="http://schemas.android.com/apk/res/android"
     </js-module>
                 
     <!-- firefoxos --> 
+    <!-- firefoxos -->
     <platform name="firefoxos">
         <config-file target="config.xml" parent="/*">
-            <param name="firefox-package" value="Network" />
-        </config-file>                                      
-        
-        <source-file src="src/firefoxos/network.js" target-dir="src/firefoxos" />
+            <feature name="Network">
+                <param name="firefoxos-package" value="Network" />
+            </feature>
+        </config-file>                                         
+        <js-module src="src/firefoxos/NetworkProxy.js" name="NetworkProxy">
+            <runs />
+        </js-module>
     </platform>
             
     <!-- android -->
