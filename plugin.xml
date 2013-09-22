@@ -44,6 +44,12 @@ xmlns:android="http://schemas.android.com/apk/res/android"
         
     </platform>
 
+    <!-- ubuntu -->
+    <platform name="ubuntu">
+        <header-file src="src/ubuntu/network_information.h" />
+        <source-file src="src/ubuntu/network_information.cpp" />
+    </platform>
+
     <!-- ios -->
     <platform name="ios">    
         <config-file target="config.xml" parent="/*">
