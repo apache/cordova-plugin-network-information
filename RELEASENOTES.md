@@ -22,3 +22,12 @@
 
 ### 0.2.1 (Sept 5, 2013)
 * CB-4432 copyright notice change
+
+### 0.2.3 (Sept 25, 2013)
+* CB-4889 bumping&resetting version
+* [windows8] commandProxy was moved
+* CB-4889 renaming org.apache.cordova.core.network-information to org.apache.cordova.network-information
+* removed duplicate comment line from plugin.xml
+* added Network APIs for FirefoxOS
+* Rename CHANGELOG.md -> RELEASENOTES.md
+* [CB-4752] Incremented plugin version on dev branch.
