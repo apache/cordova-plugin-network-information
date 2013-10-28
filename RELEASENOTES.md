@@ -31,3 +31,7 @@
 * added Network APIs for FirefoxOS
 * Rename CHANGELOG.md -> RELEASENOTES.md
 * [CB-4752] Incremented plugin version on dev branch.
+
+ ### 0.2.4 (Oct 28, 2013)
+* CB-5128: add repo + issue tag to plugin.xml for network information plugin
+* [CB-4915] Incremented plugin version on dev branch.
