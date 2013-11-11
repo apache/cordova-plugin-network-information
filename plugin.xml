@@ -46,6 +46,11 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 
     <!-- ubuntu -->
     <platform name="ubuntu">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Camera">
+                <param policy_group="connectivity" policy_version="1" />
+            </feature>
+        </config-file>
         <header-file src="src/ubuntu/network_information.h" />
         <source-file src="src/ubuntu/network_information.cpp" />
     </platform>
