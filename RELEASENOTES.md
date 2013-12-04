@@ -35,3 +35,8 @@
  ### 0.2.4 (Oct 28, 2013)
 * CB-5128: add repo + issue tag to plugin.xml for network information plugin
 * [CB-4915] Incremented plugin version on dev branch.
+
+### 0.2.5 (Dec 4, 2013)
+* [ubuntu] specify policy_group
+* add ubuntu platform
+* Added amazon-fireos platform. Change to use amazon-fireos as the platform if user agent string contains 'cordova-amazon-fireos'
