@@ -25,7 +25,7 @@
 
 
 var cordova = require('cordova');
-var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+var connection = navigator.mozConnection || navigator.webkitConnection || navigator.connection;
 
 module.exports = {
     getConnectionInfo: function (win, fail, args) {
