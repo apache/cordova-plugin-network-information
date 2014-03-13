@@ -18,20 +18,17 @@
  * under the License.
  *
 */
-                                    
+
 /*
   Network API overview: http://dvcs.w3.org/hg/dap/raw-file/tip/network-api/Overview.html
-
 */
 
 
 var cordova = require('cordova');
+var connection = navigator.mozConnection || navigator.webkitConnection || navigator.connection;
 
-module.exports = {                                    
-    
-    var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection; 
-    
-    getConnectionInfo: function (win, fail, args) {      
+module.exports = {
+    getConnectionInfo: function (win, fail, args) {
         /*
         bandwidth of type double, readonly
         The user agent must set the value of the bandwidth attribute to:
@@ -40,9 +37,9 @@ module.exports = {
             an estimation of the current bandwidth in MB/s (Megabytes per seconds) available for communication with the browsing context active document's domain.
         */
         win(connection.bandwidth);
-    },  
-    
-    isMetered: function (win, fail, args) {  
+    },
+
+    isMetered: function (win, fail, args) {
         /*
         readonly attribute boolean metered
             A connection is metered when the user's connection is subject to a limitation from his Internet Service Provider strong enough to request web applications to be careful with the bandwidth usage.
