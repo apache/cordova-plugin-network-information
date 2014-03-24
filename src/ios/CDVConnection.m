@@ -52,8 +52,14 @@
             return @"none";
 
         case ReachableViaWWAN:
-            return @"cellular";
-
+        {
+            BOOL isConnectionRequired = [reachability connectionRequired];
+            if (isConnectionRequired) {
+                return @"none";
+            } else {
+                return @"cellular";
+            }
+        }
         case ReachableViaWiFi:
             return @"wifi";
 
