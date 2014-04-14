@@ -37,6 +37,7 @@ wifi connection, and whether the device has an internet connection.
 - Windows Phone 7 and 8
 - Tizen
 - Windows 8
+- Firefox OS
 
 # Connection
 
@@ -107,6 +108,11 @@ eventually be removed.
 
 - Tizen can only detect a WiFi or cellular connection.
     - `navigator.connection.type` is set to `Connection.CELL_2G` for all cellular data.
+
+### Firefox OS Quirks
+
+- Firefox OS can't detect the type of cellular network connection.
+    - `navigator.connection.type` is set to `Connection.CELL` for all cellular data.
 
 # Network-related Events
 
