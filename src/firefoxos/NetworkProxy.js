@@ -17,44 +17,73 @@
  * specific language governing permissions and limitations
  * under the License.
  *
-*/
-                                    
+ */
+
 /*
-  Network API overview: http://dvcs.w3.org/hg/dap/raw-file/tip/network-api/Overview.html
-
+  Network API overview: http://www.w3.org/TR/netinfo-api/
+  and http://w3c.github.io/netinfo/
 */
 
+var cordova = require('cordova'),
+    Connection = require('./Connection'),
+    modulemapper = require('cordova/modulemapper');
 
-var cordova = require('cordova');
+var origConnection = modulemapper.getOriginalSymbol(window, 'navigator.connection');
 
-module.exports = {                                    
-    
-    var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection; 
-    
-    getConnectionInfo: function (win, fail, args) {      
-        /*
-        bandwidth of type double, readonly
-        The user agent must set the value of the bandwidth attribute to:
-            0 if the user is currently offline;
-            Infinity if the bandwidth is unknown;
-            an estimation of the current bandwidth in MB/s (Megabytes per seconds) available for communication with the browsing context active document's domain.
-        */
-        win(connection.bandwidth);
-    },  
-    
-    isMetered: function (win, fail, args) {  
-        /*
-        readonly attribute boolean metered
-            A connection is metered when the user's connection is subject to a limitation from his Internet Service Provider strong enough to request web applications to be careful with the bandwidth usage.
+module.exports = {
 
-            What is a metered connection is voluntarily left to the user agent to judge. It would not be possible to give an exhaustive list of limitations considered strong enough to flag the connection as metered and even if doable, some limitations can be considered strong or weak depending on the context.
-            Examples of metered connections are mobile connections with a small bandwidth quota or connections with a pay-per use plan.
-            The user agent MUST set the value of the metered attribute to true if the connection with the browsing context active document's domain is metered and false otherwise. If the implementation is not able to know the status of the connection or if the user is offline, the value MUST be set to false.
+  getConnectionInfo: function(successCallback, errorCallback) {
+    var connection = origConnection || navigator.mozConnection,
+      connectionType = Connection.UNKNOWN,
+      bandwidth = connection.bandwidth,
+      metered = connection.metered,
+      type = connection.type;
 
-            If unable to know if a connection is metered, a user agent could ask the user about the status of his current connection.
-        */
-        win(connection.metered);
+    if (type != undefined) {
+      // For more information see:
+      // https://developer.mozilla.org/en-US/docs/Web/API/Network_Information_API
+
+      switch(type) {
+        case "cellular":
+          connectionType = Connection.CELL;
+          break;
+        case "ethernet":
+          connectionType = Connection.ETHERNET;
+          break;
+        case "wifi":
+          connectionType = Connection.WIFI;
+          break;
+        case "none":
+          connectionType = Connection.NONE;
+          break;
+      }
+    } else if (bandwidth != undefined && metered != undefined) {
+      /*
+      bandwidth of type double, readonly
+      The user agent must set the value of the bandwidth attribute to:
+      0 if the user is currently offline;
+      Infinity if the bandwidth is unknown;
+      an estimation of the current bandwidth in MB/s (Megabytes per seconds)
+      available for communication with the browsing context active document's
+      domain.
+
+      For more information see:
+      https://developer.mozilla.org/en-US/docs/Web/API/Connection
+      */
+
+      if (bandwidth === 0) {
+        connectionType = Connection.NONE;
+      } else if (metered && isFinite(bandwidth)) {
+        connectionType = Connection.CELL;
+      } else if (!metered && isFinite(bandwidth)) {
+        connectionType = Connection.WIFI;
+      }
     }
+
+    setTimeout(function() {
+      successCallback(connectionType);
+    }, 0);
+  }
 };
 
-require("cordova/firefoxos/commandProxy").add("Network", module.exports);
+require("cordova/firefoxos/commandProxy").add("NetworkStatus", module.exports);
