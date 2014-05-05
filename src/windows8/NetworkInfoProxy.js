@@ -84,4 +84,4 @@ module.exports = {
 
 };
 
-require("cordova/windows8/commandProxy").add("NetworkStatus",module.exports);
+require("cordova/exec/proxy").add("NetworkStatus",module.exports);
