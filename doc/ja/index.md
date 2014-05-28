@@ -19,7 +19,7 @@
 
 # org.apache.cordova.network-information
 
-This plugin provides an implementation of an old version of the [Network Information API][1]. It provides information about the device's cellular and wifi connection, and whether the device has an internet connection.
+このプラグインは、古いバージョンの[ネットワーク情報 API][1]の実装を提供します。 デバイスの携帯電話や wifi 接続に関する情報を提供し、かどうか、デバイスがインターネットに接続します。
 
  [1]: http://www.w3.org/TR/2011/WD-netinfo-api-20110607/
 
@@ -37,7 +37,7 @@ This plugin provides an implementation of an old version of the [Network Informa
 *   Windows Phone 7 と 8
 *   Tizen
 *   Windows 8
-*   Firefox OS
+*   Firefox の OS
 
 # 接続
 
@@ -90,27 +90,27 @@ This plugin provides an implementation of an old version of the [Network Informa
 ### iOS の癖
 
 *   iOS は、携帯電話のネットワーク接続の種類を検出できません。 
-    *   `navigator.connection.type` is set to `Connection.CELL` for all cellular data.
+    *   `navigator.connection.type`設定する `Connection.CELL` すべての携帯電話データの。
 
 ### Windows Phone の癖
 
-*   When running in the emulator, always detects `navigator.connection.type` as `Connection.UNKNOWN`.
+*   エミュレーターで実行しているときを常に検出 `navigator.connection.type` として`Connection.UNKNOWN`.
 
 *   Windows Phone 携帯電話ネットワーク接続の種類を検出できません。
     
-    *   `navigator.connection.type` is set to `Connection.CELL` for all cellular data.
+    *   `navigator.connection.type`設定する `Connection.CELL` すべての携帯電話データの。
 
 ### Tizen の癖
 
 *   Tizen には、WiFi または携帯電話の接続だけを検出できます。 
-    *   `navigator.connection.type` is set to `Connection.CELL_2G` for all cellular data.
+    *   `navigator.connection.type`設定する `Connection.CELL_2G` すべての携帯電話データの。
 
 ### Firefox OS 癖
 
 *   Firefox の OS は、携帯電話のネットワーク接続の種類を検出できません。 
-    *   `navigator.connection.type` is set to `Connection.CELL` for all cellular data.
+    *   `navigator.connection.type`設定する `Connection.CELL` すべての携帯電話データの。
 
-# Network-related Events
+# ネットワーク関連のイベント
 
 ## offline
 
