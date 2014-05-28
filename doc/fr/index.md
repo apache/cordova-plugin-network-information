@@ -37,6 +37,7 @@ Ce plugin fournit une implémentation d'une ancienne version de l' [API Informat
 *   Windows Phone 7 et 8
 *   Paciarelli
 *   Windows 8
+*   Firefox OS
 
 # Connexion
 
@@ -103,6 +104,11 @@ Jusqu'à Cordova 2.3.0, l'objet `Connection` était accessible via `navigator.ne
 
 *   Paciarelli peut uniquement détecter une connexion cellulaire ou bien WiFi. 
     *   `navigator.connection.type`a la valeur `Connection.CELL_2G` pour toutes les données cellulaires.
+
+### Firefox OS Quirks
+
+*   Firefox OS ne peut pas détecter le type de connexion au réseau cellulaire. 
+    *   `navigator.connection.type`a la valeur `Connection.CELL` pour toutes les données cellulaires.
 
 # Événements liés au réseau
 
