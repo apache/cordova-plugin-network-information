@@ -37,6 +37,7 @@ Este plugin proporciona una implementación de una versión antigua de la [Red d
 *   Windows Phone 7 y 8
 *   Tizen
 *   Windows 8
+*   Firefox OS
 
 # Conexión
 
@@ -104,6 +105,11 @@ Hasta Cordova 2.3.0, el `Connection` objeto se accede a través de `navigator.ne
 *   Tizen sólo puede detectar un Wi-Fi o conexión celular. 
     *   `navigator.connection.type`se establece en `Connection.CELL_2G` para todos los datos celulares.
 
+### Firefox OS rarezas
+
+*   Firefox OS no puede detectar el tipo de conexión de red celular. 
+    *   `navigator.connection.type`se establece en `Connection.CELL` para todos los datos celulares.
+
 # Eventos relacionados con la red
 
 ## offline
@@ -121,9 +127,11 @@ Las aplicaciones normalmente deben utilizar `document.addEventListener` para con
 
 ### Ejemplo rápido
 
-    document.addEventListener ("offline", onOffline, false);
+    document.addEventListener("offline", onOffline, false);
     
-    function onOffline() {/ / Handle del evento offline}
+    function onOffline() {
+        // Handle the offline event
+    }
     
 
 ### iOS rarezas
