@@ -24,6 +24,8 @@ import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.PluginResult;
 import org.apache.cordova.CordovaWebView;
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -75,7 +77,7 @@ public class NetworkManager extends CordovaPlugin {
 
     ConnectivityManager sockMan;
     BroadcastReceiver receiver;
-    private String lastStatus = "";
+    private JSONObject lastInfo = null;
 
     /**
      * Constructor.
@@ -104,7 +106,7 @@ public class NetworkManager extends CordovaPlugin {
                 @Override
                 public void onReceive(Context context, Intent intent) {
                     // (The null check is for the ARM Emulator, please use Intel Emulator for better results)
-                    if(NetworkManager.this.webView != null)                        
+                    if(NetworkManager.this.webView != null)
                         updateConnectionInfo(sockMan.getActiveNetworkInfo());
                 }
             };
@@ -126,7 +128,12 @@ public class NetworkManager extends CordovaPlugin {
         if (action.equals("getConnectionInfo")) {
             this.connectionCallbackContext = callbackContext;
             NetworkInfo info = sockMan.getActiveNetworkInfo();
-            PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, this.getConnectionInfo(info));
+            String connectionType = "";
+            try {
+                connectionType = this.getConnectionInfo(info).get("type").toString();
+            } catch (JSONException e) { }
+
+            PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, connectionType);
             pluginResult.setKeepCallback(true);
             callbackContext.sendPluginResult(pluginResult);
             return true;
@@ -161,13 +168,17 @@ public class NetworkManager extends CordovaPlugin {
     private void updateConnectionInfo(NetworkInfo info) {
         // send update to javascript "navigator.network.connection"
         // Jellybean sends its own info
-        String thisStatus = this.getConnectionInfo(info);
-        if(!thisStatus.equals(lastStatus))
+        JSONObject thisInfo = this.getConnectionInfo(info);
+        if(!thisInfo.equals(lastInfo))
         {
-            sendUpdate(thisStatus);
-            lastStatus = thisStatus;
+            String connectionType = "";
+            try {
+                connectionType = thisInfo.get("type").toString();
+            } catch (JSONException e) { }
+
+            sendUpdate(connectionType);
+            lastInfo = thisInfo;
         }
-            
     }
 
     /**
@@ -176,8 +187,9 @@ public class NetworkManager extends CordovaPlugin {
      * @param info the current active network info
      * @return a JSONObject that represents the network info
      */
-    private String getConnectionInfo(NetworkInfo info) {
+    private JSONObject getConnectionInfo(NetworkInfo info) {
         String type = TYPE_NONE;
+        String extraInfo = "";
         if (info != null) {
             // If we are not connected to any network set type to none
             if (!info.isConnected()) {
@@ -186,9 +198,20 @@ public class NetworkManager extends CordovaPlugin {
             else {
                 type = getType(info);
             }
+            extraInfo = info.getExtraInfo();
         }
+
         Log.d("CordovaNetworkManager", "Connection Type: " + type);
-        return type;
+        Log.d("CordovaNetworkManager", "Connection Extra Info: " + extraInfo);
+
+        JSONObject connectionInfo = new JSONObject();
+
+        try {
+            connectionInfo.put("type", type);
+            connectionInfo.put("extraInfo", extraInfo);
+        } catch (JSONException e) { }
+
+        return connectionInfo;
     }
 
     /**
@@ -247,3 +270,4 @@ public class NetworkManager extends CordovaPlugin {
         return TYPE_UNKNOWN;
     }
 }
+
