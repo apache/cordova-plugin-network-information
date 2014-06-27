@@ -38,6 +38,9 @@ xmlns:android="http://schemas.android.com/apk/res/android"
     <js-module src="www/Connection.js" name="Connection">
         <clobbers target="Connection" />
     </js-module>
+    
+    <js-module src="test/tests.js" name="tests">
+    </js-module>
 
     <!-- firefoxos -->
     <platform name="firefoxos">
