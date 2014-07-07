@@ -19,31 +19,31 @@
 
 # org.apache.cordova.network-information
 
-这个插件提供的旧版本的[网络信息 API][1]实现的。 它提供了有关该设备的移动电话和无线网络连接的信息和设备是否已连接到 internet。
+這個外掛程式提供的舊版本的[網路資訊 API][1]實現的。 它提供了有關該設備的行動電話和無線網路連接的資訊和設備是否已連接到 internet。
 
  [1]: http://www.w3.org/TR/2011/WD-netinfo-api-20110607/
 
-## 安装
+## 安裝
 
     cordova plugin add org.apache.cordova.network-information
     
 
-## 支持的平台
+## 支援的平臺
 
-*   亚马逊火 OS
-*   Android 系统
+*   亞馬遜火 OS
+*   Android 系統
 *   黑莓 10
 *   iOS
 *   Windows Phone 7 和 8
 *   Tizen
 *   Windows 8
-*   火狐浏览器操作系统
+*   火狐瀏覽器作業系統
 
-# 连接
+# 連接
 
-> `connection`对象，通过公开 `navigator.connection` ，提供了有关该设备的移动电话和无线网络连接的信息。
+> `connection`物件，通過公開 `navigator.connection` ，提供了有關該設備的行動電話和無線網路連接的資訊。
 
-## 属性
+## 屬性
 
 *   connection.type
 
@@ -60,7 +60,7 @@
 
 ## connection.type
 
-此属性提供快速的方法来确定设备的网络连接状态，和连接类型。
+此屬性提供快速的方法來確定設備的網路連接狀態，和連線類型。
 
 ### 快速的示例
 
@@ -85,45 +85,45 @@
 
 ### API 更改
 
-知道Cordova 2.3.0， `Connection` 对象是通过 `navigator.network.connection`被访问 ，之后才改为 `navigator.connection` 匹配的 W3C 规范。 它仍然是在其原来的位置，但已被废弃，最终将被删除。
+科爾多瓦 2.3.0，直到 `Connection` 物件的訪問通過 `navigator.network.connection` 後才改為其中, `navigator.connection` 以匹配的 W3C 規範。 它在其原始位置，是仍然可用，但已廢棄，最終將被刪除。
 
 ### iOS 的怪癖
 
-*   iOS 无法检测到蜂窝网络连接的类型。 
-    *   `navigator.connection.type`设置为 `Connection.CELL` 为所有蜂窝数据。
+*   iOS 無法檢測到蜂窩網路連接的類型。 
+    *   `navigator.connection.type`設置為 `Connection.CELL` 為所有蜂窩資料。
 
 ### Windows Phone 怪癖
 
-*   当运行在仿真器中，总能检测到 `navigator.connection.type` 作为`Connection.UNKNOWN`.
+*   當運行在模擬器中，總能檢測到 `navigator.connection.type` 作為`Connection.UNKNOWN`.
 
-*   Windows Phone 不能检测的蜂窝网络连接的类型。
+*   Windows Phone 不能檢測的蜂窩網路連接的類型。
     
-    *   `navigator.connection.type`设置为 `Connection.CELL` 为所有蜂窝数据。
+    *   `navigator.connection.type`設置為 `Connection.CELL` 為所有蜂窩資料。
 
 ### Tizen 怪癖
 
-*   Tizen 只可以检测一个 WiFi 或者蜂窝连接。 
-    *   `navigator.connection.type`设置为 `Connection.CELL_2G` 为所有蜂窝数据。
+*   Tizen 只可以檢測一個 WiFi 或者蜂窩連接。 
+    *   `navigator.connection.type`設置為 `Connection.CELL_2G` 為所有蜂窩資料。
 
-### 火狐浏览器操作系统的怪癖
+### 火狐瀏覽器作業系統的怪癖
 
-*   火狐浏览器操作系统无法检测到蜂窝网络连接的类型。 
-    *   `navigator.connection.type`设置为 `Connection.CELL` 为所有蜂窝数据。
+*   火狐瀏覽器作業系統無法檢測到蜂窩網路連接的類型。 
+    *   `navigator.connection.type`設置為 `Connection.CELL` 為所有蜂窩資料。
 
-# 与网络相关的事件
+# 與網路相關的事件
 
 ## offline
 
-当一个应用程序离线，并且该设备未连接到互联网时，将触发该事件。
+當一個應用程式離線時，與該設備未連接到互聯網時，將觸發該事件。
 
     document.addEventListener("offline", yourCallbackFunction, false);
     
 
-### 详细信息
+### 詳細資訊
 
-当以前连接的设备失去网络连接，以致应用程序不再可以访问互联网时，将触发该`offline`事件。 它依赖于连接API中相同的信息，并且 当 `connection.type`从 `NONE` 更改为其他任何值的时候，将触发该事件。
+`offline`以前連接的設備失去網路連接，這樣，應用程式不再可以訪問互聯網時激發的事件。 它依賴于連接 API，相同的資訊和火災時的值 `connection.type` 變得`NONE`.
 
-应用程序通常应使用 `document.addEventListener` 将一个事件侦听器附加一次 `deviceready` 事件火灾。
+應用程式通常應使用 `document.addEventListener` 將一個事件攔截器附加一次 `deviceready` 事件火災。
 
 ### 快速的示例
 
@@ -136,28 +136,28 @@
 
 ### iOS 的怪癖
 
-在初始启动期间，第一次脱机事件 （如果适用） 至少需要一秒去触发。
+在初始啟動期間，第一次離線事件 （如果適用） 需至少一秒的火。
 
 ### Windows Phone 7 的怪癖
 
-当运行在仿真器中时， `connection.status` 始终是未知的，因此此事件将是*not*触发。
+當運行在模擬器中， `connection.status` 始終是未知的因此此事件不會*不*火。
 
 ### Windows Phone 8 怪癖
 
-仿真程序报告连接类型为 `Cellular` ，而不会更改，所以该事件将是*not*触发。
+模擬程式報告連線類型為 `Cellular` ，而不會更改，所以該事件不會*不*火。
 
 ## online
 
-当应用程序进入在线状态，并且该设备将成为连接到互联网时触发此事件。
+當應用程式進入線上狀態，和該設備將成為連接到互聯網時觸發此事件。
 
     document.addEventListener("online", yourCallbackFunction, false);
     
 
-### 详细信息
+### 詳細資訊
 
-当以前未连接的移动设备接收到一个网络连接，以允许应用程序访问互联网时将触发该`online`事件。 它依赖于连接 API相同的信息，并且当 `connection.type` 变为`NONE`时才触发。.
+`online`當先前連接的行動裝置接收到一個網路連接以允許應用程式訪問互聯網時激發的事件。 它依賴于連接 API，相同的資訊，則會激發 `connection.type` 從更改 `NONE` 為任何其他值。
 
-应用程序通常应使用 `document.addEventListener` 将一个事件侦听器附加一次 `deviceready` 事件火灾。
+應用程式通常應使用 `document.addEventListener` 將一個事件攔截器附加一次 `deviceready` 事件火災。
 
 ### 快速的示例
 
@@ -170,12 +170,12 @@
 
 ### iOS 的怪癖
 
-在初始启动期间，第一次至少需一秒钟来触发 `online` 事件 (如果适用)，在这之前`connection.type` 是`UNKNOWN`.
+在初始啟動期間第一次 `online` 事件 （如果適用），至少需一秒的火災之前的, `connection.type` 是`UNKNOWN`.
 
 ### Windows Phone 7 的怪癖
 
-当运行在仿真器中， `connection.status` 始终是未知的因此此事件不会*不*火。
+當運行在模擬器中， `connection.status` 始終是未知的因此此事件不會*不*火。
 
 ### Windows Phone 8 怪癖
 
-仿真程序报告连接类型为 `Cellular` ，而不会更改，所以该事件将是*not*触发。
+模擬程式報告連線類型為 `Cellular` ，而不會更改，所以事件不**火。

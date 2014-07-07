@@ -121,7 +121,7 @@ L'évènement se déclenche lorsqu'une application se déconnecte, quand l'appar
 
 ### Détails
 
-L'évènement `offline` se déclenche lorsqu'un appareil précédemment connecté perd sa connexion au réseau, empêchant ainsi l'application d'accéder à Internet. Il repose sur les mêmes informations que l'API Connection et se déclenche quand `connection.type` passe de `NONE` à une autre valeur.
+L'évènement `offline` se déclenche lorsqu'un appareil précédemment connecté perd sa connexion au réseau, empêchant ainsi l'application d'accéder à Internet. Il s'appuie sur les mêmes informations que l'API de connexion et se déclenche lorsque la valeur de `connection.type` devient`NONE`.
 
 Les applications doivent généralement utiliser `document.addEventListener` pour attacher un écouteur d'événements une fois le `deviceready` événement se déclenche.
 
@@ -153,7 +153,7 @@ L'évènement se déclenche lorsqu'une application se connecte, quand l'appareil
 
 ### Détails
 
-L'évènement `online` se déclenche lorsqu'un appareil précédemment non-connecté se connecte au réseau, permettant ainsi à l'application d'accéder à Internet. Il repose sur les mêmes informations que l'API Connection et se déclenche quand la valeur de `connection.type` devient `NONE`.
+L'évènement `online` se déclenche lorsqu'un appareil précédemment non-connecté se connecte au réseau, permettant ainsi à l'application d'accéder à Internet. Il s'appuie sur les mêmes informations que l'API de connexion et se déclenche quand le `connection.type` passe de `NONE` à une autre valeur.
 
 Les applications doivent généralement utiliser `document.addEventListener` pour attacher un écouteur d'événements une fois le `deviceready` événement se déclenche.
 

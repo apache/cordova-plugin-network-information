@@ -121,7 +121,7 @@ El evento se desencadena cuando una aplicación está desconectada, y el disposi
 
 ### Detalles
 
-El `offline` evento se desencadena cuando un dispositivo conectado previamente pierde una conexión de red para que una aplicación no puede acceder a Internet. Se basa en la misma información que la API de conexión y cuando se dispara el `connection.type` cambia de `NONE` a cualquier otro valor.
+El `offline` evento se desencadena cuando un dispositivo conectado previamente pierde una conexión de red para que una aplicación no puede acceder a Internet. Se basa en la misma información que la API de conexión y cuando se dispara el valor del `connection.type` se convierte`NONE`.
 
 Las aplicaciones normalmente deben utilizar `document.addEventListener` para conectar un detector de eventos una vez el `deviceready` evento incendios.
 
@@ -155,7 +155,7 @@ Este evento se desencadena cuando una aplicación en línea, el dispositivo se c
 
 ### Detalles
 
-El `online` evento se desencadena cuando un dispositivo previamente inconexos recibe una conexión de red para permitir un acceso a las aplicaciones a Internet. Se basa en la misma información que la API de conexión y cuando se dispara el valor del `connection.type` se convierte`NONE`.
+El `online` evento se desencadena cuando un dispositivo previamente inconexos recibe una conexión de red para permitir un acceso a las aplicaciones a Internet. Se basa en la misma información que la API de conexión y cuando se dispara el `connection.type` cambia de `NONE` a cualquier otro valor.
 
 Las aplicaciones normalmente deben utilizar `document.addEventListener` para conectar un detector de eventos una vez el `deviceready` evento incendios.
 

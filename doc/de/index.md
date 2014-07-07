@@ -121,7 +121,7 @@ Das Ereignis wird ausgelöst, wenn eine Anwendung offline geht, und das Gerät n
 
 ### Informationen
 
-Das `offline` -Ereignis wird ausgelöst, wenn ein bereits angeschlossenes Gerät eine Netzwerkverbindung verliert, so dass eine Anwendung nicht mehr auf das Internet zugreifen kann. Es stützt sich auf die gleichen Informationen wie die Verbindung-API und wird ausgelöst, wenn die `connection.type` ändert sich von `NONE` auf einen anderen Wert.
+Das `offline` -Ereignis wird ausgelöst, wenn ein bereits angeschlossenes Gerät eine Netzwerkverbindung verliert, so dass eine Anwendung nicht mehr auf das Internet zugreifen kann. Es stützt sich auf die gleichen Informationen wie die Verbindung-API und wird ausgelöst, wenn der Wert des `connection.type` wird`NONE`.
 
 Anwendungen sollten in der Regel verwenden `document.addEventListener` einmal einen Ereignis-Listener hinzufügen das `deviceready` -Ereignis ausgelöst.
 
@@ -155,7 +155,7 @@ Dieses Ereignis wird ausgelöst, wenn eine Anwendung online geht, und das Gerät
 
 ### Informationen
 
-Das `online` -Ereignis wird ausgelöst, wenn ein zuvor unverbundenen Gerät eine Netzwerkverbindung zu einem Anwendung Zugriff auf das Internet empfängt. Es stützt sich auf die gleichen Informationen wie die Verbindung-API und wird ausgelöst, wenn der Wert des `connection.type` wird`NONE`.
+Das `online` -Ereignis wird ausgelöst, wenn ein zuvor unverbundenen Gerät eine Netzwerkverbindung zu einem Anwendung Zugriff auf das Internet empfängt. Es stützt sich auf die gleichen Informationen wie die Verbindung-API und wird ausgelöst, wenn die `connection.type` ändert sich von `NONE` auf einen anderen Wert.
 
 Anwendungen sollten in der Regel verwenden `document.addEventListener` einmal einen Ereignis-Listener hinzufügen das `deviceready` -Ereignis ausgelöst.
 
