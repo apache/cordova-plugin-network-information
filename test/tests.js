@@ -82,7 +82,10 @@ exports.defineManualTests = function (contentEl, createActionButton) {
     var html = '<div id="info">' +
         '<b>Results:</b><br>' +
         '<span id="results"></span>' +
-        '</div><div id="actions"></div>';
+        '</div><div id="connection"></div>' +
+        'Expected result: Status box will update with type of connection using two different methods. Both values must match.' +
+        '  The result will be unknown, ethernet, wifi, 2g, 3g, 4g, none, or cellular. Make sure it matches what the device is connected to.' +
+        '</p> <div id="actions"></div>';
 
     document.addEventListener("online", onEvent, false);
     document.addEventListener("offline", onEvent, false);
@@ -90,7 +93,7 @@ exports.defineManualTests = function (contentEl, createActionButton) {
 
     createActionButton('Show Network Connection', function () {
         printNetwork();
-    }, 'actions');
+    }, 'connection');
 
     createActionButton('Clear Log', function () {
         document.getElementById('results').innerHTML = '';
