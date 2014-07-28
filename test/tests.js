@@ -84,8 +84,8 @@ exports.defineManualTests = function (contentEl, createActionButton) {
         '<span id="results"></span>' +
         '</div><div id="actions"></div>';
 
-    document.AddEventListener("online", onEvent, false);
-    document.AddEventListener("offline", onEvent, false);
+    document.addEventListener("online", onEvent, false);
+    document.addEventListener("offline", onEvent, false);
     contentEl.innerHTML = html;
 
     createActionButton('Show Network Connection', function () {
