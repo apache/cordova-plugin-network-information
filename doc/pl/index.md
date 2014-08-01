@@ -121,7 +121,7 @@ Zdarzenie odpala gdy aplikacja przejdzie do trybu offline, a urządzenie nie jes
 
 ### Szczegóły
 
-`offline`Zdarzenie fires po wcześniej podłączone urządzenie traci połączenia z siecią, dzięki czemu aplikacja może już dostęp do Internetu. Opiera się na te same informacje połączenia API i gdy odpalam `connection.type` zmienia się z `NONE` na inną wartość.
+`offline`Zdarzenie fires po wcześniej podłączone urządzenie traci połączenia z siecią, dzięki czemu aplikacja może już dostęp do Internetu. Opiera się na te same informacje połączenia API i gdy odpalam wartość `connection.type` staje się`NONE`.
 
 Aplikacje zwykle należy użyć `document.addEventListener` Aby dołączyć słuchacza raz `deviceready` pożary zdarzenia.
 
@@ -155,7 +155,7 @@ Wydarzenie to odpala gdy aplikacja przechodzi w tryb online i urządzenie staje 
 
 ### Szczegóły
 
-`online`Zdarzenie odpala gdy wcześniej niezwiązane urządzenie odbiera połączenie sieciowe, aby umożliwić aplikacji dostęp do Internetu. Opiera się na te same informacje połączenia API i gdy odpalam wartość `connection.type` staje się`NONE`.
+`online`Zdarzenie odpala gdy wcześniej niezwiązane urządzenie odbiera połączenie sieciowe, aby umożliwić aplikacji dostęp do Internetu. Opiera się na te same informacje połączenia API i gdy odpalam `connection.type` zmienia się z `NONE` na inną wartość.
 
 Aplikacje zwykle należy użyć `document.addEventListener` Aby dołączyć słuchacza raz `deviceready` pożary zdarzenia.
 
