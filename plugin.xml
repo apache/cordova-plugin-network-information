@@ -21,7 +21,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
 xmlns:android="http://schemas.android.com/apk/res/android"
            id="org.apache.cordova.network-information"
-      version="0.2.11-dev">
+      version="0.2.12-dev">
 
     <name>Network Information</name>
     <description>Cordova Network Information Plugin</description>
@@ -37,9 +37,6 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 
     <js-module src="www/Connection.js" name="Connection">
         <clobbers target="Connection" />
-    </js-module>
-    
-    <js-module src="test/tests.js" name="tests">
     </js-module>
 
     <!-- firefoxos -->
