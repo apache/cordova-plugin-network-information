@@ -33,6 +33,7 @@ wifi connection, and whether the device has an internet connection.
 - Amazon Fire OS
 - Android
 - BlackBerry 10
+- Browser
 - iOS
 - Windows Phone 7 and 8
 - Tizen

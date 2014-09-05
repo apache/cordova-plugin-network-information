@@ -156,4 +156,11 @@ xmlns:android="http://schemas.android.com/apk/res/android"
             <runs />
         </js-module>
     </platform>
+
+    <!-- browser -->
+    <platform name="browser">
+        <js-module src="src/browser/NetworkProxy.js" name="NetworkProxy">
+            <runs />
+        </js-module>
+    </platform>
 </plugin>
