@@ -33,6 +33,7 @@ Ce plugin fournit une implémentation d'une ancienne version de l' [API Informat
 *   Amazon Fire OS
 *   Android
 *   BlackBerry 10
+*   Navigateur
 *   iOS
 *   Windows Phone 7 et 8
 *   Paciarelli

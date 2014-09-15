@@ -33,6 +33,7 @@
 *   Amazon Fire ОС
 *   Android
 *   BlackBerry 10
+*   Обозреватель
 *   iOS
 *   Windows Phone 7 и 8
 *   Tizen

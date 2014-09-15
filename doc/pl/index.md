@@ -33,6 +33,7 @@ Wtyczka stanowi implementację starą wersję [API informacji w sieci][1]. Udost
 *   Amazon ogień OS
 *   Android
 *   Jeżyna 10
+*   Przeglądarka
 *   iOS
 *   Windows Phone 7 i 8
 *   Tizen

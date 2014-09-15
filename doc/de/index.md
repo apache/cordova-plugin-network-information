@@ -33,6 +33,7 @@ Dieses Plugin stellt eine Implementierung einer alten Version der [Netzwerk-Info
 *   Amazon Fire OS
 *   Android
 *   BlackBerry 10
+*   Browser
 *   iOS
 *   Windows Phone 7 und 8
 *   Tizen

@@ -33,6 +33,7 @@
 *   アマゾン火 OS
 *   アンドロイド
 *   ブラックベリー 10
+*   ブラウザー
 *   iOS
 *   Windows Phone 7 と 8
 *   Tizen

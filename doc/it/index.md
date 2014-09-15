@@ -33,6 +33,7 @@ Questo plugin fornisce un'implementazione di una vecchia versione dell' [API di 
 *   Amazon fuoco OS
 *   Android
 *   BlackBerry 10
+*   Browser
 *   iOS
 *   Windows Phone 7 e 8
 *   Tizen

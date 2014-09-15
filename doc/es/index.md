@@ -33,6 +33,7 @@ Este plugin proporciona una implementación de una versión antigua de la [Red d
 *   Amazon fuego OS
 *   Android
 *   BlackBerry 10
+*   Explorador
 *   iOS
 *   Windows Phone 7 y 8
 *   Tizen

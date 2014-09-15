@@ -33,11 +33,12 @@
 *   亞馬遜火 OS
 *   Android 系統
 *   黑莓 10
+*   瀏覽器
 *   iOS
 *   Windows Phone 7 和 8
-*   Tizen
+*   泰
 *   Windows 8
-*   火狐瀏覽器作業系統
+*   火狐瀏覽器的作業系統
 
 # 連接
 
