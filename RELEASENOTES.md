@@ -71,3 +71,14 @@
 * CB-6127 Updated translations for docs
 * CB-7019 Updated version and RELEASENOTES.md for release 0.2.10
 * Fixed docs for online/offline event being backwards
+
+### 0.2.12 (Sep 17, 2014)
+* CB-7471 cordova-plugin-network-information documentation translation
+* Fix network information type exception on fxos 2
+* Added support for the browser
+* CB-6724 added documentation for manual tests
+* remove reference to test assets, they are optional
+* Renamed test dir and added nested plugin.xml
+* CB-6964 ported manual tests
+* Port network tests to plugin-test-framework
+* Fix naviagtor typo
