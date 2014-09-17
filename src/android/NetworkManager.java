@@ -45,6 +45,7 @@ public class NetworkManager extends CordovaPlugin {
     public static final String WIMAX = "wimax";
     // mobile
     public static final String MOBILE = "mobile";
+    public static final String CELLULAR = "cellular";
     // 2G network types
     public static final String GSM = "gsm";
     public static final String GPRS = "gprs";
@@ -241,7 +242,7 @@ public class NetworkManager extends CordovaPlugin {
             if (type.toLowerCase().equals(WIFI)) {
                 return TYPE_WIFI;
             }
-            else if (type.toLowerCase().equals(MOBILE)) {
+            else if (type.toLowerCase().equals(MOBILE) || type.toLowerCase().equals(CELLULAR)) {
                 type = info.getSubtypeName();
                 if (type.toLowerCase().equals(GSM) ||
                         type.toLowerCase().equals(GPRS) ||
