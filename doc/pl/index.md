@@ -23,16 +23,16 @@ Wtyczka stanowi implementację starą wersję [API informacji w sieci][1]. Udost
 
  [1]: http://www.w3.org/TR/2011/WD-netinfo-api-20110607/
 
-## Instalacji
+## Instalacja
 
     cordova plugin add org.apache.cordova.network-information
     
 
 ## Obsługiwane platformy
 
-*   Amazon ogień OS
+*   Amazon Fire OS
 *   Android
-*   Jeżyna 10
+*   BlackBerry 10
 *   Przeglądarka
 *   iOS
 *   Windows Phone 7 i 8
@@ -88,7 +88,7 @@ Oferuje szybki sposób ustalić stan połączenia sieciowego urządzenia i typ p
 
 Do Cordova 2.3.0 `Connection` obiekt uzyskano za pośrednictwem `navigator.network.connection` , po którym został zmieniony na `navigator.connection` odpowiadać specyfikacji W3C. To jest nadal dostępne w jego oryginalnej lokalizacji, ale jest niezalecane i zostaną ostatecznie usunięte.
 
-### iOS dziwactwa
+### Dziwactwa iOS
 
 *   iOS nie może wykryć typ połączenia w sieci komórkowej. 
     *   `navigator.connection.type`jest zestaw `Connection.CELL` dla wszystkich komórek danych.
@@ -101,7 +101,7 @@ Do Cordova 2.3.0 `Connection` obiekt uzyskano za pośrednictwem `navigator.netwo
     
     *   `navigator.connection.type`jest zestaw `Connection.CELL` dla wszystkich komórek danych.
 
-### Osobliwości Tizen
+### Dziwactwa Tizen
 
 *   Tizen można tylko dostrzegać Wi-Fi lub połączenia komórkowe. 
     *   `navigator.connection.type`jest zestaw `Connection.CELL_2G` dla wszystkich komórek danych.
@@ -135,11 +135,11 @@ Aplikacje zwykle należy użyć `document.addEventListener` Aby dołączyć słu
     }
     
 
-### iOS dziwactwa
+### Dziwactwa iOS
 
 Podczas uruchamiania systemu pierwsza impreza offline (jeśli dotyczy) trwa co najmniej drugi ognia.
 
-### Windows Phone 7 dziwactwa
+### Dziwactwa Windows Phone 7
 
 Po uruchomieniu w emulatorze, `connection.status` zawsze jest nieznana, więc to wydarzenie *nie* ogień.
 
@@ -169,11 +169,11 @@ Aplikacje zwykle należy użyć `document.addEventListener` Aby dołączyć słu
     }
     
 
-### iOS dziwactwa
+### Dziwactwa iOS
 
 Podczas uruchamiania systemu pierwszy `online` zdarzenia (w stosownych przypadkach) zajmuje co najmniej drugie ognia, przed którym `connection.type` jest`UNKNOWN`.
 
-### Windows Phone 7 dziwactwa
+### Dziwactwa Windows Phone 7
 
 Po uruchomieniu w emulatorze, `connection.status` zawsze jest nieznana, więc to wydarzenie *nie* ogień.
 
