@@ -82,3 +82,6 @@
 * CB-6964 ported manual tests
 * Port network tests to plugin-test-framework
 * Fix naviagtor typo
+
+### 0.2.13 (Oct 03, 2014)
+* CB-7595: Android L changes the type from Mobile to Cellular, I'm pretty sure this isn't documented
