@@ -63,7 +63,7 @@ Dieses Plugin stellt eine Implementierung einer alten Version der [Netzwerk-Info
 
 Diese Eigenschaft bietet eine schnelle Möglichkeit, um den Netzwerkverbindungsstatus und die Art der Verbindung zu bestimmen.
 
-### Kleines Beispiel
+### Kurzes Beispiel
 
     function checkConnection() {
         var networkState = navigator.connection.type;
@@ -120,13 +120,13 @@ Das Ereignis wird ausgelöst, wenn eine Anwendung offline geht, und das Gerät n
     document.addEventListener("offline", yourCallbackFunction, false);
     
 
-### Informationen
+### Details
 
 Das `offline` -Ereignis wird ausgelöst, wenn ein bereits angeschlossenes Gerät eine Netzwerkverbindung verliert, so dass eine Anwendung nicht mehr auf das Internet zugreifen kann. Es stützt sich auf die gleichen Informationen wie die Verbindung-API und wird ausgelöst, wenn der Wert des `connection.type` wird`NONE`.
 
 Anwendungen sollten in der Regel verwenden `document.addEventListener` einmal einen Ereignis-Listener hinzufügen das `deviceready` -Ereignis ausgelöst.
 
-### Kleines Beispiel
+### Kurzes Beispiel
 
     document.addEventListener("offline", onOffline, false);
     
@@ -154,13 +154,13 @@ Dieses Ereignis wird ausgelöst, wenn eine Anwendung online geht, und das Gerät
     document.addEventListener("online", yourCallbackFunction, false);
     
 
-### Informationen
+### Details
 
 Das `online` -Ereignis wird ausgelöst, wenn ein zuvor unverbundenen Gerät eine Netzwerkverbindung zu einem Anwendung Zugriff auf das Internet empfängt. Es stützt sich auf die gleichen Informationen wie die Verbindung-API und wird ausgelöst, wenn die `connection.type` ändert sich von `NONE` auf einen anderen Wert.
 
 Anwendungen sollten in der Regel verwenden `document.addEventListener` einmal einen Ereignis-Listener hinzufügen das `deviceready` -Ereignis ausgelöst.
 
-### Kleines Beispiel
+### Kurzes Beispiel
 
     document.addEventListener("online", onOnline, false);
     
