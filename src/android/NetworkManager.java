@@ -76,18 +76,10 @@ public class NetworkManager extends CordovaPlugin {
     private static final String LOG_TAG = "NetworkManager";
 
     private CallbackContext connectionCallbackContext;
-    private boolean registered = false;
 
     ConnectivityManager sockMan;
     BroadcastReceiver receiver;
     private JSONObject lastInfo = null;
-
-    /**
-     * Constructor.
-     */
-    public NetworkManager() {
-        this.receiver = null;
-    }
 
     /**
      * Sets the context of the Command. This can then be used to do things like
@@ -113,8 +105,7 @@ public class NetworkManager extends CordovaPlugin {
                         updateConnectionInfo(sockMan.getActiveNetworkInfo());
                 }
             };
-            cordova.getActivity().registerReceiver(this.receiver, intentFilter);
-            this.registered = true;
+            webView.getContext().registerReceiver(this.receiver, intentFilter);
         }
 
     }
@@ -148,12 +139,13 @@ public class NetworkManager extends CordovaPlugin {
      * Stop network receiver.
      */
     public void onDestroy() {
-        if (this.receiver != null && this.registered) {
+        if (this.receiver != null) {
             try {
-                this.cordova.getActivity().unregisterReceiver(this.receiver);
-                this.registered = false;
+                webView.getContext().unregisterReceiver(this.receiver);
             } catch (Exception e) {
                 Log.e(LOG_TAG, "Error unregistering network receiver: " + e.getMessage(), e);
+            } finally {
+                receiver = null;
             }
         }
     }
@@ -273,4 +265,3 @@ public class NetworkManager extends CordovaPlugin {
         return TYPE_UNKNOWN;
     }
 }
-
