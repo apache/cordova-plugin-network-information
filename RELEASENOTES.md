@@ -85,3 +85,7 @@
 
 ### 0.2.13 (Oct 03, 2014)
 * CB-7595: Android L changes the type from Mobile to Cellular, I'm pretty sure this isn't documented
+
+### 0.2.14 (Dec 02, 2014)
+* CB-7976 **Android**: Use webView's context rather than Activity's context for intent receiver
+* CB-7700 cordova-plugin-network-information documentation translation: cordova-plugin-network-information
