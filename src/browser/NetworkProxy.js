@@ -53,6 +53,10 @@ module.exports = {
         xhr.onabort = function() {
             successCallback(window.navigator.connection.type);
         };
+        
+        xhr.ontimeout = function() {
+            successCallback(window.navigator.connection.type);
+        };
     }
 };
 
