@@ -41,12 +41,18 @@ module.exports = {
                 window.navigator.connection.type = Connection.NONE;
             }
         };
+            successCallback(window.navigator.connection.type);
+        };
 
         xhr.send();
 
-        setTimeout(function() {
+        xhr.onerror = function() {
             successCallback(window.navigator.connection.type);
-        }, 0);
+        };
+
+        xhr.onabort = function() {
+            successCallback(window.navigator.connection.type);
+        };
     }
 };
 
