@@ -47,6 +47,7 @@ module.exports = {
                 connectionType = Connection.NONE;
             }
             else {
+                // https://msdn.microsoft.com/en-us/library/windows/apps/windows.networking.connectivity.networkadapter.ianainterfacetype
                 switch (interfaceType) {
                     case 71:
                         connectionType = Connection.WIFI;
