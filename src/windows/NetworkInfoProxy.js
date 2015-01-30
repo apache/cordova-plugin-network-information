@@ -43,11 +43,13 @@ module.exports = {
             var conLevel = profile.getNetworkConnectivityLevel();
             var interfaceType = profile.networkAdapter.ianaInterfaceType;
 
-            if (conLevel == Windows.Networking.Connectivity.NetworkConnectivityLevel.none) {
+            // since we use this to detect whether we are online or offline we do check agains InternetAccess
+            // localAccess (airplane mode as an example) or constrainedInternetAccess mean there is no access to the internet available
+            // https://msdn.microsoft.com/library/windows/apps/windows.networking.connectivity.networkconnectivitylevel.aspx
+            if (conLevel != Windows.Networking.Connectivity.NetworkConnectivityLevel.internetAccess) {
                 connectionType = Connection.NONE;
             }
             else {
-                // https://msdn.microsoft.com/en-us/library/windows/apps/windows.networking.connectivity.networkadapter.ianainterfacetype
                 switch (interfaceType) {
                     case 71:
                         connectionType = Connection.WIFI;
