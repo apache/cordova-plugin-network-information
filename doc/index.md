@@ -37,7 +37,7 @@ wifi connection, and whether the device has an internet connection.
 - iOS
 - Windows Phone 7 and 8
 - Tizen
-- Windows 8
+- Windows
 - Firefox OS
 
 # Connection
@@ -104,6 +104,10 @@ eventually be removed.
 
 - Windows Phone can't detect the type of cellular network connection.
     - `navigator.connection.type` is set to `Connection.CELL` for all cellular data.
+
+### Windows Quirks
+
+- When running in the Phone 8.1 emulator, always detects `navigator.connection.type` as `Connection.ETHERNET`.
 
 ### Tizen Quirks
 
