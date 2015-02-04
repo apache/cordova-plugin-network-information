@@ -121,6 +121,11 @@ eventually be removed.
 - Firefox OS can't detect the type of cellular network connection.
     - `navigator.connection.type` is set to `Connection.CELL` for all cellular data.
 
+### Browser Quirks
+
+- Browser can't detect the type of network connection.
+`navigator.connection.type` is always set to `Connection.UNKNOWN` when online.
+
 # Network-related Events
 
 ## offline
