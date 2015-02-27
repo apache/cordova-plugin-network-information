@@ -37,7 +37,7 @@ Ce plugin fournit une implémentation d'une ancienne version de l' [API Informat
 *   iOS
 *   Windows Phone 7 et 8
 *   Paciarelli
-*   Windows 8
+*   Windows
 *   Firefox OS
 
 # Connexion
@@ -101,15 +101,19 @@ Jusqu'à Cordova 2.3.0, l'objet `Connection` était accessible via `navigator.ne
     
     *   `navigator.connection.type`a la valeur `Connection.CELL` pour toutes les données cellulaires.
 
+### Bizarreries de Windows
+
+*   Lors de l'exécution dans l'émulateur de téléphone 8.1, `Connection.ETHERNET` détecte toujours `navigator.connection.type`.
+
 ### Bizarreries de paciarelli
 
-*   Paciarelli peut uniquement détecter une connexion cellulaire ou bien WiFi. 
-    *   `navigator.connection.type`a la valeur `Connection.CELL_2G` pour toutes les données cellulaires.
+*   Paciarelli ne peut détecter une connexion cellulaire ou le WiFi. 
+    *   `navigator.connection.type` a la valeur `Connection.CELL_2G` pour toutes les données cellulaires.
 
 ### Firefox OS Quirks
 
 *   Firefox OS ne peut pas détecter le type de connexion au réseau cellulaire. 
-    *   `navigator.connection.type`a la valeur `Connection.CELL` pour toutes les données cellulaires.
+    *   `navigator.connection.type` a la valeur `Connection.CELL` pour toutes les données cellulaires.
 
 # Événements liés au réseau
 
@@ -126,14 +130,14 @@ L'évènement `offline` se déclenche lorsqu'un appareil précédemment connect�
 
 Les applications doivent généralement utiliser `document.addEventListener` pour attacher un écouteur d'événements une fois le `deviceready` événement se déclenche.
 
-### Petit exemple
+### Exemple court
 
     document.addEventListener (« hors ligne », onOffline, false) ;
     
     function onOffline() {/ / gestion de l'événement en mode hors connexion}
     
 
-### iOS Quirks
+### Notes au sujet d'iOS
 
 Lors du démarrage initial, le déclenchement du premier évènement offline (si applicable) prend au moins une seconde.
 
@@ -141,7 +145,7 @@ Lors du démarrage initial, le déclenchement du premier évènement offline (si
 
 Lors de l'exécution dans l'émulateur, le `connection.status` est toujours inconnu, ainsi cet événement ne fait *pas* de feu.
 
-### Windows Phone 8 Quirks
+### Notes au sujet de Windows Phone 8
 
 L'émulateur signale le type de connexion comme `Cellular`, type qui ne change jamais, ainsi l'évènement n'est *pas* déclenché.
 
@@ -158,7 +162,7 @@ L'évènement `online` se déclenche lorsqu'un appareil précédemment non-conne
 
 Les applications doivent généralement utiliser `document.addEventListener` pour attacher un écouteur d'événements une fois le `deviceready` événement se déclenche.
 
-### Petit exemple
+### Exemple court
 
     document.addEventListener("online", onOnline, false);
     
@@ -167,7 +171,7 @@ Les applications doivent généralement utiliser `document.addEventListener` pou
     }
     
 
-### iOS Quirks
+### Notes au sujet d'iOS
 
 Lors du démarrage initial, le déclenchement du premier évènement `online` (si applicable) prend au moins une seconde avant quoi `connection.type` vaut `UNKNOWN`.
 
@@ -175,6 +179,6 @@ Lors du démarrage initial, le déclenchement du premier évènement `online` (s
 
 Lors de l'exécution dans l'émulateur, le `connection.status` est toujours inconnu, ainsi cet événement ne fait *pas* de feu.
 
-### Windows Phone 8 Quirks
+### Notes au sujet de Windows Phone 8
 
 L'émulateur signale le type de connexion comme `Cellular` , qui ne change pas, aussi des événements ne fait *pas* de feu.

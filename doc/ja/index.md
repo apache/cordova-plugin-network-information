@@ -37,10 +37,10 @@
 *   iOS
 *   Windows Phone 7 と 8
 *   Tizen
-*   Windows 8
+*   Windows
 *   Firefox の OS
 
-# 接続
+# Connection
 
 > `connection`オブジェクトによって公開されて `navigator.connection` 、デバイスの携帯電話や wifi 接続に関する情報を提供します。
 
@@ -101,10 +101,14 @@
     
     *   `navigator.connection.type`設定する `Connection.CELL` すべての携帯電話データの。
 
+### Windows の癖
+
+*   電話 8.1 エミュレーターで実行する場合は、常に `Connection.ETHERNET` として `navigator.connection.type` を検出します.
+
 ### Tizen の癖
 
 *   Tizen には、WiFi または携帯電話の接続だけを検出できます。 
-    *   `navigator.connection.type`設定する `Connection.CELL_2G` すべての携帯電話データの。
+    *   `navigator.connection.type` は、すべての携帯電話のデータを `Connection.CELL_2G` に設定されます。
 
 ### Firefox OS 癖
 

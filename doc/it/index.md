@@ -37,7 +37,7 @@ Questo plugin fornisce un'implementazione di una vecchia versione dell' [API di 
 *   iOS
 *   Windows Phone 7 e 8
 *   Tizen
-*   Windows 8
+*   Windows
 *   Firefox OS
 
 # Connessione
@@ -101,10 +101,14 @@ Fino a Cordova 2.3.0, il `Connection` oggetto era accessibile tramite `navigator
     
     *   `navigator.connection.type`è impostata su `Connection.CELL` per tutti i dati cellulare.
 
+### Stranezze di Windows
+
+*   Quando è in esecuzione nell'emulatore Phone 8.1, sempre rileva `navigator.connection.type` come `Connection.ETHERNET`.
+
 ### Tizen stranezze
 
 *   Tizen può rilevare solo un WiFi o una connessione cellulare. 
-    *   `navigator.connection.type`è impostata su `Connection.CELL_2G` per tutti i dati cellulare.
+    *   `navigator.connection.type` è impostata su `Connection.CELL_2G` per tutti i dati cellulare.
 
 ### Firefox OS stranezze
 

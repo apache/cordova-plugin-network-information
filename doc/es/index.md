@@ -37,7 +37,7 @@ Este plugin proporciona una implementación de una versión antigua de la [Red d
 *   iOS
 *   Windows Phone 7 y 8
 *   Tizen
-*   Windows 8
+*   Windows
 *   Firefox OS
 
 # Conexión
@@ -101,15 +101,19 @@ Hasta Cordova 2.3.0, el objeto de `conexión` era acceder a través de `navigato
     
     *   `navigator.connection.type` está establecido en `Connection.CELL` para todos los datos de celulares.
 
+### Windows rarezas
+
+*   Cuando se ejecuta en el emulador de teléfono 8.1, siempre detecta `navigator.connection.type` como`Connection.ETHERNET`.
+
 ### Rarezas Tizen
 
 *   Tizen sólo puede detectar un Wi-Fi o conexión celular. 
-    *   `navigator.connection.type` está establecido en `Connection.CELL_2G` para todos los datos de celulares.
+    *   `navigator.connection.type`se establece en `Connection.CELL_2G` para todos los datos celulares.
 
 ### Firefox OS rarezas
 
 *   Firefox OS no puede detectar el tipo de conexión de red celular. 
-    *   `navigator.connection.type` está establecido en `Connection.CELL` para todos los datos de celulares.
+    *   `navigator.connection.type`se establece en `Connection.CELL` para todos los datos celulares.
 
 # Eventos relacionados con la red
 

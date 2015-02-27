@@ -37,10 +37,10 @@ Dieses Plugin stellt eine Implementierung einer alten Version der [Netzwerk-Info
 *   iOS
 *   Windows Phone 7 und 8
 *   Tizen
-*   Windows 8
+*   Windows
 *   Firefox OS
 
-# Verbindung
+# Connection
 
 > Das `connection` Objekt, verfügbar gemachten über `navigator.connection`, enthält Informationen über die Mobilfunk- und Wi-Fi-Verbindung des Gerätes.
 
@@ -101,10 +101,14 @@ Bis Cordova 2.3.0 wurde auf das `Connection` Objekt über `navigator.network.con
     
     *   `navigator.connection.type`auf festgelegt ist `Connection.CELL` für alle Handy-Daten.
 
+### Windows-Eigenheiten
+
+*   Wenn im Telefon 8.1 Emulator ausgeführt wird, erkennt immer `navigator.connection.type` als `Connection.ETHERNET`.
+
 ### Tizen Macken
 
-*   Tizen kann nur eine Wi-Fi- oder Mobilfunkverbindung erkennen. 
-    *   `navigator.connection.type`auf festgelegt ist `Connection.CELL_2G` für alle Handy-Daten.
+*   Tizen kann nur ein WiFi oder Mobilfunkverbindung erkennen. 
+    *   `Navigator.Connection.Type` ist für alle Handy-Daten auf `Connection.CELL_2G` festgelegt.
 
 ### Firefox OS Macken
 

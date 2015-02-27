@@ -37,7 +37,7 @@ Wtyczka stanowi implementację starą wersję [API informacji w sieci][1]. Udost
 *   iOS
 *   Windows Phone 7 i 8
 *   Tizen
-*   Windows 8
+*   Windows
 *   Firefox OS
 
 # Połączenie
@@ -101,10 +101,14 @@ Do Cordova 2.3.0 `Connection` obiekt uzyskano za pośrednictwem `navigator.netwo
     
     *   `navigator.connection.type`jest zestaw `Connection.CELL` dla wszystkich komórek danych.
 
+### Windows dziwactwa
+
+*   Po uruchomieniu w emulatorze telefonu 8.1, zawsze wykrywa `navigator.connection.type` jako `Connection.ETHERNET`.
+
 ### Dziwactwa Tizen
 
 *   Tizen można tylko dostrzegać Wi-Fi lub połączenia komórkowe. 
-    *   `navigator.connection.type`jest zestaw `Connection.CELL_2G` dla wszystkich komórek danych.
+    *   `Navigator.Connection.Type` jest zestaw do `Connection.CELL_2G` dla wszystkich komórek danych.
 
 ### Firefox OS dziwactwa
 

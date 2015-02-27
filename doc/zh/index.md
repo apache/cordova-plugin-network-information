@@ -37,7 +37,7 @@
 *   iOS
 *   Windows Phone 7 和 8
 *   泰
-*   Windows 8
+*   Windows
 *   火狐瀏覽器的作業系統
 
 # 連接
@@ -101,10 +101,14 @@
     
     *   `navigator.connection.type`設置為 `Connection.CELL` 為所有蜂窩資料。
 
+### Windows 的怪癖
+
+*   當電話 8.1 在模擬器中運行，總能檢測到 `navigator.connection.type` 作為 `Connection.ETHERNET`.
+
 ### Tizen 怪癖
 
-*   Tizen 只可以檢測一個 WiFi 或者蜂窩連接。 
-    *   `navigator.connection.type`設置為 `Connection.CELL_2G` 為所有蜂窩資料。
+*   泰只能檢測一個 WiFi 或細胞連接。 
+    *   `navigator.connection.type` 是所有蜂窩資料設置為 `Connection.CELL_2G`。
 
 ### 火狐瀏覽器作業系統的怪癖
 

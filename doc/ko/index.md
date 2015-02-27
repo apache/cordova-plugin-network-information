@@ -37,7 +37,7 @@
 *   iOS
 *   Windows Phone 7과 8
 *   Tizen
-*   윈도우 8
+*   윈도우
 *   Firefox 운영 체제
 
 # 연결
@@ -101,10 +101,14 @@
     
     *   `navigator.connection.type`로 설정 된 `Connection.CELL` 모든 셀룰러 데이터에 대 한.
 
+### 윈도우 특수
+
+*   전화 8.1 에뮬레이터에서 실행 하는 경우 항상 `Connection.ETHERNET`로 `navigator.connection.type`를 감지합니다.
+
 ### Tizen 특수
 
 *   Tizen은 와이파이 또는 휴대 전화 연결에만 검색할 수 있습니다. 
-    *   `navigator.connection.type`로 설정 된 `Connection.CELL_2G` 모든 셀룰러 데이터에 대 한.
+    *   `navigator.connection.type`는 모든 셀룰러 데이터에 대 한 `Connection.CELL_2G`로 설정 됩니다.
 
 ### 파이어 폭스 OS 단점
 
