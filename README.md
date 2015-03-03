@@ -19,4 +19,6 @@
 
 # org.apache.cordova.network-information
 
+[![Build Status](https://travis-ci.org/apache/cordova-plugin-network-information.svg)](https://travis-ci.org/apache/cordova-plugin-network-information)
+
 Plugin documentation: [doc/index.md](doc/index.md)
