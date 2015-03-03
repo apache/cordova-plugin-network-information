@@ -35,7 +35,7 @@ wifi connection, and whether the device has an internet connection.
 - BlackBerry 10
 - Browser
 - iOS
-- Windows Phone 7 and 8
+- Windows Phone 7 and 8 (Sometimes the js files are not included in csproj file. You need to add manually to work.)
 - Tizen
 - Windows
 - Firefox OS
@@ -199,3 +199,7 @@ When running in the Emulator, the `connection.status` is always unknown, so this
 ### Windows Phone 8 Quirks
 
 The Emulator reports the connection type as `Cellular`, which does not change, so events does _not_ fire.
+
+### Windows Phone Quirks
+
+Sometimes the js files are not included in csproj file. You need to add manually to work.
