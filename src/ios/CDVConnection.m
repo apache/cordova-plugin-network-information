@@ -110,22 +110,18 @@
     [self updateReachability:self.internetReach];
 }
 
-- (CDVPlugin*)initWithWebView:(UIWebView*)theWebView
+- (void)pluginInitialize
 {
-    self = [super initWithWebView:theWebView];
-    if (self) {
-        self.connectionType = @"none";
-        self.internetReach = [CDVReachability reachabilityForInternetConnection];
-        self.connectionType = [self w3cConnectionTypeFor:self.internetReach];
-        [self.internetReach startNotifier];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateConnectionType:)
-                                                     name:kReachabilityChangedNotification object:nil];
-        if (&UIApplicationDidEnterBackgroundNotification && &UIApplicationWillEnterForegroundNotification) {
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onPause) name:UIApplicationDidEnterBackgroundNotification object:nil];
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onResume) name:UIApplicationWillEnterForegroundNotification object:nil];
-        }
+    self.connectionType = @"none";
+    self.internetReach = [CDVReachability reachabilityForInternetConnection];
+    self.connectionType = [self w3cConnectionTypeFor:self.internetReach];
+    [self.internetReach startNotifier];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateConnectionType:)
+                                                 name:kReachabilityChangedNotification object:nil];
+    if (&UIApplicationDidEnterBackgroundNotification && &UIApplicationWillEnterForegroundNotification) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onPause) name:UIApplicationDidEnterBackgroundNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onResume) name:UIApplicationWillEnterForegroundNotification object:nil];
     }
-    return self;
 }
 
 @end
