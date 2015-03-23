@@ -77,8 +77,8 @@ public class NetworkManager extends CordovaPlugin {
 
     private CallbackContext connectionCallbackContext;
 
-    ConnectivityManager sockMan;
-    BroadcastReceiver receiver;
+    protected ConnectivityManager sockMan;
+    protected BroadcastReceiver receiver;
     private JSONObject lastInfo = null;
 
     /**
