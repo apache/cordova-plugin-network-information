@@ -160,7 +160,7 @@ public class NetworkManager extends CordovaPlugin {
      * @param info the current active network info
      * @return
      */
-    private void updateConnectionInfo(NetworkInfo info) {
+    protected void updateConnectionInfo(NetworkInfo info) {
         // send update to javascript "navigator.network.connection"
         // Jellybean sends its own info
         JSONObject thisInfo = this.getConnectionInfo(info);
@@ -182,7 +182,7 @@ public class NetworkManager extends CordovaPlugin {
      * @param info the current active network info
      * @return a JSONObject that represents the network info
      */
-    private JSONObject getConnectionInfo(NetworkInfo info) {
+    protected JSONObject getConnectionInfo(NetworkInfo info) {
         String type = TYPE_NONE;
         String extraInfo = "";
         if (info != null) {
@@ -214,7 +214,7 @@ public class NetworkManager extends CordovaPlugin {
      *
      * @param connection the network info to set as navigator.connection
      */
-    private void sendUpdate(String type) {
+    protected void sendUpdate(String type) {
         if (connectionCallbackContext != null) {
             PluginResult result = new PluginResult(PluginResult.Status.OK, type);
             result.setKeepCallback(true);
@@ -229,7 +229,7 @@ public class NetworkManager extends CordovaPlugin {
      * @param info the network info so we can determine connection type.
      * @return the type of mobile network we are on
      */
-    private String getType(NetworkInfo info) {
+    protected String getType(NetworkInfo info) {
         if (info != null) {
             String type = info.getTypeName();
 
