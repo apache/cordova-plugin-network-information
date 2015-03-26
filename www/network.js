@@ -28,7 +28,7 @@ var exec = require('cordova/exec'),
 // object in bootstrap.js.
 // Browser platform do not need to define this property, because
 // it is already supported by modern browsers
-if (cordova.platforId !== 'browser' && typeof navigator != 'undefined') {
+if (cordova.platformId !== 'browser' && typeof navigator != 'undefined') {
     utils.defineGetter(navigator, 'onLine', function() {
         return this.connection.type != 'none';
     });
