@@ -17,7 +17,7 @@
     under the License.
 -->
 
-# org.apache.cordova.network-information
+# cordova-plugin-network-information
 
 Este plugin proporciona una implementación de una versión antigua de la [Red de información API][1]. Proporciona información acerca del dispositivo móvil y conexión wifi, y si el dispositivo tiene una conexión a internet.
 
@@ -25,7 +25,7 @@ Este plugin proporciona una implementación de una versión antigua de la [Red d
 
 ## Instalación
 
-    cordova plugin add org.apache.cordova.network-information
+    cordova plugin add cordova-plugin-network-information
     
 
 ## Plataformas soportadas

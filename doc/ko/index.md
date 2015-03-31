@@ -17,7 +17,7 @@
     under the License.
 -->
 
-# org.apache.cordova.network-information
+# cordova-plugin-network-information
 
 이 플러그인 [네트워크 정보 API][1]의 이전 버전에 대 한 구현을 제공합니다. 소자의 셀룰러와 와이파이 연결에 대 한 정보를 제공 합니다 장치는 인터넷 연결에 있는지 여부.
 
@@ -25,7 +25,7 @@
 
 ## 설치
 
-    cordova plugin add org.apache.cordova.network-information
+    cordova plugin add cordova-plugin-network-information
     
 
 ## 지원 되는 플랫폼

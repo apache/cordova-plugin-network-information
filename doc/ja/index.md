@@ -17,7 +17,7 @@
     under the License.
 -->
 
-# org.apache.cordova.network-information
+# cordova-plugin-network-information
 
 このプラグインは、古いバージョンの[ネットワーク情報 API][1]の実装を提供します。 デバイスの携帯電話や wifi 接続に関する情報を提供し、かどうか、デバイスがインターネットに接続します。
 
@@ -25,7 +25,7 @@
 
 ## インストール
 
-    cordova plugin add org.apache.cordova.network-information
+    cordova plugin add cordova-plugin-network-information
     
 
 ## サポートされているプラットフォーム

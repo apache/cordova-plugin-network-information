@@ -17,7 +17,7 @@
     under the License.
 -->
 
-# org.apache.cordova.network-information
+# cordova-plugin-network-information
 
 Wtyczka stanowi implementację starą wersję [API informacji w sieci][1]. Udostępnia informacje na temat urządzenia komórkowe i wifi połączenie, i czy urządzenie ma połączenie z Internetem.
 
@@ -25,7 +25,7 @@ Wtyczka stanowi implementację starą wersję [API informacji w sieci][1]. Udost
 
 ## Instalacja
 
-    cordova plugin add org.apache.cordova.network-information
+    cordova plugin add cordova-plugin-network-information
     
 
 ## Obsługiwane platformy

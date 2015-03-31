@@ -17,7 +17,7 @@
     under the License.
 -->
 
-# org.apache.cordova.network-information
+# cordova-plugin-network-information
 
 這個外掛程式提供的舊版本的[網路資訊 API][1]實現的。 它提供了有關該設備的行動電話和無線網路連接的資訊和設備是否已連接到 internet。
 
@@ -25,7 +25,7 @@
 
 ## 安裝
 
-    cordova plugin add org.apache.cordova.network-information
+    cordova plugin add cordova-plugin-network-information
     
 
 ## 支援的平臺

@@ -17,7 +17,7 @@
     under the License.
 -->
 
-# org.apache.cordova.network-information
+# cordova-plugin-network-information
 
 Ce plugin fournit une implémentation d'une ancienne version de l' [API Information Network][1]. Il fournit des informations sur l'appareil cellulaire et connexion wifi, et si l'appareil dispose d'une connexion internet.
 
@@ -25,7 +25,7 @@ Ce plugin fournit une implémentation d'une ancienne version de l' [API Informat
 
 ## Installation
 
-    cordova plugin add org.apache.cordova.network-information
+    cordova plugin add cordova-plugin-network-information
     
 
 ## Plates-formes prises en charge

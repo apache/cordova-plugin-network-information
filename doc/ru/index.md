@@ -17,7 +17,7 @@
     under the License.
 -->
 
-# org.apache.cordova.network-information
+# cordova-plugin-network-information
 
 Этот плагин обеспечивает реализацию старой версии [API Сетевой информации][1]. Он предоставляет информацию о сотовых и Wi-Fi подключениях устройства, и информацию имеет ли устройство подключение к Интернету.
 
@@ -25,7 +25,7 @@
 
 ## Установка
 
-    cordova plugin add org.apache.cordova.network-information
+    cordova plugin add cordova-plugin-network-information
     
 
 ## Поддерживаемые платформы
