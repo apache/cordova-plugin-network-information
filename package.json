@@ -3,7 +3,7 @@
   "version": "0.2.16-dev",
   "description": "Cordova Network Information Plugin",
   "cordova": {
-    "id": "cordova-plugin-network-information",
+    "id": "org.apache.cordova.network-information",
     "platforms": [
       "firefoxos",
       "android",
