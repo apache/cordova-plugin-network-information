@@ -20,7 +20,7 @@
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
 xmlns:android="http://schemas.android.com/apk/res/android"
-           id="org.apache.cordova.network-information"
+           id="cordova-plugin-network-information"
       version="0.2.16-dev">
 
     <name>Network Information</name>
