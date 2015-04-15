@@ -95,3 +95,17 @@
 * CB-8384 Fixes the way we detect online status on Windows
 * CB-8384 Add Windows platform quirks
 * CB-8384 Add Windows section to Network Information plugin
+
+### 1.0.0 (Apr 15, 2015)
+* CB-8746 gave plugin major version bump
+* CB-8683 changed plugin-id to pacakge-name
+* CB-8653 properly updated translated docs to use new id
+* CB-8653 updated translated docs to use new id
+* CB-8185 Fixes typo in `cordova.platformId`
+* Use TRAVIS_BUILD_DIR, install paramedic by npm
+* CB-8185 Use `navigator.onLine` as connection information source on browser platform
+* CB-8653 Updated Readme
+* CB-8659: ios: 4.0.x Compatibility: Remove use of initWebView method
+* CB-8573 Integrate TravisCI
+* CB-8438 cordova-plugin-network-information documentation translation: cordova-plugin-network-information
+* CB-8538 Added package.json file
