@@ -28,7 +28,7 @@ wifi connection, and whether the device has an internet connection.
 
 ## Installation
 
-    cordova plugin add cordova-plugin-network-information
+    cordova plugin add org.apache.cordova.network-information
 
 ## Supported Platforms
 
