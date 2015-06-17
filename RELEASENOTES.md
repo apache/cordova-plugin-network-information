@@ -109,3 +109,8 @@
 * CB-8573 Integrate TravisCI
 * CB-8438 cordova-plugin-network-information documentation translation: cordova-plugin-network-information
 * CB-8538 Added package.json file
+
+### 1.0.1 (Jun 17, 2015)
+* Adding .ratignore file.
+* CB-9128 cordova-plugin-network-information documentation translation: cordova-plugin-network-information
+* fix npm md issue
