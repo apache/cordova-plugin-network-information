@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-network-information",
-  "version": "1.0.1",
+  "version": "1.0.2-dev",
   "description": "Cordova Network Information Plugin",
   "cordova": {
     "id": "cordova-plugin-network-information",
