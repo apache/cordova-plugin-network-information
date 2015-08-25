@@ -21,72 +21,30 @@
 /*global module, require*/
 
 var cordova = require('cordova'),
+    proxy = require("cordova/exec/proxy"),
     Connection = require('./Connection');
 
-var DOCUMENT_EVENTS_CHECK_INTERVAL = 500; // ms
-// Flag that indicates that ew need to re-fire online/offline events at document level
-// (Workaround for Chrome, since it fires such events only for window object)
-var NEED_FIRE_DOCUMENT_EVENT_MANUALLY = false;
+var type = navigator.onLine ? Connection.UNKNOWN : Connection.NONE;
 
-function NetworkConnection() {
-    this.type = Connection.UNKNOWN;
+// Subscribe to 'native' online/offline events
+function onStatusChange(evt) {
+    type = navigator.onLine ? Connection.UNKNOWN : Connection.NONE;
+    // force async
+    setTimeout(function(){
+        cordova.fireDocumentEvent(evt.type);
+    },0);
 }
 
-/**
- * Get connection info
- *
- * @param {Function} successCallback The function to call when the Connection data is available
- */
-NetworkConnection.prototype.getInfo = function(successCallback) {
-    successCallback(this.type);
-};
+window.addEventListener('online', onStatusChange);
+window.addEventListener('offline', onStatusChange);
 
-Object.defineProperty(NetworkConnection.prototype, 'type', {
-    get: function () {
-        // It is not possible to determine real connection type in browser
-        // so we always report Connection.UNKNOWN when online
-        return (window.navigator.onLine === false ? Connection.NONE : Connection.UNKNOWN);
-    },
-    configurable: true,
-    enumerable: true
+proxy.add("NetworkStatus", {
+    getConnectionInfo:function(cbSuccess) {
+        // force async
+        setTimeout(function(){
+            cbSuccess(type);
+        },0);
+    }
 });
 
-// This function tries to detect if document online/offline events is being fired
-// after corresponding window events, and if not, then fires them manually
-// This is workaround for Chrome, which fires only window online/offline events
-// and regarding to plugin spec we need these events at document object
-var eventRedirectHandler = function (e) {
-    // NEED_FIRE_DOCUMENT_EVENT_MANUALLY flag is already set,
-    // just fire corresponding document event and return
-    if (NEED_FIRE_DOCUMENT_EVENT_MANUALLY) {
-        cordova.fireDocumentEvent(e.type);
-        return;
-    }
 
-    // Flag that indicates whether corresponding document even is fired
-    var documentStateEventFired = false;
-    var setDocumentStateEventFired = function() {
-        documentStateEventFired = true;
-    };
-    document.addEventListener(e.type, setDocumentStateEventFired);
-    setTimeout(function () {
-        // Remove unnecessary listener
-        document.removeEventListener(e.type, setDocumentStateEventFired);
-        // if document event hasn't been fired in specified interval (500 ms by default),
-        // then we're in chrome and need to fire it manually
-        if (!documentStateEventFired) {
-            NEED_FIRE_DOCUMENT_EVENT_MANUALLY = true;
-            cordova.fireDocumentEvent(e.type);
-        }
-    }, DOCUMENT_EVENTS_CHECK_INTERVAL);
-};
-
-// Subscribe to native online/offline events
-window.addEventListener('online', eventRedirectHandler);
-window.addEventListener('offline', eventRedirectHandler);
-
-var me = new NetworkConnection();
-
-require("cordova/exec/proxy").add("NetworkStatus", { getConnectionInfo: me.getConnectionInfo });
-
-module.exports = me;
