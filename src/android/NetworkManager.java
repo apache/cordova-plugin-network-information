@@ -45,7 +45,6 @@ public class NetworkManager extends CordovaPlugin {
 
     public static final String WIFI = "wifi";
     public static final String WIMAX = "wimax";
-    public static final String ETHERNET = "ethernet";
     // mobile
     public static final String MOBILE = "mobile";
     
@@ -241,7 +240,7 @@ public class NetworkManager extends CordovaPlugin {
             if (type.equals(WIFI)) {
                 return TYPE_WIFI;
             }
-            else if (type.toLowerCase().equals(ETHERNET)) {
+            else if (type.toLowerCase().equals(TYPE_ETHERNET)) { 
                 return TYPE_ETHERNET;
             }
             else if (type.equals(MOBILE) || type.equals(CELLULAR)) {
