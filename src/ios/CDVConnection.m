@@ -118,7 +118,7 @@
     [self.internetReach startNotifier];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateConnectionType:)
                                                  name:kReachabilityChangedNotification object:nil];
-    if (&UIApplicationDidEnterBackgroundNotification && &UIApplicationWillEnterForegroundNotification) {
+    if (UIApplicationDidEnterBackgroundNotification && UIApplicationWillEnterForegroundNotification) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onPause) name:UIApplicationDidEnterBackgroundNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onResume) name:UIApplicationWillEnterForegroundNotification object:nil];
     }
