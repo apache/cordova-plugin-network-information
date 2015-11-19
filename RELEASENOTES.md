@@ -20,6 +20,14 @@
 -->
 # Release Notes
 
+### 1.1.0 (Nov 18, 2015)
+* CB-10035 Updated `RELEASENOTES` to be newest to oldest
+* Fixing contribute link.
+* These notifications are objects so their address always evaluates to true.
+* Update `NetworkManager.java`
+* CB-9542 `Browser Proxy` not defined correctly
+* Solved `toLowerCase` issue with `Locale.US`
+
 ### 1.0.1 (Jun 17, 2015)
 * Adding .ratignore file.
 * CB-9128 cordova-plugin-network-information documentation translation: cordova-plugin-network-information
