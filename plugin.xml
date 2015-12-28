@@ -103,6 +103,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
         <header-file src="src/ios/CDVReachability.h" />
 	    <source-file src="src/ios/CDVReachability.m" />
 	    <framework src="SystemConfiguration.framework" weak="true" />
+	    <framework src="CoreTelephony.framework" />
     </platform>
 
     <!-- blackberry10 -->
