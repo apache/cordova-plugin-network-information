@@ -16,6 +16,7 @@
  specific language governing permissions and limitations
  under the License.
  */
+#import <CoreTelephony/CTTelephonyNetworkInfo.h>
 
 #import "CDVConnection.h"
 #import "CDVReachability.h"
@@ -57,6 +58,30 @@
             if (isConnectionRequired) {
                 return @"none";
             } else {
+                CTTelephonyNetworkInfo *telephonyInfo = [CTTelephonyNetworkInfo new];
+    if ([telephonyInfo.currentRadioAccessTechnology isEqualToString:CTRadioAccessTechnologyGPRS]) {
+        return @"2g";
+    } else if ([telephonyInfo.currentRadioAccessTechnology  isEqualToString:CTRadioAccessTechnologyEdge]) {
+        return @"2g";
+    } else if ([telephonyInfo.currentRadioAccessTechnology  isEqualToString:CTRadioAccessTechnologyWCDMA]) {
+        return @"3g";
+    } else if ([telephonyInfo.currentRadioAccessTechnology  isEqualToString:CTRadioAccessTechnologyHSDPA]) {
+        return @"3g";
+    } else if ([telephonyInfo.currentRadioAccessTechnology  isEqualToString:CTRadioAccessTechnologyHSUPA]) {
+        return @"3g";
+    } else if ([telephonyInfo.currentRadioAccessTechnology  isEqualToString:CTRadioAccessTechnologyCDMA1x]) {
+        return @"3g";
+    } else if ([telephonyInfo.currentRadioAccessTechnology  isEqualToString:CTRadioAccessTechnologyCDMAEVDORev0]) {
+        return @"3g";
+    } else if ([telephonyInfo.currentRadioAccessTechnology  isEqualToString:CTRadioAccessTechnologyCDMAEVDORevA]) {
+        return @"3g";
+    } else if ([telephonyInfo.currentRadioAccessTechnology  isEqualToString:CTRadioAccessTechnologyCDMAEVDORevB]) {
+        return @"3g";
+    } else if ([telephonyInfo.currentRadioAccessTechnology  isEqualToString:CTRadioAccessTechnologyeHRPD]) {
+        return @"3g";
+    } else if ([telephonyInfo.currentRadioAccessTechnology  isEqualToString:CTRadioAccessTechnologyLTE]) {
+        return @"4g";
+    }
                 return @"cellular";
             }
         }
@@ -118,6 +143,8 @@
     [self.internetReach startNotifier];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateConnectionType:)
                                                  name:kReachabilityChangedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateConnectionType:)
+                                                 name:CTRadioAccessTechnologyDidChangeNotification object:nil];
     if (UIApplicationDidEnterBackgroundNotification && UIApplicationWillEnterForegroundNotification) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onPause) name:UIApplicationDidEnterBackgroundNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onResume) name:UIApplicationWillEnterForegroundNotification object:nil];
