@@ -98,7 +98,7 @@ eventually be removed.
 
 ### iOS Quirks
 
-- iOS can't detect the type of cellular network connection.
+- <iOS7 can't detect the type of cellular network connection.
     - `navigator.connection.type` is set to `Connection.CELL` for all cellular data.
 
 ### Windows Phone Quirks
