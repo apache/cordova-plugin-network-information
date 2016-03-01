@@ -21,15 +21,10 @@
 
 /*global Windows:true */
 
-var cordova = require('cordova');
 var Connection = require('./Connection');
 
 var winNetConn = Windows.Networking.Connectivity;
 var networkInfo = winNetConn.NetworkInformation;
-var networkCostInfo = winNetConn.NetworkCostType;
-var networkConnectivityInfo = winNetConn.NetworkConnectivityLevel;
-var networkAuthenticationInfo = winNetConn.NetworkAuthenticationType;
-var networkEncryptionInfo = winNetConn.NetworkEncryptionType;
 
 function getCurrrentConnectionType() {
 
@@ -76,7 +71,7 @@ module.exports = {
     {
         var reportConnectionInfoOnce = function () {
             win(getCurrrentConnectionType(), { keepCallback: true });
-        }
+        };
 
         // report current connection  type
         setTimeout(reportConnectionInfoOnce, 0);

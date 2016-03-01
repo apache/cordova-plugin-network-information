@@ -19,6 +19,8 @@
  *
 */
 
+/* global PluginResult */
+
 //map from BB10 to cordova connection types:
 //https://github.com/apache/cordova-js/blob/master/lib/common/plugin/Connection.js
 function mapConnectionType(con) {

@@ -19,6 +19,9 @@
  *
 */
 
+/* jshint jasmine: true */
+/* global Connection */
+
 exports.defineAutoTests = function () {
     describe('Network (navigator.connection)', function () {
         it("network.spec.1 should exist", function () {
