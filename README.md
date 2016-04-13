@@ -210,4 +210,120 @@ When running in the Emulator, the `connection.status` is always unknown, so this
 
 The Emulator reports the connection type as `Cellular`, which does not change, so events does _not_ fire.
 
+## Sample: Upload a File Depending on your Network State
+
+The code examples in this section show examples of changing app behavior using the online and offline events and your network connection status.
+
+To start with, create a new FileEntry object (data.txt) to use for sample data. Call this function from the `deviceready` handler.
+
+>*Note* This code example requires the File plugin.
+
+```js
+
+var dataFileEntry;
+
+function createSomeData() {
+
+    window.requestFileSystem(window.TEMPORARY, 5 * 1024 * 1024, function (fs) {
+
+        console.log('file system open: ' + fs.name);
+        // Creates a new file or returns an existing file.
+        fs.root.getFile("data.txt", { create: true, exclusive: false }, function (fileEntry) {
+
+          dataFileEntry = fileEntry;
+
+        }, onErrorCreateFile);
+
+    }, onErrorLoadFs);
+}
+```
+
+Next, add listeners for the online and offline events in the `deviceready` handler.
+
+```js
+document.addEventListener("offline", onOffline, false);
+document.addEventListener("online", onOnline, false);
+```
+
+The app's `onOnline` function handles the online event. In the event handler, check the current network state. In this app, treat any connection type as good except Connection.NONE. If you have a connection, you try to upload a file.
+
+```js
+function onOnline() {
+    // Handle the online event
+    var networkState = navigator.connection.type;
+
+    if (networkState !== Connection.NONE) {
+        if (dataFileEntry) {
+            tryToUploadFile();
+        }
+    }
+    display('Connection type: ' + networkState);
+}
+```
+
+When the online event fires in the preceding code, call the app's `tryToUploadFile` function.
+
+If the FileTransfer object's upload function fails, call the app's `offlineWrite` function to save the current data somewhere.
+
+>*Note* This example requires the FileTransfer plugin.
+
+```js
+function tryToUploadFile() {
+    // !! Assumes variable fileURL contains a valid URL to a text file on the device,
+    var fileURL = getDataFileEntry().toURL();
+
+    var success = function (r) {
+        console.log("Response = " + r.response);
+        display("Uploaded. Response: " + r.response);
+    }
+
+    var fail = function (error) {
+        console.log("An error has occurred: Code = " + error.code);
+        offlineWrite("Failed to upload: some offline data");
+    }
+
+    var options = new FileUploadOptions();
+    options.fileKey = "file";
+    options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
+    options.mimeType = "text/plain";
+
+    var ft = new FileTransfer();
+    // Make sure you add the domain of your server URL to the
+    // Content-Security-Policy <meta> element in index.html.
+    ft.upload(fileURL, encodeURI(SERVER), success, fail, options);
+};
+```
+
+In addition to calling `offlineWrite` from the error handler for the upload function, you also call the same `offlineWrite` function from the app's offline event handler.
+
+```js
+function onOffline() {
+    // Handle the offline event
+    offlineWrite("offline event: some offline data");
+}
+```
+
+Here is the code for the `offlineWrite` function.
+
+>*Note* This code examples requires the File plugin.
+
+```js
+function offlineWrite(offlineData) {
+    // Create a FileWriter object for our FileEntry.
+    dataFileEntry.createWriter(function (fileWriter) {
+
+        fileWriter.onwriteend = function () {
+            console.log("Successful file write...");
+            display(offlineData);
+        };
+
+        fileWriter.onerror = function (e) {
+            console.log("Failed file write: " + e.toString());
+        };
+
+        fileWriter.write(offlineData);
+    });
+}
+```
+
 [Apache Cordova issue tracker]: https://issues.apache.org/jira/issues/?jql=project%20%3D%20CB%20AND%20status%20in%20%28Open%2C%20%22In%20Progress%22%2C%20Reopened%29%20AND%20resolution%20%3D%20Unresolved%20AND%20component%20%3D%20%22Plugin%20Network%20Information%22%20ORDER%20BY%20priority%20DESC%2C%20summary%20ASC%2C%20updatedDate%20DESC
