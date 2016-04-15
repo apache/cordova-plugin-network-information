@@ -20,6 +20,10 @@
 -->
 # Release Notes
 
+### 1.2.1 (Apr 15, 2016)
+* CB-10763: Remove emoji in `cordova-plugin-network-information`
+* CB-10636 Add `JSHint` for plugins
+
 ### 1.2.0 (Jan 15, 2016)
 * Adding `CoreTelephony` to `plugin.xml`
 * Adding notification for `CT radio` information
