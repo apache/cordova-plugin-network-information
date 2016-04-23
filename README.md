@@ -1,3 +1,7 @@
+---
+title: Network Information
+description: Get information about wireless connectivity.
+---
 <!--
 # license: Licensed to the Apache Software Foundation (ASF) under one
 #         or more contributor license agreements.  See the NOTICE file
