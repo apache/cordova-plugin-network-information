@@ -294,15 +294,6 @@ function tryToUploadFile() {
 };
 ```
 
-In addition to calling `offlineWrite` from the error handler for the upload function, you also call the same `offlineWrite` function from the app's offline event handler.
-
-```js
-function onOffline() {
-    // Handle the offline event
-    offlineWrite("offline event: some offline data");
-}
-```
-
 Here is the code for the `offlineWrite` function.
 
 >*Note* This code examples requires the File plugin.
@@ -323,6 +314,15 @@ function offlineWrite(offlineData) {
 
         fileWriter.write(offlineData);
     });
+}
+```
+
+If the offline event occurs, just do something like notify the user (for this example, just log it).
+
+```js
+function onOffline() {
+    // Handle the offline event
+    console.log("lost connection");
 }
 ```
 
