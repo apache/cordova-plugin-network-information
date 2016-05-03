@@ -27,7 +27,11 @@ This plugin provides an implementation of an old version of the
 It provides information about the device's cellular and
 wifi connection, and whether the device has an internet connection.
 
+> To get a few ideas how to use the plugin, check out the [sample](#sample) at the bottom of this page or go straight to the [reference](#reference) content.
+
 Report issues with this plugin on the [Apache Cordova issue tracker][Apache Cordova issue tracker].
+
+##<a name="reference"></a>Reference
 
 ## Installation
 
@@ -210,7 +214,7 @@ When running in the Emulator, the `connection.status` is always unknown, so this
 
 The Emulator reports the connection type as `Cellular`, which does not change, so events does _not_ fire.
 
-## Sample: Upload a File Depending on your Network State
+## Sample: Upload a File Depending on your Network State <a name="sample"></a>
 
 The code examples in this section show examples of changing app behavior using the online and offline events and your network connection status.
 
