@@ -79,24 +79,25 @@ connection state, and type of connection.
 
 ### Quick Example
 
-    function checkConnection() {
-        var networkState = navigator.connection.type;
+```js
+function checkConnection() {
+    var networkState = navigator.connection.type;
 
-        var states = {};
-        states[Connection.UNKNOWN]  = 'Unknown connection';
-        states[Connection.ETHERNET] = 'Ethernet connection';
-        states[Connection.WIFI]     = 'WiFi connection';
-        states[Connection.CELL_2G]  = 'Cell 2G connection';
-        states[Connection.CELL_3G]  = 'Cell 3G connection';
-        states[Connection.CELL_4G]  = 'Cell 4G connection';
-        states[Connection.CELL]     = 'Cell generic connection';
-        states[Connection.NONE]     = 'No network connection';
+    var states = {};
+    states[Connection.UNKNOWN]  = 'Unknown connection';
+    states[Connection.ETHERNET] = 'Ethernet connection';
+    states[Connection.WIFI]     = 'WiFi connection';
+    states[Connection.CELL_2G]  = 'Cell 2G connection';
+    states[Connection.CELL_3G]  = 'Cell 3G connection';
+    states[Connection.CELL_4G]  = 'Cell 4G connection';
+    states[Connection.CELL]     = 'Cell generic connection';
+    states[Connection.NONE]     = 'No network connection';
 
-        alert('Connection type: ' + states[networkState]);
-    }
+    alert('Connection type: ' + states[networkState]);
+}
 
-    checkConnection();
-
+checkConnection();
+```
 
 ### API Change
 
@@ -158,12 +159,13 @@ attach an event listener once the `deviceready` event fires.
 
 ### Quick Example
 
-    document.addEventListener("offline", onOffline, false);
+```js
+document.addEventListener("offline", onOffline, false);
 
-    function onOffline() {
-        // Handle the offline event
-    }
-
+function onOffline() {
+    // Handle the offline event
+}
+```
 
 ### iOS Quirks
 
@@ -197,12 +199,13 @@ attach an event listener once the `deviceready` event fires.
 
 ### Quick Example
 
-    document.addEventListener("online", onOnline, false);
+```js
+document.addEventListener("online", onOnline, false);
 
-    function onOnline() {
-        // Handle the online event
-    }
-
+function onOnline() {
+    // Handle the online event
+}
+```
 
 ### iOS Quirks
 
@@ -227,7 +230,6 @@ To start with, create a new FileEntry object (data.txt) to use for sample data. 
 >*Note* This code example requires the File plugin.
 
 ```js
-
 var dataFileEntry;
 
 function createSomeData() {
