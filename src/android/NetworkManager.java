@@ -69,6 +69,7 @@ public class NetworkManager extends CordovaPlugin {
     // return type
     public static final String TYPE_UNKNOWN = "unknown";
     public static final String TYPE_ETHERNET = "ethernet";
+    public static final String TYPE_ETHERNET_SHORT = "eth";
     public static final String TYPE_WIFI = "wifi";
     public static final String TYPE_2G = "2g";
     public static final String TYPE_3G = "3g";
@@ -246,7 +247,7 @@ public class NetworkManager extends CordovaPlugin {
             if (type.equals(WIFI)) {
                 return TYPE_WIFI;
             }
-            else if (type.toLowerCase().equals(TYPE_ETHERNET)) { 
+            else if (type.toLowerCase().equals(TYPE_ETHERNET) || type.toLowerCase().startsWith(TYPE_ETHERNET_SHORT) { 
                 return TYPE_ETHERNET;
             }
             else if (type.equals(MOBILE) || type.equals(CELLULAR)) {
