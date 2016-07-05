@@ -247,7 +247,7 @@ public class NetworkManager extends CordovaPlugin {
             if (type.equals(WIFI)) {
                 return TYPE_WIFI;
             }
-            else if (type.toLowerCase().equals(TYPE_ETHERNET) || type.toLowerCase().startsWith(TYPE_ETHERNET_SHORT) { 
+            else if (type.toLowerCase().equals(TYPE_ETHERNET) || type.toLowerCase().startsWith(TYPE_ETHERNET_SHORT)) { 
                 return TYPE_ETHERNET;
             }
             else if (type.equals(MOBILE) || type.equals(CELLULAR)) {
