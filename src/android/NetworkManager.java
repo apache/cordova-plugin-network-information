@@ -47,14 +47,16 @@ public class NetworkManager extends CordovaPlugin {
     public static final String WIMAX = "wimax";
     // mobile
     public static final String MOBILE = "mobile";
-    
-    // Android L calls this Cellular, because I have no idea! 
+
+    // Android L calls this Cellular, because I have no idea!
     public static final String CELLULAR = "cellular";
     // 2G network types
+    public static final String TWO_G = "2g";
     public static final String GSM = "gsm";
     public static final String GPRS = "gprs";
     public static final String EDGE = "edge";
     // 3G network types
+    public static final String THREE_G = "3g";
     public static final String CDMA = "cdma";
     public static final String UMTS = "umts";
     public static final String HSPA = "hspa";
@@ -63,6 +65,7 @@ public class NetworkManager extends CordovaPlugin {
     public static final String ONEXRTT = "1xrtt";
     public static final String EHRPD = "ehrpd";
     // 4G network types
+    public static final String FOUR_G = "4g";
     public static final String LTE = "lte";
     public static final String UMB = "umb";
     public static final String HSPA_PLUS = "hspa+";
@@ -247,14 +250,15 @@ public class NetworkManager extends CordovaPlugin {
             if (type.equals(WIFI)) {
                 return TYPE_WIFI;
             }
-            else if (type.toLowerCase().equals(TYPE_ETHERNET) || type.toLowerCase().startsWith(TYPE_ETHERNET_SHORT)) { 
+            else if (type.toLowerCase().equals(TYPE_ETHERNET) || type.toLowerCase().startsWith(TYPE_ETHERNET_SHORT)) {
                 return TYPE_ETHERNET;
             }
             else if (type.equals(MOBILE) || type.equals(CELLULAR)) {
                 type = info.getSubtypeName().toLowerCase(Locale.US);
                 if (type.equals(GSM) ||
                         type.equals(GPRS) ||
-                        type.equals(EDGE)) {
+                        type.equals(EDGE) ||
+                        type.equals(TWO_G)) {
                     return TYPE_2G;
                 }
                 else if (type.startsWith(CDMA) ||
@@ -263,12 +267,14 @@ public class NetworkManager extends CordovaPlugin {
                         type.equals(EHRPD) ||
                         type.equals(HSUPA) ||
                         type.equals(HSDPA) ||
-                        type.equals(HSPA)) {
+                        type.equals(HSPA) ||
+                        type.equals(THREE_G)) {
                     return TYPE_3G;
                 }
                 else if (type.equals(LTE) ||
                         type.equals(UMB) ||
-                        type.equals(HSPA_PLUS)) {
+                        type.equals(HSPA_PLUS) ||
+                        type.equals(FOUR_G)) {
                     return TYPE_4G;
                 }
             }
