@@ -21,6 +21,7 @@ package org.apache.cordova.networkinformation;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.LOG;
 import org.apache.cordova.PluginResult;
 import org.apache.cordova.CordovaWebView;
 import org.json.JSONArray;
@@ -33,7 +34,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.util.Log;
 
 import java.util.Locale;
 
@@ -132,7 +132,7 @@ public class NetworkManager extends CordovaPlugin {
             try {
                 connectionType = this.getConnectionInfo(info).get("type").toString();
             } catch (JSONException e) {
-                Log.d(LOG_TAG, e.getLocalizedMessage());
+                LOG.d(LOG_TAG, e.getLocalizedMessage());
             }
 
             PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, connectionType);
@@ -151,7 +151,7 @@ public class NetworkManager extends CordovaPlugin {
             try {
                 webView.getContext().unregisterReceiver(this.receiver);
             } catch (Exception e) {
-                Log.e(LOG_TAG, "Error unregistering network receiver: " + e.getMessage(), e);
+                LOG.e(LOG_TAG, "Error unregistering network receiver: " + e.getMessage(), e);
             } finally {
                 receiver = null;
             }
@@ -178,7 +178,7 @@ public class NetworkManager extends CordovaPlugin {
             try {
                 connectionType = thisInfo.get("type").toString();
             } catch (JSONException e) {
-                Log.d(LOG_TAG, e.getLocalizedMessage());
+                LOG.d(LOG_TAG, e.getLocalizedMessage());
             }
 
             sendUpdate(connectionType);
@@ -206,8 +206,8 @@ public class NetworkManager extends CordovaPlugin {
             extraInfo = info.getExtraInfo();
         }
 
-        Log.d("CordovaNetworkManager", "Connection Type: " + type);
-        Log.d("CordovaNetworkManager", "Connection Extra Info: " + extraInfo);
+        LOG.d(LOG_TAG, "Connection Type: " + type);
+        LOG.d(LOG_TAG, "Connection Extra Info: " + extraInfo);
 
         JSONObject connectionInfo = new JSONObject();
 
@@ -215,7 +215,7 @@ public class NetworkManager extends CordovaPlugin {
             connectionInfo.put("type", type);
             connectionInfo.put("extraInfo", extraInfo);
         } catch (JSONException e) {
-            Log.d(LOG_TAG, e.getLocalizedMessage());
+            LOG.d(LOG_TAG, e.getLocalizedMessage());
         }
 
         return connectionInfo;
@@ -245,8 +245,8 @@ public class NetworkManager extends CordovaPlugin {
         if (info != null) {
             String type = info.getTypeName().toLowerCase(Locale.US);
 
-            Log.d("CordovaNetworkManager", "toLower : " + type.toLowerCase());
-            Log.d("CordovaNetworkManager", "wifi : " + WIFI);
+            LOG.d(LOG_TAG, "toLower : " + type.toLowerCase());
+            LOG.d(LOG_TAG, "wifi : " + WIFI);
             if (type.equals(WIFI)) {
                 return TYPE_WIFI;
             }
