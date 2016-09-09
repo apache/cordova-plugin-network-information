@@ -20,15 +20,28 @@
 -->
 # Release Notes
 
+### 1.3.0 (Sep 08, 2016)
+* [CB-11795](https://issues.apache.org/jira/browse/CB-11795) Add 'protective' entry to cordovaDependencies
+* [CB-11734](https://issues.apache.org/jira/browse/CB-11734) Network Plugin uses `Android Log class` and not `Cordova LOG class`
+* [CB-11300](https://issues.apache.org/jira/browse/CB-11300) (**android**) Recognize `2G`, `3G` and `4G` network connection subtype names
+* Update `NetworkManager.java`
+* Detection of Ethernet Network Type on **Android**
+* fixed two potential memory leaks when doing Analyze on **iOS 9**
+* [CB-11384](https://issues.apache.org/jira/browse/CB-11384) **android**: Does not pass sonarqube scan
+* Add badges for paramedic builds on Jenkins
+* Add pull request template.
+* Readme: Add fenced code blocks with langauage hints
+* [CB-10996](https://issues.apache.org/jira/browse/CB-10996) Adding front matter to README.md
+
 ### 1.2.1 (Apr 15, 2016)
-* CB-10763: Remove emoji in `cordova-plugin-network-information`
-* CB-10636 Add `JSHint` for plugins
+* [CB-10763](https://issues.apache.org/jira/browse/CB-10763) Remove emoji in `cordova-plugin-network-information`
+* [CB-10636](https://issues.apache.org/jira/browse/CB-10636) Add `JSHint` for plugins
 
 ### 1.2.0 (Jan 15, 2016)
 * Adding `CoreTelephony` to `plugin.xml`
 * Adding notification for `CT radio` information
 * Adding `CT radio` information
-* CB-10160: Fixed the case mismatch issue
+* [CB-10160](https://issues.apache.org/jira/browse/CB-10160) Fixed the case mismatch issue
 
 ### 1.1.0 (Nov 18, 2015)
 * [CB-10035](https://issues.apache.org/jira/browse/CB-10035) Updated `RELEASENOTES` to be newest to oldest
