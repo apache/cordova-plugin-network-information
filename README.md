@@ -41,7 +41,7 @@ Report issues with this plugin on the [Apache Cordova issue tracker][Apache Cord
 
 ## Installation
 
-    cordova plugin add cordova-plugin-network-information
+    cordova plugin add cordova-plugin-network-information --save
 
 ## Supported Platforms
 
