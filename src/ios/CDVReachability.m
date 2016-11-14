@@ -140,7 +140,6 @@ static void CDVReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRe
         retVal = [[self alloc] init];
         if (retVal != NULL) {
             retVal->reachabilityRef = reachability;
-            retVal->localWiFiRef = NO;
         }
         else {
             CFRelease(reachability);
@@ -149,15 +148,14 @@ static void CDVReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRe
     return retVal;
 }
 
-+ (CDVReachability*)reachabilityWithAddress:(const struct sockaddr_in*)hostAddress;
++ (CDVReachability*)reachabilityWithAddress:(const struct sockaddr*)hostAddress;
 {
-    SCNetworkReachabilityRef reachability = SCNetworkReachabilityCreateWithAddress(kCFAllocatorDefault, (const struct sockaddr*)hostAddress);
+    SCNetworkReachabilityRef reachability = SCNetworkReachabilityCreateWithAddress(kCFAllocatorDefault, hostAddress);
     CDVReachability* retVal = NULL;
     if (reachability != NULL) {
         retVal = [[self alloc] init];
         if (retVal != NULL) {
             retVal->reachabilityRef = reachability;
-            retVal->localWiFiRef = NO;
         }
         else {
             CFRelease(reachability);
@@ -166,42 +164,18 @@ static void CDVReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRe
     return retVal;
 }
 
+// Reachability treats the 0.0.0.0 address as a special token that causes it to monitor the general routing
+// status of the device, both IPv4 and IPv6.
 + (CDVReachability*)reachabilityForInternetConnection;
 {
     struct sockaddr_in zeroAddress;
     bzero(&zeroAddress, sizeof(zeroAddress));
     zeroAddress.sin_len = sizeof(zeroAddress);
     zeroAddress.sin_family = AF_INET;
-    return [self reachabilityWithAddress:&zeroAddress];
-}
-
-+ (CDVReachability*)reachabilityForLocalWiFi;
-{
-    struct sockaddr_in localWifiAddress;
-    bzero(&localWifiAddress, sizeof(localWifiAddress));
-    localWifiAddress.sin_len = sizeof(localWifiAddress);
-    localWifiAddress.sin_family = AF_INET;
-    // IN_LINKLOCALNETNUM is defined in <netinet/in.h> as 169.254.0.0
-    localWifiAddress.sin_addr.s_addr = htonl(IN_LINKLOCALNETNUM);
-    CDVReachability* retVal = [self reachabilityWithAddress:&localWifiAddress];
-    if (retVal != NULL) {
-        retVal->localWiFiRef = YES;
-    }
-    return retVal;
+    return [self reachabilityWithAddress:(const struct sockaddr*) &zeroAddress];
 }
 
 #pragma mark Network Flag Handling
-
-- (NetworkStatus)localWiFiStatusForFlags:(SCNetworkReachabilityFlags)flags
-{
-    CDVPrintReachabilityFlags(flags, "localWiFiStatusForFlags");
-
-    BOOL retVal = NotReachable;
-    if ((flags & kSCNetworkReachabilityFlagsReachable) && (flags & kSCNetworkReachabilityFlagsIsDirect)) {
-        retVal = ReachableViaWiFi;
-    }
-    return retVal;
-}
 
 - (NetworkStatus)networkStatusForFlags:(SCNetworkReachabilityFlags)flags
 {
@@ -254,11 +228,7 @@ static void CDVReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRe
     NetworkStatus retVal = NotReachable;
     SCNetworkReachabilityFlags flags;
     if (SCNetworkReachabilityGetFlags(reachabilityRef, &flags)) {
-        if (localWiFiRef) {
-            retVal = [self localWiFiStatusForFlags:flags];
-        } else {
-            retVal = [self networkStatusForFlags:flags];
-        }
+        retVal = [self networkStatusForFlags:flags];
     }
     return retVal;
 }
