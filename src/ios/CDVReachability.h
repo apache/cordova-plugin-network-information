@@ -57,7 +57,6 @@ typedef enum {
 
 @interface CDVReachability : NSObject
 {
-    BOOL localWiFiRef;
     SCNetworkReachabilityRef reachabilityRef;
 }
 
@@ -65,14 +64,11 @@ typedef enum {
 + (CDVReachability*)reachabilityWithHostName:(NSString*)hostName;
 
 // reachabilityWithAddress- Use to check the reachability of a particular IP address.
-+ (CDVReachability*)reachabilityWithAddress:(const struct sockaddr_in*)hostAddress;
++ (CDVReachability*)reachabilityWithAddress:(const struct sockaddr*)hostAddress;
 
 // reachabilityForInternetConnection- checks whether the default route is available.
 //  Should be used by applications that do not connect to a particular host
 + (CDVReachability*)reachabilityForInternetConnection;
-
-// reachabilityForLocalWiFi- checks whether a local wifi connection is available.
-+ (CDVReachability*)reachabilityForLocalWiFi;
 
 // Start listening for reachability notifications on the current run loop
 - (BOOL)startNotifier;
