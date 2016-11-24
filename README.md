@@ -80,8 +80,6 @@ Information on the surrounding AP wifi.
 
 ### Quick Example
 
-## Supported Platforms
-
 ```javascript
 var app = {
     ...
