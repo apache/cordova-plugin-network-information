@@ -82,7 +82,13 @@ Information on the surrounding AP wifi.
 
 ```javascript
 var app = {
-    ...
+    initialize: function() {
+        this.bindEvents();
+    },
+    bindEvents: function() {
+        document.addEventListener("online", this.onOnline, false);
+        document.addEventListener("offline", this.onOffline, false);
+    },
     onOnline: function() {
         app.writeWifiInfo();
     },
@@ -134,7 +140,8 @@ var app = {
         }
       }
     }
-    ...
+}
+app.initialize();
 ```
 ### API Change
 
