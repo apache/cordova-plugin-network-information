@@ -88,8 +88,14 @@
             }
         }
         case ReachableViaWiFi:
-            return @"wifi";
-
+        {
+            BOOL isConnectionRequired = [reachability connectionRequired];
+            if (isConnectionRequired) {
+                return @"none";
+            } else {
+                return @"wifi";
+            }
+        }
         default:
             return @"unknown";
     }
