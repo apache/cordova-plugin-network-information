@@ -20,6 +20,12 @@
 -->
 # Release Notes
 
+### 1.3.2 (Feb 28, 2017)
+* [CB-12369](https://issues.apache.org/jira/browse/CB-12369) Add plugin typings from `DefinitelyTyped` 
+* [CB-12363](https://issues.apache.org/jira/browse/CB-12363) Added build badges for **iOS 9.3** and **iOS 10.0** 
+* [CB-11838](https://issues.apache.org/jira/browse/CB-11838) **iOS:** Unregister callback function at the right timing.
+* [CB-12230](https://issues.apache.org/jira/browse/CB-12230) Removed **Windows 8.1** build badges
+
 ### 1.3.1 (Dec 07, 2016)
 * [CB-12224](https://issues.apache.org/jira/browse/CB-12224) Updated version and RELEASENOTES.md for release 1.3.1
 * [CB-11230](https://issues.apache.org/jira/browse/CB-11230) [CB-11505](https://issues.apache.org/jira/browse/CB-11505) iOS: Add compatibility with IPv6
