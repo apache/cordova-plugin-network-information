@@ -24,6 +24,9 @@
     "type": "git",
     "url": "https://github.com/apache/cordova-plugin-network-information"
   },
+  "bugs": {
+    "url": "https://issues.apache.org/jira/browse/CB"
+  },
   "keywords": [
     "cordova",
     "network",
