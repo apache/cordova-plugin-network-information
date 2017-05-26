@@ -145,6 +145,9 @@ static void CDVReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRe
         else {
             CFRelease(reachability);
         }
+        else {
+            CFRelease(reachability);
+        }
     }
     return retVal;
 }
@@ -157,6 +160,9 @@ static void CDVReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRe
         retVal = [[self alloc] init];
         if (retVal != NULL) {
             retVal->reachabilityRef = reachability;
+        }
+        else {
+            CFRelease(reachability);
         }
         else {
             CFRelease(reachability);
