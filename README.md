@@ -27,6 +27,7 @@ description: Get information about wireless connectivity.
 
 # cordova-plugin-network-information
 
+DUMMY ENTRY
 
 This plugin provides an implementation of an old version of the
 [Network Information API](http://www.w3.org/TR/2011/WD-netinfo-api-20110607/).
