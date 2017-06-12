@@ -19,14 +19,14 @@
  *
 */
 
-/*global Windows:true */
+/* global Windows:true */
 
 var Connection = require('./Connection');
 
 var winNetConn = Windows.Networking.Connectivity;
 var networkInfo = winNetConn.NetworkInformation;
 
-function getCurrrentConnectionType() {
+function getCurrrentConnectionType () {
 
     var profile = networkInfo.getInternetConnectionProfile();
 
@@ -40,26 +40,26 @@ function getCurrrentConnectionType() {
     // since we use this to detect whether we are online or offline we do check agains InternetAccess
     // localAccess (airplane mode as an example) or constrainedInternetAccess mean there is no access to the internet available
     // https://msdn.microsoft.com/library/windows/apps/windows.networking.connectivity.networkconnectivitylevel.aspx
-    if (conLevel != Windows.Networking.Connectivity.NetworkConnectivityLevel.internetAccess) {
+    if (conLevel !== Windows.Networking.Connectivity.NetworkConnectivityLevel.internetAccess) {
         return Connection.NONE;
     }
 
     var connectionType;
 
     switch (interfaceType) {
-        case 71:
-            connectionType = Connection.WIFI;
-            break;
-        case 6:
-            connectionType = Connection.ETHERNET;
-            break;
-        case 243: // (3GPP WWAN) // Fallthrough is intentional
-        case 244: // (3GPP2 WWAN)
-            connectionType = Connection.CELL_3G;
-            break;
-        default:
-            connectionType = Connection.UNKNOWN;
-            break;
+    case 71:
+        connectionType = Connection.WIFI;
+        break;
+    case 6:
+        connectionType = Connection.ETHERNET;
+        break;
+    case 243: // (3GPP WWAN) // Fallthrough is intentional
+    case 244: // (3GPP2 WWAN)
+        connectionType = Connection.CELL_3G;
+        break;
+    default:
+        connectionType = Connection.UNKNOWN;
+        break;
     }
 
     return connectionType;
@@ -67,8 +67,7 @@ function getCurrrentConnectionType() {
 
 module.exports = {
 
-    getConnectionInfo:function(win,fail,args)
-    {
+    getConnectionInfo: function (win, fail, args) {
         var reportConnectionInfoOnce = function () {
             win(getCurrrentConnectionType(), { keepCallback: true });
         };
@@ -76,8 +75,8 @@ module.exports = {
         // report current connection  type
         setTimeout(reportConnectionInfoOnce, 0);
         // start traking future changes
-        networkInfo.addEventListener("networkstatuschanged", reportConnectionInfoOnce);
+        networkInfo.addEventListener('networkstatuschanged', reportConnectionInfoOnce);
     }
 };
 
-require("cordova/exec/proxy").add("NetworkStatus",module.exports);
+require('cordova/exec/proxy').add('NetworkStatus', module.exports);

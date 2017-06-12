@@ -24,73 +24,73 @@
   and http://w3c.github.io/netinfo/
 */
 
-var Connection = require('./Connection'),
-    modulemapper = require('cordova/modulemapper');
+var Connection = require('./Connection');
+var modulemapper = require('cordova/modulemapper');
 
 var origConnection = modulemapper.getOriginalSymbol(window, 'navigator.connection');
 
 module.exports = {
 
-  getConnectionInfo: function(successCallback, errorCallback) {
-    var connection = origConnection || navigator.mozConnection,
-        connectionType = Connection.UNKNOWN;
+    getConnectionInfo: function (successCallback, errorCallback) {
+        var connection = origConnection || navigator.mozConnection;
+        var connectionType = Connection.UNKNOWN;
 
-    if (!connection) {
-        setTimeout(function() {
+        if (!connection) {
+            setTimeout(function () {
+                successCallback(connectionType);
+            }, 0);
+            return;
+        }
+
+        var bandwidth = connection.bandwidth;
+        var metered = connection.metered;
+        var type = connection.type;
+
+        if (type !== undefined) {
+        // For more information see:
+        // https://developer.mozilla.org/en-US/docs/Web/API/Network_Information_API
+
+            switch (type) {
+            case 'cellular':
+                connectionType = Connection.CELL;
+                break;
+            case 'ethernet':
+                connectionType = Connection.ETHERNET;
+                break;
+            case 'wifi':
+                connectionType = Connection.WIFI;
+                break;
+            case 'none':
+                connectionType = Connection.NONE;
+                break;
+            }
+        } else if (bandwidth !== undefined && metered !== undefined) {
+        /*
+        bandwidth of type double, readonly
+        The user agent must set the value of the bandwidth attribute to:
+        0 if the user is currently offline;
+        Infinity if the bandwidth is unknown;
+        an estimation of the current bandwidth in MB/s (Megabytes per seconds)
+        available for communication with the browsing context active document's
+        domain.
+
+        For more information see:
+        https://developer.mozilla.org/en-US/docs/Web/API/Connection
+        */
+
+            if (bandwidth === 0) {
+                connectionType = Connection.NONE;
+            } else if (metered && isFinite(bandwidth)) {
+                connectionType = Connection.CELL;
+            } else if (!metered && isFinite(bandwidth)) {
+                connectionType = Connection.WIFI;
+            }
+        }
+
+        setTimeout(function () {
             successCallback(connectionType);
         }, 0);
-        return;
     }
-
-    var bandwidth = connection.bandwidth,
-      metered = connection.metered,
-      type = connection.type;
-
-    if (type !== undefined) {
-      // For more information see:
-      // https://developer.mozilla.org/en-US/docs/Web/API/Network_Information_API
-
-      switch(type) {
-        case "cellular":
-          connectionType = Connection.CELL;
-          break;
-        case "ethernet":
-          connectionType = Connection.ETHERNET;
-          break;
-        case "wifi":
-          connectionType = Connection.WIFI;
-          break;
-        case "none":
-          connectionType = Connection.NONE;
-          break;
-      }
-    } else if (bandwidth !== undefined && metered !== undefined) {
-      /*
-      bandwidth of type double, readonly
-      The user agent must set the value of the bandwidth attribute to:
-      0 if the user is currently offline;
-      Infinity if the bandwidth is unknown;
-      an estimation of the current bandwidth in MB/s (Megabytes per seconds)
-      available for communication with the browsing context active document's
-      domain.
-
-      For more information see:
-      https://developer.mozilla.org/en-US/docs/Web/API/Connection
-      */
-
-      if (bandwidth === 0) {
-        connectionType = Connection.NONE;
-      } else if (metered && isFinite(bandwidth)) {
-        connectionType = Connection.CELL;
-      } else if (!metered && isFinite(bandwidth)) {
-        connectionType = Connection.WIFI;
-      }
-    }
-
-    setTimeout(function() {
-      successCallback(connectionType);
-    }, 0);
-  }
 };
 
-require("cordova/exec/proxy").add("NetworkStatus", module.exports);
+require('cordova/exec/proxy').add('NetworkStatus', module.exports);

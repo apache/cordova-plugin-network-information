@@ -18,31 +18,29 @@
  *
 */
 
-var cordova = require('cordova'),
-    proxy = require("cordova/exec/proxy"),
-    Connection = require('./Connection');
+var cordova = require('cordova');
+var proxy = require('cordova/exec/proxy');
+var Connection = require('./Connection');
 
 var type = navigator.onLine ? Connection.UNKNOWN : Connection.NONE;
 
 // Subscribe to 'native' online/offline events
-function onStatusChange(evt) {
+function onStatusChange (evt) {
     type = navigator.onLine ? Connection.UNKNOWN : Connection.NONE;
     // force async
-    setTimeout(function(){
+    setTimeout(function () {
         cordova.fireDocumentEvent(evt.type);
-    },0);
+    }, 0);
 }
 
 window.addEventListener('online', onStatusChange);
 window.addEventListener('offline', onStatusChange);
 
-proxy.add("NetworkStatus", {
-    getConnectionInfo:function(cbSuccess) {
+proxy.add('NetworkStatus', {
+    getConnectionInfo: function (cbSuccess) {
         // force async
-        setTimeout(function(){
+        setTimeout(function () {
             cbSuccess(type);
-        },0);
+        }, 0);
     }
 });
-
-

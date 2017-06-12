@@ -21,9 +21,9 @@
 
 /* global PluginResult */
 
-//map from BB10 to cordova connection types:
-//https://github.com/apache/cordova-js/blob/master/lib/common/plugin/Connection.js
-function mapConnectionType(con) {
+// map from BB10 to cordova connection types:
+// https://github.com/apache/cordova-js/blob/master/lib/common/plugin/Connection.js
+function mapConnectionType (con) {
     switch (con.type) {
     case 'wired':
         return 'ethernet';
@@ -43,17 +43,16 @@ function mapConnectionType(con) {
         case 'lte':
             return '4g';
         }
-        return "cellular";
+        return 'cellular';
     }
     return 'unknown';
 }
 
-function currentConnectionType() {
+function currentConnectionType () {
     try {
-        //possible for webplatform to throw pps exception
-        return mapConnectionType(window.qnx.webplatform.device.activeConnection || { type : 'none' });
-    }
-    catch (e) {
+        // possible for webplatform to throw pps exception
+        return mapConnectionType(window.qnx.webplatform.device.activeConnection || { type: 'none' });
+    } catch (e) {
         return 'unknown';
     }
 }
