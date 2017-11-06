@@ -20,6 +20,13 @@
 -->
 # Release Notes
 
+### 1.3.4 (Nov 06, 2017)
+* [CB-12751](https://issues.apache.org/jira/browse/CB-12751) (ios) Fix connection type when airplane mode is on
+* [CB-13299](https://issues.apache.org/jira/browse/CB-13299) (CI) Fix **Android** builds
+* [CB-12895](https://issues.apache.org/jira/browse/CB-12895) added `eslint` and removed `jshint`
+* [CB-13028](https://issues.apache.org/jira/browse/CB-13028) (CI) **Browser** builds on Travis and AppVeyor
+* [CB-12847](https://issues.apache.org/jira/browse/CB-12847) added `bugs` entry to `package.json`.
+
 ### 1.3.3 (Apr 27, 2017)
 * [CB-12622](https://issues.apache.org/jira/browse/CB-12622) Add **Android 6.0** build badge to `README`
 * [CB-12685](https://issues.apache.org/jira/browse/CB-12685) added `package.json` to tests folder
