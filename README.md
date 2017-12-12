@@ -45,15 +45,10 @@ Report issues with this plugin on the [Apache Cordova issue tracker][Apache Cord
 
 ## Supported Platforms
 
-- Amazon Fire OS
 - Android
-- BlackBerry 10
 - Browser
 - iOS
-- Windows Phone 7 and 8
-- Tizen
 - Windows
-- Firefox OS
 
 # Connection
 
@@ -114,26 +109,9 @@ eventually be removed.
 - <iOS7 can't detect the type of cellular network connection.
     - `navigator.connection.type` is set to `Connection.CELL` for all cellular data.
 
-### Windows Phone Quirks
-
-- When running in the emulator, always detects `navigator.connection.type` as `Connection.UNKNOWN`.
-
-- Windows Phone can't detect the type of cellular network connection.
-    - `navigator.connection.type` is set to `Connection.CELL` for all cellular data.
-
 ### Windows Quirks
 
 - When running in the Phone 8.1 emulator, always detects `navigator.connection.type` as `Connection.ETHERNET`.
-
-### Tizen Quirks
-
-- Tizen can only detect a WiFi or cellular connection.
-    - `navigator.connection.type` is set to `Connection.CELL_2G` for all cellular data.
-
-### Firefox OS Quirks
-
-- Firefox OS can't detect the type of cellular network connection.
-    - `navigator.connection.type` is set to `Connection.CELL` for all cellular data.
 
 ### Browser Quirks
 
@@ -173,14 +151,6 @@ function onOffline() {
 
 During initial startup, the first offline event (if applicable) takes at least a second to fire.
 
-### Windows Phone 7 Quirks
-
-When running in the Emulator, the `connection.status` is always unknown, so this event does _not_ fire.
-
-### Windows Phone 8 Quirks
-
-The Emulator reports the connection type as `Cellular`, which does not change, so the event does _not_ fire.
-
 ## online
 
 This event fires when an application goes online, and the device
@@ -214,14 +184,6 @@ function onOnline() {
 During initial startup, the first `online` event (if applicable) takes
 at least a second to fire, prior to which `connection.type` is
 `UNKNOWN`.
-
-### Windows Phone 7 Quirks
-
-When running in the Emulator, the `connection.status` is always unknown, so this event does _not_ fire.
-
-### Windows Phone 8 Quirks
-
-The Emulator reports the connection type as `Cellular`, which does not change, so events does _not_ fire.
 
 ## Sample: Upload a File Depending on your Network State <a name="sample"></a>
 

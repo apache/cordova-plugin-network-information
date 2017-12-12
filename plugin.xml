@@ -21,7 +21,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
 xmlns:android="http://schemas.android.com/apk/res/android"
            id="cordova-plugin-network-information"
-      version="1.3.5-dev">
+      version="2.0.0-dev">
 
     <name>Network Information</name>
     <description>Cordova Network Information Plugin</description>
@@ -39,12 +39,6 @@ xmlns:android="http://schemas.android.com/apk/res/android"
         <clobbers target="Connection" />
     </js-module>
 
-    <!-- firefoxos -->
-    <platform name="firefoxos">
-        <js-module src="src/firefoxos/NetworkProxy.js" name="NetworkProxy">
-            <runs />
-        </js-module>
-    </platform>
 
     <!-- android -->
     <platform name="android">
@@ -60,34 +54,6 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 
         <source-file src="src/android/NetworkManager.java" target-dir="src/org/apache/cordova/networkinformation" />
 
-    </platform>
-
-    <!-- amazon-fireos -->
-    <platform name="amazon-fireos">
-        <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="NetworkStatus">
-                <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager"/>
-            </feature>
-        </config-file>
-
-        <config-file target="AndroidManifest.xml" parent="/*">
-            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-        </config-file>
-
-        <source-file src="src/android/NetworkManager.java" target-dir="src/org/apache/cordova/networkinformation" />
-
-    </platform>
-
-
-    <!-- ubuntu -->
-    <platform name="ubuntu">
-        <config-file target="config.xml" parent="/*">
-            <feature name="Camera">
-                <param policy_group="connectivity" policy_version="1" />
-            </feature>
-        </config-file>
-        <header-file src="src/ubuntu/network_information.h" />
-        <source-file src="src/ubuntu/network_information.cpp" />
     </platform>
 
     <!-- ios -->
@@ -106,62 +72,10 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 	    <framework src="CoreTelephony.framework" />
     </platform>
 
-    <!-- blackberry10 -->
-    <platform name="blackberry10">
-        <source-file src="src/blackberry10/index.js" target-dir="NetworkStatus" />
-        <config-file target="www/config.xml" parent="/widget">
-            <feature name="NetworkStatus" value="NetworkStatus"/>
-        </config-file>
-    </platform>
-
-    <!-- wp7 -->
-    <platform name="wp7">
-        <config-file target="config.xml" parent="/*">
-            <feature name="NetworkStatus">
-                <param name="wp-package" value="NetworkStatus"/>
-            </feature>
-        </config-file>
-
-        <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
-            <Capability Name="ID_CAP_NETWORKING" />
-        </config-file>
-
-        <source-file src="src/wp/NetworkStatus.cs" />
-    </platform>
-
-    <!-- wp8 -->
-    <platform name="wp8">
-        <config-file target="config.xml" parent="/*">
-            <feature name="NetworkStatus">
-                <param name="wp-package" value="NetworkStatus"/>
-            </feature>
-        </config-file>
-
-        <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
-            <Capability Name="ID_CAP_NETWORKING" />
-        </config-file>
-
-        <source-file src="src/wp/NetworkStatus.cs" />
-    </platform>
-
-    <!-- windows8 -->
-    <platform name="windows8">
-        <js-module src="src/windows/NetworkInfoProxy.js" name="NetworkInfoProxy">
-            <runs/>
-        </js-module>
-    </platform>
-
     <!-- windows -->
     <platform name="windows">
         <js-module src="src/windows/NetworkInfoProxy.js" name="NetworkInfoProxy">
             <runs/>
-        </js-module>
-    </platform>
-
-    <!-- tizen -->
-    <platform name="tizen">
-        <js-module src="src/tizen/NetworkProxy.js" name="NetworkProxy">
-            <runs />
         </js-module>
     </platform>
 
