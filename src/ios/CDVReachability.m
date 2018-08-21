@@ -235,10 +235,10 @@ static void CDVReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRe
         return retVal;
     }
     @catch (NSException *exception) {
-        NSLog(@“%@“, exception.reason);
+        NSLog(@"%@", exception.reason);
     }
     @finally {
-        NSLog(@“It just works!”);
+        NSLog(@"It just works!");
     }
 }
 
