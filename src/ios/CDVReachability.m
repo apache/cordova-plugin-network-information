@@ -225,13 +225,21 @@ static void CDVReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRe
 
 - (NetworkStatus)currentReachabilityStatus
 {
-    NSAssert(reachabilityRef != NULL, @"currentNetworkStatus called with NULL reachabilityRef");
-    NetworkStatus retVal = NotReachable;
-    SCNetworkReachabilityFlags flags;
-    if (SCNetworkReachabilityGetFlags(reachabilityRef, &flags)) {
-        retVal = [self networkStatusForFlags:flags];
+    @try {
+        NSAssert(reachabilityRef != NULL, @"currentNetworkStatus called with NULL reachabilityRef");
+        NetworkStatus retVal = NotReachable;
+        SCNetworkReachabilityFlags flags;
+        if (SCNetworkReachabilityGetFlags(reachabilityRef, &flags)) {
+            retVal = [self networkStatusForFlags:flags];
+        }
+        return retVal;
     }
-    return retVal;
+    @catch (NSException *exception) {
+        NSLog(@“%@“, exception.reason);
+    }
+    @finally {
+        NSLog(@“It just works!”);
+    }
 }
 
 @end
