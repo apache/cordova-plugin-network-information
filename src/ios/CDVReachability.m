@@ -97,11 +97,17 @@ static void CDVReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRe
 
     // We're on the main RunLoop, so an NSAutoreleasePool is not necessary, but is added defensively
     // in case someon uses the Reachability object in a different thread.
-    @autoreleasepool {
-        CDVReachability* noteObject = (__bridge CDVReachability*)info;
-        // Post a notification to notify the client that the network reachability changed.
-        [[NSNotificationCenter defaultCenter] postNotificationName:kReachabilityChangedNotification object:noteObject];
-    }
+    // *** As this would let BPB / FotoappSDK crash, we do not pass on our CDVReachability
+    //    @autoreleasepool {
+    //        CDVReachability* noteObject = (__bridge CDVReachability*)info;
+    //        // Post a notification to notify the client that the network reachability changed.
+    //        [[NSNotificationCenter defaultCenter] postNotificationName:kReachabilityChangedNotification object:noteObject];
+    //    }
+}
+
+- (NetworkStatus)currentBPBReachabilityStatus
+{
+    return [self currentReachabilityStatus];
 }
 
 - (BOOL)startNotifier
@@ -236,9 +242,7 @@ static void CDVReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRe
     }
     @catch (NSException *exception) {
         NSLog(@"%@", exception.reason);
-    }
-    @finally {
-        NSLog(@"It just works!");
+        return 0;
     }
 }
 
