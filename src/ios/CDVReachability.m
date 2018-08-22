@@ -97,11 +97,17 @@ static void CDVReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRe
 
     // We're on the main RunLoop, so an NSAutoreleasePool is not necessary, but is added defensively
     // in case someon uses the Reachability object in a different thread.
-    @autoreleasepool {
-        CDVReachability* noteObject = (__bridge CDVReachability*)info;
-        // Post a notification to notify the client that the network reachability changed.
-        [[NSNotificationCenter defaultCenter] postNotificationName:kReachabilityChangedNotification object:noteObject];
-    }
+    // *** As this would let BPB / FotoappSDK crash, we do not pass on our CDVReachability
+    //    @autoreleasepool {
+    //        CDVReachability* noteObject = (__bridge CDVReachability*)info;
+    //        // Post a notification to notify the client that the network reachability changed.
+    //        [[NSNotificationCenter defaultCenter] postNotificationName:kReachabilityChangedNotification object:noteObject];
+    //    }
+}
+
+- (NetworkStatus)currentBPBReachabilityStatus
+{
+    return [self currentReachabilityStatus];
 }
 
 - (BOOL)startNotifier
@@ -225,13 +231,19 @@ static void CDVReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRe
 
 - (NetworkStatus)currentReachabilityStatus
 {
-    NSAssert(reachabilityRef != NULL, @"currentNetworkStatus called with NULL reachabilityRef");
-    NetworkStatus retVal = NotReachable;
-    SCNetworkReachabilityFlags flags;
-    if (SCNetworkReachabilityGetFlags(reachabilityRef, &flags)) {
-        retVal = [self networkStatusForFlags:flags];
+    @try {
+        NSAssert(reachabilityRef != NULL, @"currentNetworkStatus called with NULL reachabilityRef");
+        NetworkStatus retVal = NotReachable;
+        SCNetworkReachabilityFlags flags;
+        if (SCNetworkReachabilityGetFlags(reachabilityRef, &flags)) {
+            retVal = [self networkStatusForFlags:flags];
+        }
+        return retVal;
     }
-    return retVal;
+    @catch (NSException *exception) {
+        NSLog(@"%@", exception.reason);
+        return 0;
+    }
 }
 
 @end
