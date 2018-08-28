@@ -30,7 +30,18 @@ var utils = require('cordova/utils');
 // it is already supported by modern browsers
 if (cordova.platformId !== 'browser' && typeof navigator !== 'undefined') {
     utils.defineGetter(navigator, 'onLine', function () {
-        return this.connection.type !== 'none';
+        if(this.connection.type !== 'none'){
+   
+            var xhr = new ( window.ActiveXObject || XMLHttpRequest )( "Microsoft.XMLHTTP" );
+            var status;
+            xhr.open( "HEAD", "//" + window.location.hostname + "/?rand=" + Math.floor((1 + Math.random()) * 0x10000), false );
+            try {
+                xhr.send();
+                return ( xhr.status >= 200 && (xhr.status < 300 || xhr.status === 304) );
+              } catch (error) {
+                return false;
+              }
+        }else return false;
     });
 }
 
