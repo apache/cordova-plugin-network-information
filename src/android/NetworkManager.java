@@ -99,21 +99,7 @@ public class NetworkManager extends CordovaPlugin {
         this.sockMan = (ConnectivityManager) cordova.getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         this.connectionCallbackContext = null;
 
-        // We need to listen to connectivity events to update navigator.connection
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
-        if (this.receiver == null) {
-            this.receiver = new BroadcastReceiver() {
-                @Override
-                public void onReceive(Context context, Intent intent) {
-                    // (The null check is for the ARM Emulator, please use Intel Emulator for better results)
-                    if(NetworkManager.this.webView != null)
-                        updateConnectionInfo(sockMan.getActiveNetworkInfo());
-                }
-            };
-            webView.getContext().registerReceiver(this.receiver, intentFilter);
-        }
-
+        this.registerConnectivityActionReceiver();
     }
 
     /**
@@ -147,6 +133,69 @@ public class NetworkManager extends CordovaPlugin {
      * Stop network receiver.
      */
     public void onDestroy() {
+        this.unregisterReceiver();
+    }
+
+    @Override
+    public void onPause(boolean multitasking) {
+        this.unregisterReceiver();
+    }
+
+    @Override
+    public void onResume(boolean multitasking) {
+        super.onResume(multitasking);
+
+        this.unregisterReceiver();
+        this.registerConnectivityActionReceiver();
+    }
+
+    //--------------------------------------------------------------------------
+    // LOCAL METHODS
+    //--------------------------------------------------------------------------
+
+    private void registerConnectivityActionReceiver() {
+        // We need to listen to connectivity events to update navigator.connection
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        if (this.receiver == null) {
+            this.receiver = new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    // (The null check is for the ARM Emulator, please use Intel Emulator for better results)
+                    if (NetworkManager.this.webView != null) {
+                        updateConnectionInfo(sockMan.getActiveNetworkInfo());
+                    }
+
+                    String connectionType = null;
+                    if(NetworkManager.this.lastInfo == null) {
+                        connectionType = TYPE_NONE;
+                    } else {
+                        try {
+                            connectionType = NetworkManager.this.lastInfo.get("type").toString();
+                        } catch (JSONException e) {
+                            LOG.d(LOG_TAG, e.getLocalizedMessage());
+                            connectionType = TYPE_NONE;
+                        }
+                    }
+
+                    if(TYPE_NONE.equals(connectionType)) {
+                        boolean noConnectivity = intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false);
+                        LOG.d(LOG_TAG, "Intent no connectivity: " + noConnectivity);
+                        if(noConnectivity) {
+                            LOG.d(LOG_TAG, "Really no connectivity");
+                        } else {
+                            LOG.d(LOG_TAG, "!!! Switching to unknown");
+                            sendUpdate(TYPE_UNKNOWN);
+                        }
+                    }
+                }
+            };
+        }
+
+        webView.getContext().registerReceiver(this.receiver, intentFilter);
+    }
+
+    private void unregisterReceiver() {
         if (this.receiver != null) {
             try {
                 webView.getContext().unregisterReceiver(this.receiver);
@@ -157,10 +206,6 @@ public class NetworkManager extends CordovaPlugin {
             }
         }
     }
-
-    //--------------------------------------------------------------------------
-    // LOCAL METHODS
-    //--------------------------------------------------------------------------
 
     /**
      * Updates the JavaScript side whenever the connection changes
