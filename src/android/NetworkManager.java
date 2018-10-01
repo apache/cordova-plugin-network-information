@@ -184,7 +184,7 @@ public class NetworkManager extends CordovaPlugin {
                         if(noConnectivity) {
                             LOG.d(LOG_TAG, "Really no connectivity");
                         } else {
-                            LOG.d(LOG_TAG, "!!! Switching to unknown");
+                            LOG.d(LOG_TAG, "!!! Switching to unknown, Intent states there is a connectivity.");
                             sendUpdate(TYPE_UNKNOWN);
                         }
                     }
