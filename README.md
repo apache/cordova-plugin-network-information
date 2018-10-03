@@ -35,10 +35,6 @@ wifi connection, and whether the device has an internet connection.
 
 > To get a few ideas how to use the plugin, check out the [sample](#sample) at the bottom of this page or go straight to the [reference](#reference) content.
 
-Report issues with this plugin on the [Apache Cordova issue tracker][Apache Cordova issue tracker].
-
-##<a name="reference"></a>Reference
-
 ## Installation
 
     cordova plugin add cordova-plugin-network-information
