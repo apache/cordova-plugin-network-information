@@ -28,12 +28,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.annotation.TargetApi;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
+import android.net.Network;
 import android.net.NetworkInfo;
+import android.net.NetworkRequest;
+import android.os.Build;
+import android.text.TextUtils;
 
 import java.util.Locale;
 
@@ -85,6 +90,7 @@ public class NetworkManager extends CordovaPlugin {
 
     ConnectivityManager sockMan;
     BroadcastReceiver receiver;
+    private ConnectivityManager.NetworkCallback lollipopAndAboveNetworkCallback;
     private JSONObject lastInfo = null;
 
     /**
@@ -99,16 +105,20 @@ public class NetworkManager extends CordovaPlugin {
         this.sockMan = (ConnectivityManager) cordova.getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         this.connectionCallbackContext = null;
 
-        this.registerConnectivityActionReceiver();
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            this.registerConnectivityActionReceiver();
+        } else {
+            this.registerLollipopAndAboveNetworkCallback();
+        }
     }
 
     /**
      * Executes the request and returns PluginResult.
      *
-     * @param action            The action to execute.
-     * @param args              JSONArry of arguments for the plugin.
-     * @param callbackContext   The callback id used when calling back into JavaScript.
-     * @return                  True if the action was valid, false otherwise.
+     * @param action          The action to execute.
+     * @param args            JSONArry of arguments for the plugin.
+     * @param callbackContext The callback id used when calling back into JavaScript.
+     * @return True if the action was valid, false otherwise.
      */
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) {
         if (action.equals("getConnectionInfo")) {
@@ -146,42 +156,54 @@ public class NetworkManager extends CordovaPlugin {
         super.onResume(multitasking);
 
         this.unregisterReceiver();
-        this.registerConnectivityActionReceiver();
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            this.registerConnectivityActionReceiver();
+        } else {
+            this.registerLollipopAndAboveNetworkCallback();
+        }
     }
 
     //--------------------------------------------------------------------------
     // LOCAL METHODS
     //--------------------------------------------------------------------------
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void registerLollipopAndAboveNetworkCallback() {
+        NetworkRequest.Builder builder = new NetworkRequest.Builder();
+
+        lollipopAndAboveNetworkCallback = new ConnectivityManager.NetworkCallback() {
+
+            @Override
+            public void onAvailable(Network network) {
+                updateConnectionInfoIfWebViewNotNull(sockMan.getActiveNetworkInfo());
+            }
+
+            @Override
+            public void onLost(Network network) {
+                updateConnectionInfoIfWebViewNotNull(sockMan.getActiveNetworkInfo());
+            }
+        };
+        sockMan.registerNetworkCallback(builder.build(), lollipopAndAboveNetworkCallback);
+    }
+
     private void registerConnectivityActionReceiver() {
         // We need to listen to connectivity events to update navigator.connection
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+
         if (this.receiver == null) {
             this.receiver = new BroadcastReceiver() {
                 @Override
                 public void onReceive(Context context, Intent intent) {
-                    // (The null check is for the ARM Emulator, please use Intel Emulator for better results)
-                    if (NetworkManager.this.webView != null) {
-                        updateConnectionInfo(sockMan.getActiveNetworkInfo());
-                    }
+                    updateConnectionInfoIfWebViewNotNull(sockMan.getActiveNetworkInfo());
 
-                    String connectionType = null;
-                    if(NetworkManager.this.lastInfo == null) {
-                        connectionType = TYPE_NONE;
-                    } else {
-                        try {
-                            connectionType = NetworkManager.this.lastInfo.get("type").toString();
-                        } catch (JSONException e) {
-                            LOG.d(LOG_TAG, e.getLocalizedMessage());
-                            connectionType = TYPE_NONE;
-                        }
-                    }
+                    String connectionType = determineCurrentConnectionType();
 
-                    if(TYPE_NONE.equals(connectionType)) {
+                    LOG.d(LOG_TAG, "Intent " + intent.getAction());
+                    if (TYPE_NONE.equals(connectionType)) {
                         boolean noConnectivity = intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false);
                         LOG.d(LOG_TAG, "Intent no connectivity: " + noConnectivity);
-                        if(noConnectivity) {
+                        if (noConnectivity) {
                             LOG.d(LOG_TAG, "Really no connectivity");
                         } else {
                             LOG.d(LOG_TAG, "!!! Switching to unknown, Intent states there is a connectivity.");
@@ -195,14 +217,39 @@ public class NetworkManager extends CordovaPlugin {
         webView.getContext().registerReceiver(this.receiver, intentFilter);
     }
 
-    private void unregisterReceiver() {
-        if (this.receiver != null) {
+    private String determineCurrentConnectionType() {
+        String connectionType;
+        if (NetworkManager.this.lastInfo == null) {
+            connectionType = TYPE_NONE;
+        } else {
             try {
-                webView.getContext().unregisterReceiver(this.receiver);
+                connectionType = NetworkManager.this.lastInfo.get("type").toString();
+            } catch (JSONException e) {
+                LOG.d(LOG_TAG, e.getLocalizedMessage());
+                connectionType = TYPE_NONE;
+            }
+        }
+        return connectionType;
+    }
+
+    private void unregisterReceiver() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            if (this.receiver != null) {
+                try {
+                    webView.getContext().unregisterReceiver(this.receiver);
+                } catch (Exception e) {
+                    LOG.e(LOG_TAG, "Error unregistering network receiver: " + e.getMessage(), e);
+                } finally {
+                    receiver = null;
+                }
+            }
+        } else if (this.lollipopAndAboveNetworkCallback != null) {
+            try {
+                sockMan.unregisterNetworkCallback(this.lollipopAndAboveNetworkCallback);
             } catch (Exception e) {
                 LOG.e(LOG_TAG, "Error unregistering network receiver: " + e.getMessage(), e);
             } finally {
-                receiver = null;
+                lollipopAndAboveNetworkCallback = null;
             }
         }
     }
@@ -213,12 +260,15 @@ public class NetworkManager extends CordovaPlugin {
      * @param info the current active network info
      * @return
      */
-    private void updateConnectionInfo(NetworkInfo info) {
+    private void updateConnectionInfoIfWebViewNotNull(NetworkInfo info) {
+        // (The null check is for the ARM Emulator, please use Intel Emulator for better results)
+        if (NetworkManager.this.webView == null) {
+            return;
+        }
         // send update to javascript "navigator.network.connection"
         // Jellybean sends its own info
         JSONObject thisInfo = this.getConnectionInfo(info);
-        if(!thisInfo.equals(lastInfo))
-        {
+        if (!thisInfo.equals(lastInfo)) {
             String connectionType = "";
             try {
                 connectionType = thisInfo.get("type").toString();
@@ -244,8 +294,7 @@ public class NetworkManager extends CordovaPlugin {
             // If we are not connected to any network set type to none
             if (!info.isConnected()) {
                 type = TYPE_NONE;
-            }
-            else {
+            } else {
                 type = getType(info);
             }
             extraInfo = info.getExtraInfo();
@@ -294,37 +343,32 @@ public class NetworkManager extends CordovaPlugin {
             LOG.d(LOG_TAG, "wifi : " + WIFI);
             if (type.equals(WIFI)) {
                 return TYPE_WIFI;
-            }
-            else if (type.toLowerCase().equals(TYPE_ETHERNET) || type.toLowerCase().startsWith(TYPE_ETHERNET_SHORT)) {
+            } else if (type.toLowerCase().equals(TYPE_ETHERNET) || type.toLowerCase().startsWith(TYPE_ETHERNET_SHORT)) {
                 return TYPE_ETHERNET;
-            }
-            else if (type.equals(MOBILE) || type.equals(CELLULAR)) {
+            } else if (type.equals(MOBILE) || type.equals(CELLULAR)) {
                 type = info.getSubtypeName().toLowerCase(Locale.US);
                 if (type.equals(GSM) ||
-                        type.equals(GPRS) ||
-                        type.equals(EDGE) ||
-                        type.equals(TWO_G)) {
+                    type.equals(GPRS) ||
+                    type.equals(EDGE) ||
+                    type.equals(TWO_G)) {
                     return TYPE_2G;
-                }
-                else if (type.startsWith(CDMA) ||
-                        type.equals(UMTS) ||
-                        type.equals(ONEXRTT) ||
-                        type.equals(EHRPD) ||
-                        type.equals(HSUPA) ||
-                        type.equals(HSDPA) ||
-                        type.equals(HSPA) ||
-                        type.equals(THREE_G)) {
+                } else if (type.startsWith(CDMA) ||
+                    type.equals(UMTS) ||
+                    type.equals(ONEXRTT) ||
+                    type.equals(EHRPD) ||
+                    type.equals(HSUPA) ||
+                    type.equals(HSDPA) ||
+                    type.equals(HSPA) ||
+                    type.equals(THREE_G)) {
                     return TYPE_3G;
-                }
-                else if (type.equals(LTE) ||
-                        type.equals(UMB) ||
-                        type.equals(HSPA_PLUS) ||
-                        type.equals(FOUR_G)) {
+                } else if (type.equals(LTE) ||
+                    type.equals(UMB) ||
+                    type.equals(HSPA_PLUS) ||
+                    type.equals(FOUR_G)) {
                     return TYPE_4G;
                 }
             }
-        }
-        else {
+        } else {
             return TYPE_NONE;
         }
         return TYPE_UNKNOWN;
