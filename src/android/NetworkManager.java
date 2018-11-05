@@ -115,10 +115,10 @@ public class NetworkManager extends CordovaPlugin {
     /**
      * Executes the request and returns PluginResult.
      *
-     * @param action          The action to execute.
-     * @param args            JSONArry of arguments for the plugin.
-     * @param callbackContext The callback id used when calling back into JavaScript.
-     * @return True if the action was valid, false otherwise.
+     * @param action            The action to execute.
+     * @param args              JSONArry of arguments for the plugin.
+     * @param callbackContext   The callback id used when calling back into JavaScript.
+     * @return                  True if the action was valid, false otherwise.
      */
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) {
         if (action.equals("getConnectionInfo")) {
@@ -173,15 +173,15 @@ public class NetworkManager extends CordovaPlugin {
 
         lollipopAndAboveNetworkCallback = new ConnectivityManager.NetworkCallback() {
 
-            @Override
-            public void onAvailable(Network network) {
-                updateConnectionInfoIfWebViewNotNull(sockMan.getActiveNetworkInfo());
-            }
+                @Override
+                public void onAvailable(Network network) {
+                    updateConnectionInfoIfWebViewNotNull(sockMan.getActiveNetworkInfo());
+                }
 
-            @Override
-            public void onLost(Network network) {
-                updateConnectionInfoIfWebViewNotNull(sockMan.getActiveNetworkInfo());
-            }
+                @Override
+                public void onLost(Network network) {
+                    updateConnectionInfoIfWebViewNotNull(sockMan.getActiveNetworkInfo());
+                }
         };
         sockMan.registerNetworkCallback(builder.build(), lollipopAndAboveNetworkCallback);
     }
@@ -200,10 +200,10 @@ public class NetworkManager extends CordovaPlugin {
                     String connectionType = determineCurrentConnectionType();
 
                     LOG.d(LOG_TAG, "Intent " + intent.getAction());
-                    if (TYPE_NONE.equals(connectionType)) {
+                    if(TYPE_NONE.equals(connectionType)) {
                         boolean noConnectivity = intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false);
                         LOG.d(LOG_TAG, "Intent no connectivity: " + noConnectivity);
-                        if (noConnectivity) {
+                        if(noConnectivity) {
                             LOG.d(LOG_TAG, "Really no connectivity");
                         } else {
                             LOG.d(LOG_TAG, "!!! Switching to unknown, Intent states there is a connectivity.");
@@ -219,7 +219,7 @@ public class NetworkManager extends CordovaPlugin {
 
     private String determineCurrentConnectionType() {
         String connectionType;
-        if (NetworkManager.this.lastInfo == null) {
+        if(NetworkManager.this.lastInfo == null) {
             connectionType = TYPE_NONE;
         } else {
             try {
@@ -243,7 +243,7 @@ public class NetworkManager extends CordovaPlugin {
                     receiver = null;
                 }
             }
-        } else if (this.lollipopAndAboveNetworkCallback != null) {
+        } else if(this.lollipopAndAboveNetworkCallback != null) {
             try {
                 sockMan.unregisterNetworkCallback(this.lollipopAndAboveNetworkCallback);
             } catch (Exception e) {
@@ -268,7 +268,8 @@ public class NetworkManager extends CordovaPlugin {
         // send update to javascript "navigator.network.connection"
         // Jellybean sends its own info
         JSONObject thisInfo = this.getConnectionInfo(info);
-        if (!thisInfo.equals(lastInfo)) {
+        if(!thisInfo.equals(lastInfo))
+        {
             String connectionType = "";
             try {
                 connectionType = thisInfo.get("type").toString();
@@ -294,7 +295,8 @@ public class NetworkManager extends CordovaPlugin {
             // If we are not connected to any network set type to none
             if (!info.isConnected()) {
                 type = TYPE_NONE;
-            } else {
+            }
+            else {
                 type = getType(info);
             }
             extraInfo = info.getExtraInfo();
@@ -343,16 +345,19 @@ public class NetworkManager extends CordovaPlugin {
             LOG.d(LOG_TAG, "wifi : " + WIFI);
             if (type.equals(WIFI)) {
                 return TYPE_WIFI;
-            } else if (type.toLowerCase().equals(TYPE_ETHERNET) || type.toLowerCase().startsWith(TYPE_ETHERNET_SHORT)) {
+            }
+            else if (type.toLowerCase().equals(TYPE_ETHERNET) || type.toLowerCase().startsWith(TYPE_ETHERNET_SHORT)) {
                 return TYPE_ETHERNET;
-            } else if (type.equals(MOBILE) || type.equals(CELLULAR)) {
+            }
+            else if (type.equals(MOBILE) || type.equals(CELLULAR)) {
                 type = info.getSubtypeName().toLowerCase(Locale.US);
                 if (type.equals(GSM) ||
                     type.equals(GPRS) ||
                     type.equals(EDGE) ||
                     type.equals(TWO_G)) {
                     return TYPE_2G;
-                } else if (type.startsWith(CDMA) ||
+                }
+                else if (type.startsWith(CDMA) ||
                     type.equals(UMTS) ||
                     type.equals(ONEXRTT) ||
                     type.equals(EHRPD) ||
@@ -361,14 +366,16 @@ public class NetworkManager extends CordovaPlugin {
                     type.equals(HSPA) ||
                     type.equals(THREE_G)) {
                     return TYPE_3G;
-                } else if (type.equals(LTE) ||
+                }
+                else if (type.equals(LTE) ||
                     type.equals(UMB) ||
                     type.equals(HSPA_PLUS) ||
                     type.equals(FOUR_G)) {
                     return TYPE_4G;
                 }
             }
-        } else {
+        }
+        else {
             return TYPE_NONE;
         }
         return TYPE_UNKNOWN;
