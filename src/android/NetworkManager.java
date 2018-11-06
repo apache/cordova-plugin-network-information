@@ -175,12 +175,24 @@ public class NetworkManager extends CordovaPlugin {
 
                 @Override
                 public void onAvailable(Network network) {
+                    LOG.d(LOG_TAG, "In the on available: ");
                     updateConnectionInfoIfWebViewNotNull(sockMan.getActiveNetworkInfo());
+
+                    String connectionType = determineCurrentConnectionType();
+
+                    if(TYPE_NONE.equals(connectionType)) {
+                        LOG.d(LOG_TAG, "ConnectionType none but in the onAvailable");
+                        LOG.d(LOG_TAG, "!!! Switching to unknown, onAvailable states there is a connectivity.");
+                        sendUpdate(TYPE_UNKNOWN);
+                    }
+                    LOG.d(LOG_TAG, "End the on available: ");
                 }
 
                 @Override
                 public void onLost(Network network) {
+                    LOG.d(LOG_TAG, "In the on lost: ");
                     updateConnectionInfoIfWebViewNotNull(sockMan.getActiveNetworkInfo());
+                    LOG.d(LOG_TAG, "End the on lost: ");
                 }
         };
         sockMan.registerNetworkCallback(builder.build(), lollipopAndAboveNetworkCallback);
