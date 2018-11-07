@@ -28,17 +28,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.annotation.TargetApi;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
-import android.net.Network;
 import android.net.NetworkInfo;
-import android.net.NetworkRequest;
 import android.os.Build;
-import android.text.TextUtils;
 
 import java.util.Locale;
 
@@ -90,7 +86,6 @@ public class NetworkManager extends CordovaPlugin {
 
     ConnectivityManager sockMan;
     BroadcastReceiver receiver;
-    private ConnectivityManager.NetworkCallback lollipopAndAboveNetworkCallback;
     private JSONObject lastInfo = null;
 
     /**
@@ -105,11 +100,7 @@ public class NetworkManager extends CordovaPlugin {
         this.sockMan = (ConnectivityManager) cordova.getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         this.connectionCallbackContext = null;
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            this.registerConnectivityActionReceiver();
-        } else {
-            this.registerLollipopAndAboveNetworkCallback();
-        }
+        this.registerConnectivityActionReceiver();
     }
 
     /**
@@ -156,63 +147,40 @@ public class NetworkManager extends CordovaPlugin {
         super.onResume(multitasking);
 
         this.unregisterReceiver();
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            this.registerConnectivityActionReceiver();
-        } else {
-            this.registerLollipopAndAboveNetworkCallback();
-        }
+        this.registerConnectivityActionReceiver();
     }
 
     //--------------------------------------------------------------------------
     // LOCAL METHODS
     //--------------------------------------------------------------------------
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    private void registerLollipopAndAboveNetworkCallback() {
-        NetworkRequest.Builder builder = new NetworkRequest.Builder();
-
-        lollipopAndAboveNetworkCallback = new ConnectivityManager.NetworkCallback() {
-
-                @Override
-                public void onAvailable(Network network) {
-                    LOG.d(LOG_TAG, "In the on available: ");
-                    updateConnectionInfoIfWebViewNotNull(sockMan.getActiveNetworkInfo());
-
-                    String connectionType = determineCurrentConnectionType();
-
-                    if(TYPE_NONE.equals(connectionType)) {
-                        LOG.d(LOG_TAG, "ConnectionType none but in the onAvailable");
-                        LOG.d(LOG_TAG, "!!! Switching to unknown, onAvailable states there is a connectivity.");
-                        sendUpdate(TYPE_UNKNOWN);
-                    }
-                    LOG.d(LOG_TAG, "End the on available: ");
-                }
-
-                @Override
-                public void onLost(Network network) {
-                    LOG.d(LOG_TAG, "In the on lost: ");
-                    updateConnectionInfoIfWebViewNotNull(sockMan.getActiveNetworkInfo());
-                    LOG.d(LOG_TAG, "End the on lost: ");
-                }
-        };
-        sockMan.registerNetworkCallback(builder.build(), lollipopAndAboveNetworkCallback);
-    }
-
     private void registerConnectivityActionReceiver() {
         // We need to listen to connectivity events to update navigator.connection
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
-
         if (this.receiver == null) {
             this.receiver = new BroadcastReceiver() {
                 @Override
                 public void onReceive(Context context, Intent intent) {
-                    updateConnectionInfoIfWebViewNotNull(sockMan.getActiveNetworkInfo());
+                    // (The null check is for the ARM Emulator, please use Intel Emulator for better results)
+                    if (NetworkManager.this.webView != null) {
+                        updateConnectionInfo(sockMan.getActiveNetworkInfo());
+                    }
 
-                    String connectionType = determineCurrentConnectionType();
+                    String connectionType = null;
+                    if(NetworkManager.this.lastInfo == null) {
+                        connectionType = TYPE_NONE;
+                    } else {
+                        try {
+                            connectionType = NetworkManager.this.lastInfo.get("type").toString();
+                        } catch (JSONException e) {
+                            LOG.d(LOG_TAG, e.getLocalizedMessage());
+                            connectionType = TYPE_NONE;
+                        }
+                    }
 
-                    LOG.d(LOG_TAG, "Intent " + intent.getAction());
-                    if(TYPE_NONE.equals(connectionType)) {
+                    // Lollipop always returns false for the EXTRA_NO_CONNECTIVITY flag => fix for Android M and above.
+                    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && TYPE_NONE.equals(connectionType)) {
                         boolean noConnectivity = intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false);
                         LOG.d(LOG_TAG, "Intent no connectivity: " + noConnectivity);
                         if(noConnectivity) {
@@ -229,39 +197,14 @@ public class NetworkManager extends CordovaPlugin {
         webView.getContext().registerReceiver(this.receiver, intentFilter);
     }
 
-    private String determineCurrentConnectionType() {
-        String connectionType;
-        if(NetworkManager.this.lastInfo == null) {
-            connectionType = TYPE_NONE;
-        } else {
-            try {
-                connectionType = NetworkManager.this.lastInfo.get("type").toString();
-            } catch (JSONException e) {
-                LOG.d(LOG_TAG, e.getLocalizedMessage());
-                connectionType = TYPE_NONE;
-            }
-        }
-        return connectionType;
-    }
-
     private void unregisterReceiver() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            if (this.receiver != null) {
-                try {
-                    webView.getContext().unregisterReceiver(this.receiver);
-                } catch (Exception e) {
-                    LOG.e(LOG_TAG, "Error unregistering network receiver: " + e.getMessage(), e);
-                } finally {
-                    receiver = null;
-                }
-            }
-        } else if(this.lollipopAndAboveNetworkCallback != null) {
+        if (this.receiver != null) {
             try {
-                sockMan.unregisterNetworkCallback(this.lollipopAndAboveNetworkCallback);
+                webView.getContext().unregisterReceiver(this.receiver);
             } catch (Exception e) {
                 LOG.e(LOG_TAG, "Error unregistering network receiver: " + e.getMessage(), e);
             } finally {
-                lollipopAndAboveNetworkCallback = null;
+                receiver = null;
             }
         }
     }
@@ -272,11 +215,7 @@ public class NetworkManager extends CordovaPlugin {
      * @param info the current active network info
      * @return
      */
-    private void updateConnectionInfoIfWebViewNotNull(NetworkInfo info) {
-        // (The null check is for the ARM Emulator, please use Intel Emulator for better results)
-        if (NetworkManager.this.webView == null) {
-            return;
-        }
+    private void updateConnectionInfo(NetworkInfo info) {
         // send update to javascript "navigator.network.connection"
         // Jellybean sends its own info
         JSONObject thisInfo = this.getConnectionInfo(info);
