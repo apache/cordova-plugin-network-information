@@ -56,8 +56,6 @@ matrix:
     - env: PLATFORM=ios-12.2
       <<: *_ios
 
-    - env: PLATFORM=android-4.4
-      <<: *_android
     - env: PLATFORM=android-5.1
       <<: *_android
     - env: PLATFORM=android-6.0
@@ -69,6 +67,8 @@ matrix:
     - env: PLATFORM=android-8.0
       <<: *_android
     - env: PLATFORM=android-8.1
+      <<: *_android
+    - env: PLATFORM=android-9.0
       <<: *_android
 
 before_install:
