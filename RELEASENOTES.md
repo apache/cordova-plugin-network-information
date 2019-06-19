@@ -20,6 +20,22 @@
 -->
 # Release Notes
 
+### 2.0.2 (Jun 19, 2019)
+
+-   fix(android): Fix bug [cordova-plugin-network-information] connection info is not reliable on Android 6 ([#74](https://github.com/apache/cordova-plugin-network-information/issues/74)) ([`db0d4b5`](https://github.com/apache/cordova-plugin-network-information/commit/db0d4b5), [`9a45d63`](https://github.com/apache/cordova-plugin-network-information/commit/9a45d63), [`60ab69f`](https://github.com/apache/cordova-plugin-network-information/commit/60ab69f), [`acc02f2`](https://github.com/apache/cordova-plugin-network-information/commit/acc02f2), [`0869800`](https://github.com/apache/cordova-plugin-network-information/commit/0869800), [`394452a`](https://github.com/apache/cordova-plugin-network-information/commit/394452a), [`cafdd67`](https://github.com/apache/cordova-plugin-network-information/commit/cafdd67))
+-   chore(release): fix repo and issue link ([`9ec1e21`](https://github.com/apache/cordova-plugin-network-information/commit/9ec1e21))
+-   docs: remove outdated translations ([`24e50f8`](https://github.com/apache/cordova-plugin-network-information/commit/24e50f8))
+-   build: add .npmignore to remove unneeded files from npm package ([`d31e135`](https://github.com/apache/cordova-plugin-network-information/commit/d31e135))
+-   build: add .gitattributes to force LF (instead of possible CRLF on Windows) ([`f35341e`](https://github.com/apache/cordova-plugin-network-information/commit/f35341e))
+-   ci(travis): Update Travis CI configuration for new paramedic ([#89](https://github.com/apache/cordova-plugin-network-information/issues/89)) ([`102f757`](https://github.com/apache/cordova-plugin-network-information/commit/102f757))
+-   ci(travis): add android-28 ([`27b0e39`](https://github.com/apache/cordova-plugin-network-information/commit/27b0e39))
+-   ci: drop Node.js v4 support ([#87](https://github.com/apache/cordova-plugin-network-information/issues/87)) ([`5158556`](https://github.com/apache/cordova-plugin-network-information/commit/5158556))
+-   chore(github): Add or update GitHub pull request and issue template ([`0cd2771`](https://github.com/apache/cordova-plugin-network-information/commit/0cd2771))
+-   docs: remove JIRA link ([`0796cf9`](https://github.com/apache/cordova-plugin-network-information/commit/0796cf9))
+-   ci: also accept terms for android sdk `android-27` ([`2cde33a`](https://github.com/apache/cordova-plugin-network-information/commit/2cde33a))
+-   ci(travis): CB-13757: Add build-tools-26.0.2 to travis ([`5b0933d`](https://github.com/apache/cordova-plugin-network-information/commit/5b0933d), [`e816db4`](https://github.com/apache/cordova-plugin-network-information/commit/e816db4))
+-   chore: Fix release notes ([#61](https://github.com/apache/cordova-plugin-network-information/issues/61)) ([`629a6ab`](https://github.com/apache/cordova-plugin-network-information/commit/629a6ab))
+
 ### 2.0.1 (Dec 27, 2017)
 * [CB-13708](https://issues.apache.org/jira/browse/CB-13708) Fix to allow 2.0.0 version install (#60)
 
