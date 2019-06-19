@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-network-information-tests",
-  "version": "2.0.2",
+  "version": "2.0.3-dev",
   "description": "",
   "cordova": {
     "id": "cordova-plugin-network-information-tests",
