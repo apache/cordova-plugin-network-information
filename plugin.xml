@@ -48,7 +48,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
             </feature>
         </config-file>
 
-        <config-file target="AndroidManifest.xml" parent="/*">
+        <config-file target="app/src/main/AndroidManifest.xml" parent="/*">
             <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
         </config-file>
 
