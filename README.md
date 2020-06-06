@@ -100,11 +100,6 @@ Until Cordova 2.3.0, the `Connection` object was accessed via
 available at its original location, but is deprecated and will
 eventually be removed.
 
-### iOS Quirks
-
-- <iOS7 can't detect the type of cellular network connection.
-    - `navigator.connection.type` is set to `Connection.CELL` for all cellular data.
-
 ### Windows Quirks
 
 - When running in the Phone 8.1 emulator, always detects `navigator.connection.type` as `Connection.ETHERNET`.
