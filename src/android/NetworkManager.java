@@ -338,25 +338,25 @@ public class NetworkManager extends CordovaPlugin {
             else if (type.equals(MOBILE) || type.equals(CELLULAR)) {
                 type = info.getSubtypeName().toLowerCase(Locale.US);
                 if (type.equals(GSM) ||
-                        type.equals(GPRS) ||
-                        type.equals(EDGE) ||
-                        type.equals(TWO_G)) {
+                    type.equals(GPRS) ||
+                    type.equals(EDGE) ||
+                    type.equals(TWO_G)) {
                     return TYPE_2G;
                 }
                 else if (type.startsWith(CDMA) ||
-                        type.equals(UMTS) ||
-                        type.equals(ONEXRTT) ||
-                        type.equals(EHRPD) ||
-                        type.equals(HSUPA) ||
-                        type.equals(HSDPA) ||
-                        type.equals(HSPA) ||
-                        type.equals(THREE_G)) {
+                    type.equals(UMTS) ||
+                    type.equals(ONEXRTT) ||
+                    type.equals(EHRPD) ||
+                    type.equals(HSUPA) ||
+                    type.equals(HSDPA) ||
+                    type.equals(HSPA) ||
+                    type.equals(THREE_G)) {
                     return TYPE_3G;
                 }
                 else if (type.equals(LTE) ||
-                        type.equals(UMB) ||
-                        type.equals(HSPA_PLUS) ||
-                        type.equals(FOUR_G)) {
+                    type.equals(UMB) ||
+                    type.equals(HSPA_PLUS) ||
+                    type.equals(FOUR_G)) {
                     return TYPE_4G;
                 }
             }
