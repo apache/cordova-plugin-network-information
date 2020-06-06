@@ -216,7 +216,7 @@ public class NetworkManager extends CordovaPlugin {
      * @return
      */
     private void updateConnectionInfo(NetworkInfo info) {
-        // send update to javascript "navigator.network.connection"
+        // send update to javascript "navigator.connection"
         // Jellybean sends its own info
         JSONObject thisInfo = this.getConnectionInfo(info);
         if(!thisInfo.equals(lastInfo))

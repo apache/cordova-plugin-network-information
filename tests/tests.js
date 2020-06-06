@@ -25,7 +25,6 @@
 exports.defineAutoTests = function () {
     describe('Network (navigator.connection)', function () {
         it('network.spec.1 should exist', function () {
-            expect(navigator.network && navigator.network.connection).toBeDefined();
             expect(navigator.connection).toBeDefined();
         });
 
@@ -41,10 +40,6 @@ exports.defineAutoTests = function () {
                 none: 1
             };
             expect(validValues[navigator.connection.type]).toBe(1);
-        });
-
-        it('network.spec.3 should have the same value in deprecated and non-deprecated apis', function () {
-            expect(navigator.network.connection.type).toBe(navigator.connection.type);
         });
 
         it('network.spec.4 should define constants for connection status', function () {
@@ -72,7 +67,6 @@ exports.defineManualTests = function (contentEl, createActionButton) {
 
     function printNetwork () {
         eventOutput('navigator.connection.type=' + navigator.connection.type);
-        eventOutput('navigator.network.connection.type=' + navigator.network.connection.type);
     }
 
     function onEvent (e) {
