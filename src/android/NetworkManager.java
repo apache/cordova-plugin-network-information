@@ -219,7 +219,7 @@ public class NetworkManager extends CordovaPlugin {
         // send update to javascript "navigator.network.connection"
         // Jellybean sends its own info
         JSONObject thisInfo = this.getConnectionInfo(info);
-        if(!thisInfo.equals(lastInfo))
+        if(connectionInfoDiffersFromLastInfo(thisInfo))
         {
             String connectionType = "";
             try {
@@ -230,7 +230,42 @@ public class NetworkManager extends CordovaPlugin {
 
             sendUpdate(connectionType);
             lastInfo = thisInfo;
+        } else {
+            LOG.d(LOG_TAG, "Networkinfo state didn't change, there is no event propagated to the javascript side.");
         }
+    }
+
+    private boolean connectionInfoDiffersFromLastInfo(JSONObject thisInfo) {
+        // JSONObject.equals does not work, so the equals is done explicit for every key in the object
+        if(lastInfo == null) {
+            return thisInfo != null;
+        }
+
+        if(thisInfo == null) {
+            return true;
+        }
+
+        if (valueInJSONObjectDiffersForKey(thisInfo , lastInfo, "type")) {
+            return true;
+        }
+
+        return valueInJSONObjectDiffersForKey(thisInfo , lastInfo, "extraInfo");
+    }
+
+    private boolean valueInJSONObjectDiffersForKey(JSONObject firstObject, JSONObject secondObject, String key) {
+        if(firstObject.has(key)) {
+            if(secondObject.has(key)) {
+                try {
+                    return !firstObject.getString(key).equals(secondObject.getString(key));
+                } catch (JSONException e) {
+                    LOG.d(LOG_TAG, e.getLocalizedMessage());
+                }
+            }
+
+            return true;
+        }
+
+        return secondObject.has(key);
     }
 
     /**
@@ -303,25 +338,25 @@ public class NetworkManager extends CordovaPlugin {
             else if (type.equals(MOBILE) || type.equals(CELLULAR)) {
                 type = info.getSubtypeName().toLowerCase(Locale.US);
                 if (type.equals(GSM) ||
-                    type.equals(GPRS) ||
-                    type.equals(EDGE) ||
-                    type.equals(TWO_G)) {
+                        type.equals(GPRS) ||
+                        type.equals(EDGE) ||
+                        type.equals(TWO_G)) {
                     return TYPE_2G;
                 }
                 else if (type.startsWith(CDMA) ||
-                    type.equals(UMTS) ||
-                    type.equals(ONEXRTT) ||
-                    type.equals(EHRPD) ||
-                    type.equals(HSUPA) ||
-                    type.equals(HSDPA) ||
-                    type.equals(HSPA) ||
-                    type.equals(THREE_G)) {
+                        type.equals(UMTS) ||
+                        type.equals(ONEXRTT) ||
+                        type.equals(EHRPD) ||
+                        type.equals(HSUPA) ||
+                        type.equals(HSDPA) ||
+                        type.equals(HSPA) ||
+                        type.equals(THREE_G)) {
                     return TYPE_3G;
                 }
                 else if (type.equals(LTE) ||
-                    type.equals(UMB) ||
-                    type.equals(HSPA_PLUS) ||
-                    type.equals(FOUR_G)) {
+                        type.equals(UMB) ||
+                        type.equals(HSPA_PLUS) ||
+                        type.equals(FOUR_G)) {
                     return TYPE_4G;
                 }
             }
