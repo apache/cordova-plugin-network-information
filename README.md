@@ -138,6 +138,10 @@ function onOffline() {
 }
 ```
 
+### Quirks
+
+This plugin is unable to broadcast events while in the background. Use `navigator.connection.type` to check connection status on the [resume](https://cordova.apache.org/docs/en/latest/cordova/events/events.html#resume) event instead.
+
 ### iOS Quirks
 
 During initial startup, the first offline event (if applicable) takes at least a second to fire.
@@ -169,6 +173,10 @@ function onOnline() {
     // Handle the online event
 }
 ```
+
+### Quirks
+
+This plugin is unable to broadcast events while in the background. Use `navigator.connection.type` to check connection status on the [resume](https://cordova.apache.org/docs/en/latest/cordova/events/events.html#resume) event instead.
 
 ### iOS Quirks
 
