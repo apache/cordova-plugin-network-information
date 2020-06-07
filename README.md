@@ -236,34 +236,52 @@ function onOnline() {
 
 When the online event fires in the preceding code, call the app's `tryToUploadFile` function.
 
-If the FileTransfer object's upload function fails, call the app's `offlineWrite` function to save the current data somewhere.
+If the upload fails, then call the app's `offlineWrite` function to save the current data somewhere.
 
->*Note* This example requires the FileTransfer plugin.
+>*Note* For simplicity, file reading & writing was omitted. Refer to the [cordova-plugin-file](https://github.com/apache/cordova-plugin-file#cordova-plugin-file) documentation for more information on file handling.
 
 ```js
 function tryToUploadFile() {
     // !! Assumes variable fileURL contains a valid URL to a text file on the device,
     var fileURL = getDataFileEntry().toURL();
+    
+    getFileBlobSomehow(fileURL, function(fileBlob) {
+        var success = function (r) {
+            console.log("Response = " + r.response);
+            display("Uploaded. Response: " + r.response);
+        };
 
-    var success = function (r) {
-        console.log("Response = " + r.response);
-        display("Uploaded. Response: " + r.response);
-    }
+        var fail = function (error) {
+            console.log("An error has occurred: Code = " + error.code || error.status);
+            offlineWrite("Failed to upload: some offline data");
+        }
 
-    var fail = function (error) {
-        console.log("An error has occurred: Code = " + error.code);
-        offlineWrite("Failed to upload: some offline data");
-    }
+        var xhr = new XMLHttpRequest();
 
-    var options = new FileUploadOptions();
-    options.fileKey = "file";
-    options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
-    options.mimeType = "text/plain";
+        xhr.onerror = fail;
+        xhr.ontimeout = fail;
+        xhr.onload = function() {
+            // If the response code was successful...
+            if (xhr.status >= 200 && xhr.status < 400) {
+                success(xhr);
+            }
+            else {
+                fail(xhr)
+            }
+        }
 
-    var ft = new FileTransfer();
-    // Make sure you add the domain of your server URL to the
-    // Content-Security-Policy <meta> element in index.html.
-    ft.upload(fileURL, encodeURI(SERVER), success, fail, options);
+        // Make sure you add the domain of your server URL to the
+        // Content-Security-Policy <meta> element in index.html.
+        xhr.open("POST", encodeURI(SERVER));
+
+        xhr.setRequestHeader("Content-Type", "text/plain");
+
+        // The server request handler could read this header to
+        // set the filename.
+        xhr.setRequestHeader("X-Filename", fileURL.substr(fileURL.lastIndexOf("/") + 1));
+
+        xhr.send(fileBlob);
+    });
 };
 ```
 
