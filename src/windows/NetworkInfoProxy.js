@@ -27,7 +27,6 @@ var winNetConn = Windows.Networking.Connectivity;
 var networkInfo = winNetConn.NetworkInformation;
 
 function getCurrrentConnectionType () {
-
     var profile = networkInfo.getInternetConnectionProfile();
 
     if (!profile) {
