@@ -32,7 +32,6 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 
     <js-module src="www/network.js" name="network">
         <clobbers target="navigator.connection" />
-        <clobbers target="navigator.network.connection" />
     </js-module>
 
     <js-module src="www/Connection.js" name="Connection">

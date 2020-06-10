@@ -92,13 +92,10 @@ function checkConnection() {
 checkConnection();
 ```
 
-### API Change
+### iOS Quirks
 
-Until Cordova 2.3.0, the `Connection` object was accessed via
-`navigator.network.connection`, after which it was changed to
-`navigator.connection` to match the W3C specification.  It's still
-available at its original location, but is deprecated and will
-eventually be removed.
+- <iOS7 can't detect the type of cellular network connection.
+    - `navigator.connection.type` is set to `Connection.CELL` for all cellular data.
 
 ### Windows Quirks
 
