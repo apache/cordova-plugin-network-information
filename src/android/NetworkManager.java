@@ -162,7 +162,7 @@ public class NetworkManager extends CordovaPlugin {
                     }
 
                     String connectionType;
-                    if(NetworkManager.this.lastTypeOfNetwork == null) {
+                    if (NetworkManager.this.lastTypeOfNetwork == null) {
                         connectionType = TYPE_NONE;
                     } else {
                         connectionType = NetworkManager.this.lastTypeOfNetwork;
