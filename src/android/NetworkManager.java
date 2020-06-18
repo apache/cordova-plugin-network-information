@@ -265,23 +265,20 @@ public class NetworkManager extends CordovaPlugin {
     private String getType(NetworkInfo info) {
         String type = info.getTypeName().toLowerCase(Locale.US);
 
-        LOG.d(LOG_TAG, "toLower : " + type.toLowerCase());
+        LOG.d(LOG_TAG, "toLower : " + type);
         LOG.d(LOG_TAG, "wifi : " + WIFI);
         if (type.equals(WIFI)) {
             return TYPE_WIFI;
-        }
-        else if (type.toLowerCase().equals(TYPE_ETHERNET) || type.toLowerCase().startsWith(TYPE_ETHERNET_SHORT)) {
+        } else if (type.toLowerCase().equals(TYPE_ETHERNET) || type.toLowerCase().startsWith(TYPE_ETHERNET_SHORT)) {
             return TYPE_ETHERNET;
-        }
-        else if (type.equals(MOBILE) || type.equals(CELLULAR)) {
+        } else if (type.equals(MOBILE) || type.equals(CELLULAR)) {
             type = info.getSubtypeName().toLowerCase(Locale.US);
             if (type.equals(GSM) ||
                     type.equals(GPRS) ||
                     type.equals(EDGE) ||
                     type.equals(TWO_G)) {
                 return TYPE_2G;
-            }
-            else if (type.startsWith(CDMA) ||
+            } else if (type.startsWith(CDMA) ||
                     type.equals(UMTS) ||
                     type.equals(ONEXRTT) ||
                     type.equals(EHRPD) ||
@@ -290,8 +287,7 @@ public class NetworkManager extends CordovaPlugin {
                     type.equals(HSPA) ||
                     type.equals(THREE_G)) {
                 return TYPE_3G;
-            }
-            else if (type.equals(LTE) ||
+            } else if (type.equals(LTE) ||
                     type.equals(UMB) ||
                     type.equals(HSPA_PLUS) ||
                     type.equals(FOUR_G)) {
