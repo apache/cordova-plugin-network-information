@@ -209,7 +209,7 @@ public class NetworkManager extends CordovaPlugin {
         // Jellybean sends its own info
         String currentNetworkType = this.getTypeOfNetworkFallbackToTypeNoneIfNotConnected(info);
         if (currentNetworkType.equals(this.lastTypeOfNetwork)) {
-            LOG.d(LOG_TAG, "Networkinfo state didn't change, there is no event propagated to the javascript side.");
+            LOG.d(LOG_TAG, "Networkinfo state didn't change, there is no event propagated to the JavaScript side.");
         } else {
             sendUpdate(currentNetworkType);
             this.lastTypeOfNetwork = currentNetworkType;
