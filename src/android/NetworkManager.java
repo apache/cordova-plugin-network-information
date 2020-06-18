@@ -265,7 +265,6 @@ public class NetworkManager extends CordovaPlugin {
         String type = info.getTypeName().toLowerCase(Locale.US);
 
         LOG.d(LOG_TAG, "toLower : " + type);
-        LOG.d(LOG_TAG, "wifi : " + WIFI);
         if (type.equals(WIFI)) {
             return TYPE_WIFI;
         } else if (type.toLowerCase().equals(TYPE_ETHERNET) || type.toLowerCase().startsWith(TYPE_ETHERNET_SHORT)) {
