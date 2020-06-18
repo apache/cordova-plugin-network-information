@@ -162,7 +162,7 @@ public class NetworkManager extends CordovaPlugin {
                     }
 
                     String connectionType;
-                    if(NetworkManager.this.lastTypeOfNetwork == null) {
+                    if (NetworkManager.this.lastTypeOfNetwork == null) {
                         connectionType = TYPE_NONE;
                     } else {
                         connectionType = NetworkManager.this.lastTypeOfNetwork;
@@ -208,9 +208,8 @@ public class NetworkManager extends CordovaPlugin {
         // send update to javascript "navigator.network.connection"
         // Jellybean sends its own info
         String currentNetworkType = this.getTypeOfNetworkFallbackToTypeNoneIfNotConnected(info);
-        if(currentNetworkType.equals(this.lastTypeOfNetwork))
-        {
-            LOG.d(LOG_TAG, "Networkinfo state didn't change, there is no event propagated to the javascript side.");
+        if (currentNetworkType.equals(this.lastTypeOfNetwork)) {
+            LOG.d(LOG_TAG, "Networkinfo state didn't change, there is no event propagated to the JavaScript side.");
         } else {
             sendUpdate(currentNetworkType);
             this.lastTypeOfNetwork = currentNetworkType;
