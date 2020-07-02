@@ -12,13 +12,8 @@
       "browser"
     ]
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/apache/cordova-plugin-network-information"
-  },
-  "bugs": {
-    "url": "https://github.com/apache/cordova-plugin-network-information/issues"
-  },
+  "repository": "github:apache/cordova-plugin-network-information",
+  "bugs": "https://github.com/apache/cordova-plugin-network-information/issues",
   "keywords": [
     "cordova",
     "network",
