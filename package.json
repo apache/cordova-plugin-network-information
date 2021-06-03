@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-network-information",
-  "version": "3.0.0-dev",
+  "version": "3.0.0",
   "description": "Cordova Network Information Plugin",
   "types": "./types/index.d.ts",
   "cordova": {

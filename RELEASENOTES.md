@@ -20,6 +20,28 @@
 -->
 # Release Notes
 
+### 3.0.0 (Jun 03, 2021)
+-   release 3.0.0 audit fix
+-   ci: add node-14.x to workflow
+-   ci(travis): update osx xcode image
+-   ci(travis): updates **Android** API level
+-   **Android** - Fixes bug onConnect does not work as expected [#110](https://github.com/apache/cordova-plugin-network-information/issues/110)
+-   chore(npm): use short notation in `package.json`
+-   chore: adds package-lock file
+-   chore: bumps version to 3.0.0-dev in test files
+-   refactor: Removed all references of deprecated navigator.network
+-   docs: Replaced FileTransfer example with a XHR example
+-   docs: Note on background usage
+-   docs: Removed apache issue tracker link
+-   docs: Removed **iOS** 7 quirk
+-   refactor(eslint): use cordova-eslint
+-   chore(asf): update git notification settings
+-   Update CONTRIBUTING.md
+-   chore(npm): improve ignore list
+-   ci: updates Node.js versions
+-   ci(appveyor): remove node 6, add node 12
+-   ci(travis): upgrade to node 8
+
 ### 2.0.2 (Jun 19, 2019)
 
 -   fix(android): Fix bug [cordova-plugin-network-information] connection info is not reliable on Android 6 ([#74](https://github.com/apache/cordova-plugin-network-information/issues/74)) ([`db0d4b5`](https://github.com/apache/cordova-plugin-network-information/commit/db0d4b5), [`9a45d63`](https://github.com/apache/cordova-plugin-network-information/commit/9a45d63), [`60ab69f`](https://github.com/apache/cordova-plugin-network-information/commit/60ab69f), [`acc02f2`](https://github.com/apache/cordova-plugin-network-information/commit/acc02f2), [`0869800`](https://github.com/apache/cordova-plugin-network-information/commit/0869800), [`394452a`](https://github.com/apache/cordova-plugin-network-information/commit/394452a), [`cafdd67`](https://github.com/apache/cordova-plugin-network-information/commit/cafdd67))
@@ -33,7 +55,7 @@
 -   chore(github): Add or update GitHub pull request and issue template ([`0cd2771`](https://github.com/apache/cordova-plugin-network-information/commit/0cd2771))
 -   docs: remove JIRA link ([`0796cf9`](https://github.com/apache/cordova-plugin-network-information/commit/0796cf9))
 -   ci: also accept terms for android sdk `android-27` ([`2cde33a`](https://github.com/apache/cordova-plugin-network-information/commit/2cde33a))
--   ci(travis): CB-13757: Add build-tools-26.0.2 to travis ([`5b0933d`](https://github.com/apache/cordova-plugin-network-information/commit/5b0933d), [`e816db4`](https://github.com/apache/cordova-plugin-network-information/commit/e816db4))
+-   ci(travis): [CB-13757](https://issues.apache.org/jira/browse/CB-13757) Add build-tools-26.0.2 to travis ([`5b0933d`](https://github.com/apache/cordova-plugin-network-information/commit/5b0933d), [`e816db4`](https://github.com/apache/cordova-plugin-network-information/commit/e816db4))
 -   chore: Fix release notes ([#61](https://github.com/apache/cordova-plugin-network-information/issues/61)) ([`629a6ab`](https://github.com/apache/cordova-plugin-network-information/commit/629a6ab))
 
 ### 2.0.1 (Dec 27, 2017)
