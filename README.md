@@ -56,7 +56,7 @@ wifi connection, and whether the device has an internet connection.
 
 ## Constants
 
-- Connection.UNKNOWN
+- Connection.UNKNOW
 - Connection.ETHERNET
 - Connection.WIFI
 - Connection.CELL_2G
