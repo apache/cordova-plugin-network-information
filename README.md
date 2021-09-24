@@ -23,6 +23,8 @@ description: Get information about wireless connectivity.
 
 # cordova-plugin-network-information
 
+[![Android Testsuite](https://github.com/apache/cordova-plugin-network-information/actions/workflows/android.yml/badge.svg)](https://github.com/apache/cordova-plugin-network-information/actions/workflows/android.yml) [![Chrome Testsuite](https://github.com/apache/cordova-plugin-network-information/actions/workflows/chrome.yml/badge.svg)](https://github.com/apache/cordova-plugin-network-information/actions/workflows/chrome.yml) [![iOS Testsuite](https://github.com/apache/cordova-plugin-network-information/actions/workflows/ios.yml/badge.svg)](https://github.com/apache/cordova-plugin-network-information/actions/workflows/ios.yml) [![Lint Test](https://github.com/apache/cordova-plugin-network-information/actions/workflows/lint.yml/badge.svg)](https://github.com/apache/cordova-plugin-network-information/actions/workflows/lint.yml)
+
 
 This plugin provides an implementation of an old version of the
 [Network Information API](http://www.w3.org/TR/2011/WD-netinfo-api-20110607/).
