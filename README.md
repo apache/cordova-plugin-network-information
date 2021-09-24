@@ -21,10 +21,6 @@ description: Get information about wireless connectivity.
 #         under the License.
 -->
 
-|AppVeyor|Travis CI|
-|:-:|:-:|
-|[![Build status](https://ci.appveyor.com/api/projects/status/github/apache/cordova-plugin-network-information?branch=master)](https://ci.appveyor.com/project/ApacheSoftwareFoundation/cordova-plugin-network-information)|[![Build Status](https://travis-ci.org/apache/cordova-plugin-network-information.svg?branch=master)](https://travis-ci.org/apache/cordova-plugin-network-information)|
-
 # cordova-plugin-network-information
 
 
