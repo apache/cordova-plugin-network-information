@@ -45,8 +45,9 @@ interface Connection {
      *     Connection.CELL
      *     Connection.NONE
      */
-	type: ConnectionType;
-    
+    type: ConnectionType;
+    dispatchEvent(): boolean;
+
     addEventListener(type: string, listener: EventListenerOrEventListenerObject, useCapture?: boolean): void;
     removeEventListener(type: string, listener: EventListenerOrEventListenerObject, useCapture?: boolean): void;
 }
