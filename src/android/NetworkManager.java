@@ -40,7 +40,6 @@ import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.telephony.ServiceState;
 
-import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 
 import java.util.Locale;
@@ -244,8 +243,6 @@ public class NetworkManager extends CordovaPlugin {
      * @param info the current active network info
      * @return type the type of network
      */
-    // ENCAPSULATE
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private String getTypeOfNetworkFallbackToTypeNoneIfNotConnected(NetworkInfo info, Boolean forceRefresh) {
         // the info might still be null in this part of the code
         String type;
@@ -267,7 +264,6 @@ public class NetworkManager extends CordovaPlugin {
         LOG.d(LOG_TAG, "Connection Type: " + type);
         return type;
     }
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private String getTypeOfNetworkFallbackToTypeNoneIfNotConnected(NetworkInfo info) {
         // the info might still be null in this part of the code
         return this.getTypeOfNetworkFallbackToTypeNoneIfNotConnected(info, false);
