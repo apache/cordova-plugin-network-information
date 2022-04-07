@@ -109,12 +109,12 @@ public class NetworkManager extends CordovaPlugin {
     private static boolean isNrAvailable;
 
     /**
-   * Sets the context of the Command. This can then be used to do things like
-   * get file paths associated with the Activity.
-   *
-   * @param cordova The context of the main Activity.
-   * @param webView The CordovaWebView Cordova is running in.
-   */
+     * Sets the context of the Command. This can then be used to do things like
+     * get file paths associated with the Activity.
+     *
+     * @param cordova The context of the main Activity.
+     * @param webView The CordovaWebView Cordova is running in.
+     */
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
     super.initialize(cordova, webView);
     this.sockMan = (ConnectivityManager) cordova.getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -126,7 +126,7 @@ public class NetworkManager extends CordovaPlugin {
     }
 
     /**
-     * Executes the request and returns PluginResult.
+ Executes the request and returns PluginResult.
      *
      * @param action            The action to execute.
      * @param args              JSONArry of arguments for the plugin.
@@ -244,6 +244,7 @@ public class NetworkManager extends CordovaPlugin {
      * @param info the current active network info
      * @return type the type of network
      */
+    // ENCAPSULATE
     @RequiresApi(api = Build.VERSION_CODES.N)
     private String getTypeOfNetworkFallbackToTypeNoneIfNotConnected(NetworkInfo info, Boolean forceRefresh) {
         // the info might still be null in this part of the code
@@ -366,7 +367,7 @@ public class NetworkManager extends CordovaPlugin {
 
     private boolean is4G(int type, String name){
 
-        return  type == TelephonyManager.NETWORK_TYPE_LTE ||     // api<11: replace by 13
+        return  type == TelephonyManager.NETWORK_TYPE_LTE && name.equals(FOUR_G) ||     // api<11: replace by 13
                 type == TelephonyManager.NETWORK_TYPE_IWLAN ||  // api<25: replace by 18
                 type == NETWORK_TYPE_LTE_CA || // LTE_CA
                 name.equals(LTE) ||
@@ -377,7 +378,7 @@ public class NetworkManager extends CordovaPlugin {
 
     private boolean is5G(int type, String name){
 
-        return  type == TelephonyManager.NETWORK_TYPE_LTE ||     // api<11: replace by 13
+        return  type == TelephonyManager.NETWORK_TYPE_LTE && name.equals(FIVE_G) ||     // api<11: replace by 13
                 type == NETWORK_TYPE_NR ||  // api<25: replace by 18
                 name.equals(FIVE_G) ||
                 name.equals(NR);
