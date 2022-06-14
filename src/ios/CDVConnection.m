@@ -82,7 +82,7 @@
                         return @"3g";
                     } else if ([telephonyInfo.currentRadioAccessTechnology  isEqualToString:CTRadioAccessTechnologyLTE]) {
                         return @"4g";
-                    } else if (@available(iOS 14.0, *)) {
+                    } else if (@available(iOS 14.1, *)) {
                         if ([telephonyInfo.currentRadioAccessTechnology  isEqualToString:CTRadioAccessTechnologyNRNSA]) {
                             return @"5g";
                         } else if ([telephonyInfo.currentRadioAccessTechnology  isEqualToString:CTRadioAccessTechnologyNR]) {
