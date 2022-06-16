@@ -60,7 +60,7 @@
             } else {
                 if ([[[UIDevice currentDevice] systemVersion] compare:@"7.0" options:NSNumericSearch] != NSOrderedAscending) {
                     CTTelephonyNetworkInfo *telephonyInfo = [CTTelephonyNetworkInfo new];
-                    NSString *currentRadioAccessTechnology = radioAccessNameIn(telephonyInfo)
+                    NSString *currentRadioAccessTechnology = radioAccessNameIn(telephonyInfo);
                     if ([currentRadioAccessTechnology isEqualToString:CTRadioAccessTechnologyGPRS]) {
                         return @"2g";
                     } else if ([currentRadioAccessTechnology  isEqualToString:CTRadioAccessTechnologyEdge]) {
