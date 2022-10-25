@@ -121,7 +121,7 @@ public class NetworkManager extends CordovaPlugin {
     this.telMan.listen( phoneStateListener, LISTEN_SERVICE_STATE);
     this.connectionCallbackContext = null;
 
-    this.registerConnectivityActionReceiver();
+        this.registerConnectivityActionReceiver();
     }
 
     /**
