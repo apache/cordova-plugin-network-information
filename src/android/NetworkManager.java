@@ -79,7 +79,7 @@ public class NetworkManager extends CordovaPlugin {
     public static final String UMB = "umb";
     public static final String HSPA_PLUS = "hspa+";
 
-  // 5G network types
+    // 5G network types
     public static final String FIVE_G = "5g";
     public static final String NR = "nr";
 
