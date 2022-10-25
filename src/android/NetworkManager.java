@@ -54,7 +54,7 @@ public class NetworkManager extends CordovaPlugin {
 
     public static final String WIFI = "wifi";
     public static final String WIMAX = "wimax";
-  // mobile
+    // mobile
     public static final String MOBILE = "mobile";
 
     // Android L calls this Cellular, because I have no idea!
