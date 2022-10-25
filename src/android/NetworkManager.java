@@ -362,7 +362,6 @@ public class NetworkManager extends CordovaPlugin {
     }
 
     private boolean is4G(int type, String name){
-
         return  type == TelephonyManager.NETWORK_TYPE_LTE && name.equals(FOUR_G) ||     // api<11: replace by 13
                 type == TelephonyManager.NETWORK_TYPE_IWLAN ||  // api<25: replace by 18
                 type == NETWORK_TYPE_LTE_CA || // LTE_CA
