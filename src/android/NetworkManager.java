@@ -57,7 +57,7 @@ public class NetworkManager extends CordovaPlugin {
   // mobile
     public static final String MOBILE = "mobile";
 
-  // Android L calls this Cellular, because I have no idea!
+    // Android L calls this Cellular, because I have no idea!
     public static final String CELLULAR = "cellular";
   // 2G network types
     public static final String TWO_G = "2g";
