@@ -125,7 +125,7 @@ public class NetworkManager extends CordovaPlugin {
     }
 
     /**
- Executes the request and returns PluginResult.
+     * Executes the request and returns PluginResult.
      *
      * @param action            The action to execute.
      * @param args              JSONArry of arguments for the plugin.
