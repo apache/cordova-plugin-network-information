@@ -373,7 +373,6 @@ public class NetworkManager extends CordovaPlugin {
     }
 
     private boolean is5G(int type, String name){
-
         return  type == TelephonyManager.NETWORK_TYPE_LTE && name.equals(FIVE_G) ||     // api<11: replace by 13
                 type == NETWORK_TYPE_NR ||  // api<25: replace by 18
                 name.equals(FIVE_G) ||
