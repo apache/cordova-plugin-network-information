@@ -115,11 +115,11 @@ public class NetworkManager extends CordovaPlugin {
      * @param webView The CordovaWebView Cordova is running in.
      */
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
-    super.initialize(cordova, webView);
-    this.sockMan = (ConnectivityManager) cordova.getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-    this.telMan = (TelephonyManager) cordova.getActivity().getSystemService(Context.TELEPHONY_SERVICE);
-    this.telMan.listen( phoneStateListener, LISTEN_SERVICE_STATE);
-    this.connectionCallbackContext = null;
+        super.initialize(cordova, webView);
+        this.sockMan = (ConnectivityManager) cordova.getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        this.telMan = (TelephonyManager) cordova.getActivity().getSystemService(Context.TELEPHONY_SERVICE);
+        this.telMan.listen( phoneStateListener, LISTEN_SERVICE_STATE);
+        this.connectionCallbackContext = null;
 
         this.registerConnectivityActionReceiver();
     }
