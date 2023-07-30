@@ -83,6 +83,14 @@
                     } else if ([telephonyInfo.currentRadioAccessTechnology  isEqualToString:CTRadioAccessTechnologyLTE]) {
                         return @"4g";
                     }
+
+                    if (@available(iOS 14.1, *)) {
+                    if ([telephonyInfo.currentRadioAccessTechnology isEqualToString:CTRadioAccessTechnologyNRNSA]) {
+                        return @"5g";
+                    } else if ([telephonyInfo.currentRadioAccessTechnology isEqualToString:CTRadioAccessTechnologyNR]) {
+                        return @"5g";
+                    }
+                }
                 }
                 return @"cellular";
             }
@@ -106,6 +114,7 @@
     return [theConnectionType isEqualToString:@"2g"] ||
            [theConnectionType isEqualToString:@"3g"] ||
            [theConnectionType isEqualToString:@"4g"] ||
+           [theConnectionType isEqualToString:@"5g"] ||
            [theConnectionType isEqualToString:@"cellular"];
 }
 
