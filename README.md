@@ -60,6 +60,7 @@ wifi connection, and whether the device has an internet connection.
 - Connection.CELL_2G
 - Connection.CELL_3G
 - Connection.CELL_4G
+- Connection.CELL_5G
 - Connection.CELL
 - Connection.NONE
 
@@ -81,6 +82,7 @@ function checkConnection() {
     states[Connection.CELL_2G]  = 'Cell 2G connection';
     states[Connection.CELL_3G]  = 'Cell 3G connection';
     states[Connection.CELL_4G]  = 'Cell 4G connection';
+    states[Connection.CELL_5G]  = 'Cell 5G connection';
     states[Connection.CELL]     = 'Cell generic connection';
     states[Connection.NONE]     = 'No network connection';
 
