@@ -37,6 +37,7 @@ exports.defineAutoTests = function () {
                 cellular: 1,
                 '3g': 1,
                 '4g': 1,
+                '5g': 1,
                 none: 1
             };
             expect(validValues[navigator.connection.type]).toBe(1);
@@ -49,6 +50,7 @@ exports.defineAutoTests = function () {
             expect(Connection.CELL_2G).toBe('2g');
             expect(Connection.CELL_3G).toBe('3g');
             expect(Connection.CELL_4G).toBe('4g');
+            expect(Connection.CELL_5G).toBe('5g');
             expect(Connection.NONE).toBe('none');
             expect(Connection.CELL).toBe('cellular');
         });
