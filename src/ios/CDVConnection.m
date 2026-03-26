@@ -106,9 +106,36 @@
     CTTelephonyNetworkInfo *telephonyInfo = [CTTelephonyNetworkInfo new];
 
     if (@available(iOS 12.0, *)) {
-        return telephonyInfo.serviceCurrentRadioAccessTechnology.allValues.firstObject;
+        // iOS 12+ exposes Radio Access Technology per cellular service (multi-SIM capable)
+        NSDictionary<NSString*, NSString*> *serviceCurrentRadioAccessTechnology = telephonyInfo.serviceCurrentRadioAccessTechnology;
+        if (serviceCurrentRadioAccessTechnology.count == 0) {
+            return nil;
+        }
+
+        NSString *currentRadioAccessTechnology = nil;
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 130000
+        if (@available(iOS 13.0, *)) {
+            // Prefer the Radio Access Technology for the currently active data service when available.
+            // This is the most likely to reflect the actual network type used for data connectivity.
+            NSString *dataServiceIdentifier = telephonyInfo.dataServiceIdentifier;
+
+            if (dataServiceIdentifier.length > 0) {
+                currentRadioAccessTechnology = serviceCurrentRadioAccessTechnology[dataServiceIdentifier];
+            }
+        }
+#endif
+        if (!currentRadioAccessTechnology) {
+            // Deterministic fallback for iOS 12 (or missing data service identifier)
+            // Get the Radio Access Technology for the first available cellular service, sorted by service identifier.
+            NSArray<NSString*> *sortedKeys = [[serviceCurrentRadioAccessTechnology allKeys] sortedArrayUsingSelector:@selector(compare:)];
+            NSString *firstKey = sortedKeys.firstObject;
+            currentRadioAccessTechnology = firstKey != nil ? serviceCurrentRadioAccessTechnology[firstKey] : nil;
+        }
+
+        return currentRadioAccessTechnology;
     }
 
+// Fallback for iOS 11 and earlier, which only supports a single Radio Access Technology.
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     return telephonyInfo.currentRadioAccessTechnology;
@@ -166,11 +193,13 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateConnectionType:)
                                                  name:kReachabilityChangedNotification object:nil];
     if (@available(iOS 12.0, *)) {
+        // iOS 12+ replacement for CTRadioAccessTechnologyDidChangeNotification.
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateConnectionType:)
                                                      name:CTServiceRadioAccessTechnologyDidChangeNotification object:nil];
     } else {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        // iOS 11 fallback to keep backward compatibility.
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateConnectionType:)
                                                      name:CTRadioAccessTechnologyDidChangeNotification object:nil];
 #pragma clang diagnostic pop
