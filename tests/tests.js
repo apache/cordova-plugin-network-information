@@ -17,9 +17,6 @@
     under the License.
 */
 
-/* eslint-env jasmine */
-/* global Connection */
-
 exports.defineAutoTests = function () {
     describe('Network (navigator.connection)', function () {
         it('network.spec.1 should exist', function () {
@@ -27,7 +24,7 @@ exports.defineAutoTests = function () {
         });
 
         it('network.spec.2 should be set to a valid value', function () {
-            var validValues = {
+            const validValues = {
                 unknown: 1,
                 ethernet: 1,
                 wifi: 1,
@@ -59,7 +56,7 @@ exports.defineAutoTests = function () {
 
 exports.defineManualTests = function (contentEl, createActionButton) {
     function eventOutput (s) {
-        var el = document.getElementById('results');
+        const el = document.getElementById('results');
         el.innerHTML = el.innerHTML + s + '<br>';
     }
 
@@ -74,7 +71,7 @@ exports.defineManualTests = function (contentEl, createActionButton) {
 
     /******************************************************************************/
 
-    var html = '<div id="info">' +
+    const html = '<div id="info">' +
         '<b>Results:</b><br>' +
         '<span id="results"></span>' +
         '</div><div id="connection"></div>' +
