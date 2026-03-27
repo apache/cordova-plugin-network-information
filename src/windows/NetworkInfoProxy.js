@@ -17,8 +17,6 @@
     under the License.
 */
 
-/* global Windows:true */
-
 var Connection = require('./Connection');
 
 var winNetConn = Windows.Networking.Connectivity;
