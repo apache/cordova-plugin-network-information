@@ -1,26 +1,21 @@
 /*
- *
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- *
-*/
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
 
-/* eslint-env jasmine */
-/* global Connection */
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+*/
 
 exports.defineAutoTests = function () {
     describe('Network (navigator.connection)', function () {
@@ -29,7 +24,7 @@ exports.defineAutoTests = function () {
         });
 
         it('network.spec.2 should be set to a valid value', function () {
-            var validValues = {
+            const validValues = {
                 unknown: 1,
                 ethernet: 1,
                 wifi: 1,
@@ -61,7 +56,7 @@ exports.defineAutoTests = function () {
 
 exports.defineManualTests = function (contentEl, createActionButton) {
     function eventOutput (s) {
-        var el = document.getElementById('results');
+        const el = document.getElementById('results');
         el.innerHTML = el.innerHTML + s + '<br>';
     }
 
@@ -76,7 +71,7 @@ exports.defineManualTests = function (contentEl, createActionButton) {
 
     /******************************************************************************/
 
-    var html = '<div id="info">' +
+    const html = '<div id="info">' +
         '<b>Results:</b><br>' +
         '<span id="results"></span>' +
         '</div><div id="connection"></div>' +
