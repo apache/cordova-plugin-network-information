@@ -85,9 +85,9 @@
                         return @"4g";
                         // 5G available since iOS 14.1
                     } else if (@available(iOS 14.1, *)) {
-                        if ([telephonyInfo.currentRadioAccessTechnology isEqualToString:CTRadioAccessTechnologyNRNSA]) {
+                        if ([radioAccessTechnology isEqualToString:CTRadioAccessTechnologyNRNSA]) {
                             return @"5g";
-                        } else if ([telephonyInfo.currentRadioAccessTechnology isEqualToString:CTRadioAccessTechnologyNR]) {
+                        } else if ([radioAccessTechnology isEqualToString:CTRadioAccessTechnologyNR]) {
                             return @"5g";
                         }
                     }
