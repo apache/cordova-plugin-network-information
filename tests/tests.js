@@ -32,6 +32,7 @@ exports.defineAutoTests = function () {
                 cellular: 1,
                 '3g': 1,
                 '4g': 1,
+                '5g': 1,
                 none: 1
             };
             expect(validValues[navigator.connection.type]).toBe(1);
@@ -44,6 +45,7 @@ exports.defineAutoTests = function () {
             expect(Connection.CELL_2G).toBe('2g');
             expect(Connection.CELL_3G).toBe('3g');
             expect(Connection.CELL_4G).toBe('4g');
+            expect(Connection.CELL_5G).toBe('5g');
             expect(Connection.NONE).toBe('none');
             expect(Connection.CELL).toBe('cellular');
         });
@@ -76,7 +78,7 @@ exports.defineManualTests = function (contentEl, createActionButton) {
         '<span id="results"></span>' +
         '</div><div id="connection"></div>' +
         'Expected result: Status box will update with type of connection using two different methods. Both values must match.' +
-        '  The result will be unknown, ethernet, wifi, 2g, 3g, 4g, none, or cellular. Make sure it matches what the device is connected to.' +
+        '  The result will be unknown, ethernet, wifi, 2g, 3g, 4g, 5g, none, or cellular. Make sure it matches what the device is connected to.' +
         '</p> <div id="actions"></div>';
 
     document.addEventListener('online', onEvent, false);

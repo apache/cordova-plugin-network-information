@@ -36,6 +36,7 @@ import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
+import android.telephony.TelephonyManager;
 
 import java.util.Locale;
 
@@ -71,6 +72,9 @@ public class NetworkManager extends CordovaPlugin {
     public static final String LTE = "lte";
     public static final String UMB = "umb";
     public static final String HSPA_PLUS = "hspa+";
+    // 5G network types
+    public static final String FIVE_G = "5g";
+    public static final String NR = "nr";
     // return type
     public static final String TYPE_UNKNOWN = "unknown";
     public static final String TYPE_ETHERNET = "ethernet";
@@ -79,6 +83,7 @@ public class NetworkManager extends CordovaPlugin {
     public static final String TYPE_2G = "2g";
     public static final String TYPE_3G = "3g";
     public static final String TYPE_4G = "4g";
+    public static final String TYPE_5G = "5g";
     public static final String TYPE_NONE = "none";
 
     private static final String LOG_TAG = "NetworkManager";
@@ -271,26 +276,32 @@ public class NetworkManager extends CordovaPlugin {
         } else if (type.toLowerCase().equals(TYPE_ETHERNET) || type.toLowerCase().startsWith(TYPE_ETHERNET_SHORT)) {
             return TYPE_ETHERNET;
         } else if (type.equals(MOBILE) || type.equals(CELLULAR)) {
-            type = info.getSubtypeName().toLowerCase(Locale.US);
-            if (type.equals(GSM) ||
-                    type.equals(GPRS) ||
-                    type.equals(EDGE) ||
-                    type.equals(TWO_G)) {
+            int subtype = info.getSubtype();
+            String subtypeName = info.getSubtypeName().toLowerCase(Locale.US);
+            if (subtypeName.equals(GSM) ||
+                    subtypeName.equals(GPRS) ||
+                    subtypeName.equals(EDGE) ||
+                    subtypeName.equals(TWO_G)) {
                 return TYPE_2G;
-            } else if (type.startsWith(CDMA) ||
-                    type.equals(UMTS) ||
-                    type.equals(ONEXRTT) ||
-                    type.equals(EHRPD) ||
-                    type.equals(HSUPA) ||
-                    type.equals(HSDPA) ||
-                    type.equals(HSPA) ||
-                    type.equals(THREE_G)) {
+            } else if (subtypeName.startsWith(CDMA) ||
+                    subtypeName.equals(UMTS) ||
+                    subtypeName.equals(ONEXRTT) ||
+                    subtypeName.equals(EHRPD) ||
+                    subtypeName.equals(HSUPA) ||
+                    subtypeName.equals(HSDPA) ||
+                    subtypeName.equals(HSPA) ||
+                    subtypeName.equals(THREE_G)) {
                 return TYPE_3G;
-            } else if (type.equals(LTE) ||
-                    type.equals(UMB) ||
-                    type.equals(HSPA_PLUS) ||
-                    type.equals(FOUR_G)) {
+            } else if (subtypeName.equals(LTE) ||
+                    subtypeName.equals(UMB) ||
+                    subtypeName.equals(HSPA_PLUS) ||
+                    subtypeName.equals(FOUR_G)) {
                 return TYPE_4G;
+            // Android 10+ exposes 5G as NR (New Radio).
+            } else if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && subtype == TelephonyManager.NETWORK_TYPE_NR) ||
+                    subtypeName.equals(NR) ||
+                    subtypeName.equals(FIVE_G)) {
+                return TYPE_5G;
             }
         }
         return TYPE_UNKNOWN;
