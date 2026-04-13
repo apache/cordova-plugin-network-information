@@ -1,5 +1,5 @@
 ---
-# cordova-doc build metadata
+# cordova-docs build metadata
 title: Network Information
 description: Get information about wireless connectivity.
 ---
