@@ -1,5 +1,5 @@
-<!-- Meta data for cordova.apache.org. Used for title and meta description -->
 ---
+# cordova-doc build metadata
 title: Network Information
 description: Get information about wireless connectivity.
 ---
