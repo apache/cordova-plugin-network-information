@@ -18,7 +18,7 @@
 # under the License.
 #
 -->
-# Cordova Plugin Network Information
+# cordova-plugin-network-information
 
 [![npm - Latest](https://img.shields.io/npm/v/cordova-plugin-network-information/latest?label=Latest%20Release%20(npm))](https://npmjs.com/package/cordova-plugin-network-information)
 [![GitHub](https://img.shields.io/github/package-json/v/apache/cordova-plugin-network-information?label=Development%20(Git))](https://github.com/apache/cordova-plugin-network-information)
