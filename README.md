@@ -1,7 +1,3 @@
----
-title: Network Information
-description: Get information about wireless connectivity.
----
 <!--
 #
 # Licensed to the Apache Software Foundation (ASF) under one
@@ -22,11 +18,17 @@ description: Get information about wireless connectivity.
 # under the License.
 #
 -->
+# Cordova Plugin Network Information
 
-# cordova-plugin-network-information
+[![npm - Latest](https://img.shields.io/npm/v/cordova-plugin-network-information/latest?label=Latest%20Release%20(npm))](https://npmjs.com/package/cordova-plugin-network-information)
+[![GitHub](https://img.shields.io/github/package-json/v/apache/cordova-plugin-network-information?label=Development%20(Git))](https://github.com/apache/cordova-plugin-network-information)
 
-[![Android Testsuite](https://github.com/apache/cordova-plugin-network-information/actions/workflows/android.yml/badge.svg)](https://github.com/apache/cordova-plugin-network-information/actions/workflows/android.yml) [![Chrome Testsuite](https://github.com/apache/cordova-plugin-network-information/actions/workflows/chrome.yml/badge.svg)](https://github.com/apache/cordova-plugin-network-information/actions/workflows/chrome.yml) [![iOS Testsuite](https://github.com/apache/cordova-plugin-network-information/actions/workflows/ios.yml/badge.svg)](https://github.com/apache/cordova-plugin-network-information/actions/workflows/ios.yml) [![Lint Test](https://github.com/apache/cordova-plugin-network-information/actions/workflows/lint.yml/badge.svg)](https://github.com/apache/cordova-plugin-network-information/actions/workflows/lint.yml)
-
+[![GitHub - Node Workflow](https://github.com/apache/cordova-plugin-network-information/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/apache/cordova-plugin-network-information/actions/workflows/ci.yml?query=branch%3Amaster)
+[![Android Testsuite](https://github.com/apache/cordova-plugin-network-information/actions/workflows/android.yml/badge.svg)](https://github.com/apache/cordova-plugin-network-information/actions/workflows/android.yml)
+[![Chrome Testsuite](https://github.com/apache/cordova-plugin-network-information/actions/workflows/chrome.yml/badge.svg)](https://github.com/apache/cordova-plugin-network-information/actions/workflows/chrome.yml)
+[![iOS Testsuite](https://github.com/apache/cordova-plugin-network-information/actions/workflows/ios.yml/badge.svg)](https://github.com/apache/cordova-plugin-network-information/actions/workflows/ios.yml)
+[![Lint Test](https://github.com/apache/cordova-plugin-network-information/actions/workflows/lint.yml/badge.svg)](https://github.com/apache/cordova-plugin-network-information/actions/workflows/lint.yml)
+[![GitHub - Release Audit Workflow](https://github.com/apache/cordova-plugin-network-information/actions/workflows/release-audit.yml/badge.svg?branch=master)](https://github.com/apache/cordova-plugin-network-information/actions/workflows/release-audit.yml?query=branch%3Amaster)
 
 This plugin provides an implementation of an old version of the
 [Network Information API](http://www.w3.org/TR/2011/WD-netinfo-api-20110607/).
