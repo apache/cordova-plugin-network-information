@@ -1,3 +1,8 @@
+<!-- Meta data for cordova.apache.org. Used for title and meta description -->
+---
+title: Network Information
+description: Get information about wireless connectivity.
+---
 <!--
 #
 # Licensed to the Apache Software Foundation (ASF) under one
