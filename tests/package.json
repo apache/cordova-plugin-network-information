@@ -1,7 +1,7 @@
 {
   "name": "cordova-plugin-network-information-tests",
   "version": "3.1.0-dev",
-  "description": "",
+  "description": "Tests for Cordova Network Information Plugin",
   "cordova": {
     "id": "cordova-plugin-network-information-tests",
     "platforms": []
@@ -9,6 +9,6 @@
   "keywords": [
     "ecosystem:cordova"
   ],
-  "author": "",
-  "license": "Apache 2.0"
+  "author": "Apache Software Foundation",
+  "license": "Apache-2.0"
 }
