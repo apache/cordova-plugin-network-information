@@ -23,6 +23,18 @@
 
 ### 3.1.0
 
+**Features:**
+
+* feat(android): add 5g check and test ([#172](https://github.com/apache/cordova-plugin-network-information/pull/172)) [[0a86a7b](https://github.com/apache/cordova-plugin-network-information/commit/0a86a7b)]
+* feat(ios): add 5G check ([#159](https://github.com/apache/cordova-plugin-network-information/pull/159)) [[d88517d](https://github.com/apache/cordova-plugin-network-information/commit/d88517d)]
+
+**Fixes:**
+
+* fix(ios): fix deprecation warnings for iOS 12+ ([#169](https://github.com/apache/cordova-plugin-network-information/pull/169)) [[a76687b](https://github.com/apache/cordova-plugin-network-information/commit/a76687b)]
+* fix(ios): Remove redundant `#import <netinet6/in6.h> for Xcode 26.4 compatibility ([#166](https://github.com/apache/cordova-plugin-network-information/pull/166)) [[291328e](https://github.com/apache/cordova-plugin-network-information/commit/291328e)]
+
+**Other:**
+
 * chore: various updates ([#177](https://github.com/apache/cordova-plugin-network-information/pull/177)) [[3148e76](https://github.com/apache/cordova-plugin-network-information/commit/3148e76)]
 * chore: bump minor version to 3.1.0-dev ([#173](https://github.com/apache/cordova-plugin-network-information/pull/173)) [[78de889](https://github.com/apache/cordova-plugin-network-information/commit/78de889)]
 * chore: update asf config ([#161](https://github.com/apache/cordova-plugin-network-information/pull/161)) [[c9a7b0b](https://github.com/apache/cordova-plugin-network-information/commit/c9a7b0b)]
@@ -40,11 +52,7 @@
 * ci(gh-action): sync with paramedic configs ([#160](https://github.com/apache/cordova-plugin-network-information/pull/160)) [[c93032f](https://github.com/apache/cordova-plugin-network-information/commit/c93032f)]
 * ci(ios): update workflow w/ iOS 15 ([#141](https://github.com/apache/cordova-plugin-network-information/pull/141)) [[a18c3b7](https://github.com/apache/cordova-plugin-network-information/commit/a18c3b7)]
 * doc(readme): improve badges ([#175](https://github.com/apache/cordova-plugin-network-information/pull/175)) [[73091ba](https://github.com/apache/cordova-plugin-network-information/commit/73091ba)]
-* feat(android): add 5g check and test ([#172](https://github.com/apache/cordova-plugin-network-information/pull/172)) [[0a86a7b](https://github.com/apache/cordova-plugin-network-information/commit/0a86a7b)]
-* fix(ios): fix deprecation warnings for iOS 12+ ([#169](https://github.com/apache/cordova-plugin-network-information/pull/169)) [[a76687b](https://github.com/apache/cordova-plugin-network-information/commit/a76687b)]
-* fix(ios): Remove redundant `#import <netinet6/in6.h> for Xcode 26.4 compatibility ([#166](https://github.com/apache/cordova-plugin-network-information/pull/166)) [[291328e](https://github.com/apache/cordova-plugin-network-information/commit/291328e)]
 * Incremented plugin version. (cordova-plugin-network-information20210603) [[fcec956](https://github.com/apache/cordova-plugin-network-information/commit/fcec956)]
-* ios: add 5G check ([#159](https://github.com/apache/cordova-plugin-network-information/pull/159)) [[d88517d](https://github.com/apache/cordova-plugin-network-information/commit/d88517d)]
 
 ### 3.0.0 (Jun 03, 2021)
 -   release 3.0.0 audit fix
