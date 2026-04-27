@@ -21,7 +21,7 @@
 
 # Release Notes
 
-### 3.1.0 (Apr 25, 2026)
+### 3.1.0
 
 * chore: various updates ([#177](https://github.com/apache/cordova-plugin-network-information/pull/177)) [[3148e76](https://github.com/apache/cordova-plugin-network-information/commit/3148e76)]
 * chore: bump minor version to 3.1.0-dev ([#173](https://github.com/apache/cordova-plugin-network-information/pull/173)) [[78de889](https://github.com/apache/cordova-plugin-network-information/commit/78de889)]
