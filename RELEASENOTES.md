@@ -41,6 +41,8 @@
 * chore(ci): draft release ([#174](https://github.com/apache/cordova-plugin-network-information/pull/174)) [[84f119b](https://github.com/apache/cordova-plugin-network-information/commit/84f119b)]
 * chore(dev-dep): bump @cordova/eslint-config to 6.0.1 w/ fixes ([#171](https://github.com/apache/cordova-plugin-network-information/pull/171)) [[952bd51](https://github.com/apache/cordova-plugin-network-information/commit/952bd51)]
 * chore(npm): bump package-lock v2 w/ rebuild ([#153](https://github.com/apache/cordova-plugin-network-information/pull/153)) [[cd9d84b](https://github.com/apache/cordova-plugin-network-information/commit/cd9d84b)]
+* chore(workflow): update upload to atr action ([#180](https://github.com/apache/cordova-plugin-network-information/pull/180)) [[dfe1df3](https://github.com/apache/cordova-plugin-network-information/commit/dfe1df3)]
+* chore(workflow): fix verify target release version for plugins ([#179](https://github.com/apache/cordova-plugin-network-information/pull/179)) [[e7a6e9e](https://github.com/apache/cordova-plugin-network-information/commit/e7a6e9e)]
 * chore(workflow): add release-audit w/ supporting files & fixes ([#170](https://github.com/apache/cordova-plugin-network-information/pull/170)) [[16b5d8d](https://github.com/apache/cordova-plugin-network-information/commit/16b5d8d)]
 * chore(workflow): Update workflows from cordova-paramedic ([#168](https://github.com/apache/cordova-plugin-network-information/pull/168)) [[b758e31](https://github.com/apache/cordova-plugin-network-information/commit/b758e31)]
 * ci: sync workflow w/ paramedic ([#164](https://github.com/apache/cordova-plugin-network-information/pull/164)) [[71718b8](https://github.com/apache/cordova-plugin-network-information/commit/71718b8)]
