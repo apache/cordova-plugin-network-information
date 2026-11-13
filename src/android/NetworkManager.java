@@ -163,9 +163,10 @@ public class NetworkManager extends CordovaPlugin {
                 @Override
                 public void onReceive(Context context, Intent intent) {
                     // (The null check is for the ARM Emulator, please use Intel Emulator for better results)
-                    if (NetworkManager.this.webView != null) {
-                        updateConnectionInfo(sockMan.getActiveNetworkInfo());
+                    if (NetworkManager.this.webView == null) {
+                        return;
                     }
+                    updateConnectionInfo(sockMan.getActiveNetworkInfo());
 
                     String connectionType;
                     if (NetworkManager.this.lastTypeOfNetwork == null) {
